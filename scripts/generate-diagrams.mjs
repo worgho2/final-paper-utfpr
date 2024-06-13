@@ -1,4 +1,3 @@
-
 import fs from 'fs';
 import {run} from '@mermaid-js/mermaid-cli';
 import path from 'path';
@@ -6,7 +5,6 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 
 const files = fs
     .readdirSync(path.resolve(__dirname, '../'), { recursive: true })
@@ -16,7 +14,7 @@ const files = fs
         png: path.resolve(__dirname, '../', file.replace('.mmd', '.png'))
     }));
 
-files.forEach(({mmd, png}) => {
+files.forEach(({ mmd, png }) => {
     run(mmd, png, { 
         outputFormat: 'png',
         parseMMDOptions: {
@@ -32,9 +30,3 @@ files.forEach(({mmd, png}) => {
             console.log(`Generated diagram for ${mmd} to ${png}`);
         })
 })
-
-
-// for each .mmd file in the ../** directory, generate a png file with the same name
-
-// const files = fs.readdirSync('../**', ).filter(file => file.endsWith('.mmd'));
-// console.log(files);
