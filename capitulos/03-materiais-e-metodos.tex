@@ -1,0 +1,155 @@
+%%%% CAPÍTULO 3 - MATERIAL E MÉTODOS (PODE SER OUTRO TÍTULO DE ACORDO COM O TRABALHO REALIZADO)
+
+\chapter{Materiais e Métodos}\label{cap:materialemetodos}
+
+% A ênfase deste capítulo está em reportar o que e como será feito para alcançar o objetivo do trabalho. Este capítulo pode ser subdividido, inicialmente, em duas seções, sendo uma para os materiais e outra para os métodos.
+
+Este capítulo apresenta o plano de trabalho a ser seguido para que os objetivos citados
+anteriormente sejam alcançados. Primeiramente, ferramentas e tecnologias utilizadas serão discutidas seguidas dos métodos a serem empregados para que os objetivos sejam atingidos.
+
+\section{Materiais}\label{sec:materiais}
+
+O objetivo do trabalho é apresentar um modelo de arquitetura voltado para nuvem, e para tal, algumas ferramentas e tecnologias foram escolhidas para a construção da solução.
+
+\subsection{Amazon Web Services}\label{subsec:amazonWebServices}
+
+Popularmente conhecida pela sigla \textit{AWS}, a empresa subsidiária da Amazon detêm a maior fatia de mercado do segmento de computação em nuvem. A \textit{AWS} foi escolhida como provedor de serviços de nuvem porque disponibiliza uma gama de serviços que possibilitam a execução do trabalho.
+
+A princípio o projeto contará com os seguintes recursos oferecidos pela \citet{awsconceitosbasicos}: 
+
+\begin{itemize}
+
+    \item \textbf{\textit{Elastic Cloud Computing (EC2)}}: São instâncias virtualizadas que serão utilizadas como desktop virtual para o usuário final.
+    
+    \item \textbf{\textit{Lambda}}: São funções \textit{serverless}\footnote{funções serverless fazem uma abstração a nível de aplicação para que o desenvolvedor consiga executar literalmente funções de código em um ambiente de nuvem sem a necessidade de configurar uma aplicação ou o servidor que a hospeda} que executarão parte da lógica envolvida na aplicação. Essas funções são executadas a medida que são requisitadas, e são desativadas com inatividade.
+    
+    \item \textbf{\textit{Simple Storage Service (S3)}}: É um serviço de armazenamento de objetos que será utilizado para guardar dados estáticos, como arquivos de texto, fotos ou vídeos.
+    
+    \item \textbf{\textit{Event Bridge}}: É um serviço que possibilita a comunicação entre recursos através de eventos. Com ele é possível publicar e consumir eventos com informações customizadas.
+    
+    \item \textbf{\textit{Fargate, Elastic Container Service (ECS) e Elastic Container Registry (ECR)}}: Os serviços são altamente relacionados e servem para orquestrar e executar aplicações baseadas em containers. De forma simples, o \textit{ECR} armazena as imagens de containers, o \textit{Fargate} é o ambiente de execução e o \textit{ECS} atua como orquestrador entre os dois outros serviços. Eles serão responsáveis por executar o serviço que conecta os usuários aos seus respectivos \textit{desktops} virtuais.
+    
+    \item \textbf{\textit{Aurora Serverless}}: É um serviço de banco de dados relacional serverless que será utilizado para armazenar todas as informações derivadas de regras de negócio.
+
+    \item \textbf{\textit{Cloud Development Kit (CDK)}}: É um \textit{framework}\footnote{Um framework é um conjunto de bibliotecas que auxiliam no desenvolvimento de aplicações} utilizado para a definição da infraestrutura de forma programática. Ao contrário de configurar os recursos de nuvem manualmente, com o \textit{CDK} é possível descrever como código, quais são os recursos a serem alocados e suas comunicações. Ele é imprescindível no trabalho, já que possibilita a replicação do modelo de arquitetura.
+    
+\end{itemize}
+
+Todos os serviços acima certamente serão utilizados, porém existem outros serviços que não foram listados porque não há argumentos suficientes nessa etapa do projeto para listá-los.
+
+A execução do trabalho conta também com um apoio da \textit{AWS} em forma de créditos a serem utilizados na plataforma e assistência técnica de um intermediário.
+
+\subsection{Apache Guacamole}\label{subsec:apacheGuacamole}
+
+O Apache Guacamole é uma aplicação gratuita de código aberto definido como: \textit{clientless remote desktop gateway}. \citep{apacheguacamole} Com uma tradução livre, seria um portão para acesso a \textit{desktops} remotos sem cliente.
+
+O termo \textit{clientless} remete ao fato da aplicação ser agnóstica quando ao cliente que a consome. Isso significa que existe um protocolo de conexão bem definido e documentado, que pode ser reproduzido em qualquer linguagem de programação. 
+
+No contexto desse trabalho o cliente da aplicação implementará o protocolo do guacamole para se comunicar com o servidor, que por sua vez efetuará a conexão do usuário.
+
+
+\subsection{Node.js}\label{subsec:nodeJs}
+
+O Node.js é um ambiente de execução de \textit{javascript} baseado em eventos assíncronos otimizado para a criação de aplicações de rede escaláveis. Ele será utilizado dentro das funções \textit{serverless} para executar partes das lógicas de negócio. \citep{nodejs}
+
+Ele foi escolhido por ter hoje uma das maiores comunidades de desenvolvedores ativos, além de fornecer artefatos para a implementação das lógicas a serem desenvolvidas.
+
+\subsection{Next.js}\label{subsec:nextJs}
+
+O Next.js é um \textit{framework} de código aberto para o desenvolvimento de aplicações web. Com ele é possível executar renderização de elementos de tela no servidor e também geração de páginas estáticas. \citep{nextjs}
+
+Ele foi escolhido para esse trabalho para a criação do sistema web, intermediando a conexão com os servidores da infraestrutura. Toda a lógica de autenticação, visualização dos componentes disponíveis e gerenciamento dos recursos, exceto criação dos templates de imagem de máquina, serão implementados nesta aplicação web.
+
+% Materiais são as ferramentas, as tecnologias, os ambientes de desenvolvimento e outros que são utilizados para realizar as atividades desde a definição dos requisitos à implantação do sistema. Exemplos de materiais: linguagens de programação e de modelagem, banco de dados e seus gerenciadores, editores para análise e modelagem, ambiente e plataforma de desenvolvimento.
+
+% Cada um dos materiais pode ter uma subseção própria ou serem descritos em uma mesma seção. De qualquer forma, essa seção não precisa ser muito extensa, deve abranger apenas um conhecimento básico sobre cada um dos materiais e o que é mais relevante ou utilizado para o trabalho proposto. De maneira geral, não há necessidade de incluir informações históricas sobre os materiais. Centrar-se nos conceitos e particularidades mais relevantes para o trabalho. Exceto se necessário para o entendimento do objeto do trabalho ou considerado relevante para o tipo de pesquisa.
+
+\section{Métodos}\label{sec:metodo}
+
+Inicialmente, um estudo será realizado para analisar a performance dos protocolos de conexão com \textit{desktops} remotos já presentes no Apache Guacamole, sendo eles \textit{SSH}, \textit{VNC} e \textit{RDP}. Como os protocolos estão em uma camada mais abstrata da solução, a viabilidade de implementação de um outro protocolo ainda não integrado com o Guacamole será avaliada e implementada, se possível. Caso contrário será listada como aprimoramento do trabalho atual.
+
+Durante o estudo diversos cenários de conexão serão testados, visando cobrir casos de uso onde softwares que demandam maior capacidade de processamento de vídeo são utilizados. Como resultado, são esperados parâmetros para nortear o dimensionamento dos recursos computacionais empregados na solução.
+
+Em seguida, um diagrama de infraestrutura será construído com o apoio de uma equipe especializada da \textit{AWS}, que ajudará na idealização dos componentes e identificação de pontos a serem otimizados. Como resultado, espera-se uma base conceitual da infraestrutura para nortear o desenvolvimento.
+
+A partir desse momento, o protótipo da aplicação será construído a partir das seguintes etapas:
+
+\begin{enumerate}
+    \item Configuração das bases de código com versionamento, suporte a documentação, integração e entrega contínuas.
+    \item Configuração da conta na \textit{AWS} com ativação dos créditos cedidos pela empresa.
+    \item Configuração dos componentes de servidor do Apache Guacamole.
+    \item Desenvolvimento das lógicas de negócio com funções \textit{serverless}.
+    \item Desenvolvimento dos componentes da arquitetura como código.
+    \item Desenvolvimento da aplicação web.
+\end{enumerate}
+
+Com o protótipo construído, algumas métricas de custo serão avaliadas para que uma estimativa de custo de aplicação seja descrita, levando em consideração parâmetros de utilização coerentes com o cenário atual da UTFPR. Como resultado, é de interesse saber se a implementação do projeto é viável economicamente.
+
+Por fim, o projeto será documentado e apresentado à universidade em forma de proposta de implementação.
+
+\section{Requisitos Funcionais}\label{sec:requisitosFuncionais}
+
+O desenvolvimento do protótipo será realizado com base em requisitos funcionais. Estes que por sua vez fundamentam uma base aceitável de funcionalidades e casos de uso que fazem sentido para a utilização do projeto como solução de software. São eles:
+
+\begin{itemize}
+    \item \textbf{RF-001}: O software deverá permitir o login de usuários através das credenciais institucionais.
+
+    \item \textbf{RF-002}: O software deverá distinguir os usuários com base em seu papel dentro da instituição. (Aluno, Professor, Administrador do Sistema)
+
+    \item \textbf{RF-003}: O software deverá permitir que o usuário (aluno e professor) liste os \textit{desktops} que tem acesso.
+
+    \item \textbf{RF-004}: O software deverá permitir que o usuário (aluno e professor) inicie uma sessão com um \textit{desktop} que tenha acesso.
+    
+    \item \textbf{RF-005}: O software deverá permitir que o usuário (aluno e professor) finalize a sessão com um \textit{desktop} que tenha acesso.
+    
+    \item \textbf{RF-006}: O software deverá permitir que o usuário (aluno e professor) mantenha a sessão ativa com um \textit{desktop} mesmo que o software seja fechado.
+    
+    \item \textbf{RF-007}: O software deverá permitir que o usuário (aluno e professor) exclua um \textit{desktop} que tenha acesso.
+
+    \item \textbf{RF-008}: O software deverá permitir que o usuário (aluno e professor) crie um novo \textit{desktop} a menos que tenha atingido o máximo de sua permissão.
+    
+    \item \textbf{RF-009}: O software deverá permitir que o usuário professor altere os limites de utilização de um usuário aluno.
+
+    \item \textbf{RF-010}: O software deverá estabelecer a conexão com o \textit{desktop} utilizando uma conexão criptografada via \textit{SSL}.
+
+    \item \textbf{RF-011}: O software deverá permitir que o usuário (professor) liste os alunos que utilizam o software.
+
+    \item \textbf{RF-012}: O software deverá encerrar \textit{desktops} inativos que não foram previamente configurados para permanecer ininterruptos.
+    
+    \item \textbf{RF-013}: O software deverá coletar métricas de utilização dos \textit{desktops}.
+    
+    \item \textbf{RF-014}: O software deverá permitir ao usuário a visualização das métricas coletadas, respeitando sua política de acesso.
+    
+    \item \textbf{RF-015}: O software deverá emitir alertas via e-mail do tempo de utilização em casos onde o \textit{dekstop} não é programado para desligar automaticamente.
+    
+    \item \textbf{RF-016}: O software deverá permitir que o usuário (administrador) crie templates de imagem de máquina.
+    
+    \item \textbf{RF-017}: O software deverá permitir que o usuário (administrador) delete templates de imagem de máquina.
+
+    \item \textbf{RF-018}: O software deverá registrar todas as ações auditáveis realizadas dentro do software.
+
+    \item  \textbf{RF-019}: O software deverá permitir que o usuário (professor e administrador) liste todas as ações auditáveis.
+    
+\end{itemize}
+
+\section{Requisitos Não Funcionais}\label{sec:requisitosFuncionais}
+
+Além dos requisitos funcionais, a construção do protótipo levará em conta os seguintes requisitos não funcionais:
+
+\begin{itemize}
+    \item \textbf{RNF-001}: O software deverá permitir o acesso através de um navegador web.
+
+    \item \textbf{RNF-002}: O software deverá ser construído de maneira replicável, sem a necessidade de configuração manual do ambiente de nuvem.
+
+    \item \textbf{RNF-003}: O software deverá ser acessível, seguindo as boas práticas de desenvolvimento para a plataforma.
+\end{itemize}
+
+
+% Os métodos definem, de certa maneira, um plano geral do trabalho, com as principais atividades realizadas durante seu processo de desenvolvimento. São apenas as atividades, o que será feito e o que se espera obter com as mesmas. O que é obtido com a realização dessas atividades está no \autoref{cap:resultados}. 
+
+% Os métodos são, basicamente, uma sequência de atividades realizadas para definir o sistema, modelar o problema e a solução, implementar a solução, testar e implantar essa solução. Essas atividades devem enfatizar a forma de uso dos materiais de acordo com o referencial teórico e como foi procedido no sentido de alcançar os objetivos do trabalho.
+% Os métodos incluem os procedimentos utilizados para se alcançar o objetivo do trabalho. Assim, ele abrange o ciclo de vida do sistema, da identificação do problema à implantação da solução. A identificação pode incluir a definição dos requisitos por parte do usuário e/ou cliente definindo a proposta do sistema. A implantação pode incluir a forma de gerar os instaladores, os recursos e forma de instalação do sistema, a forma de manutenção e de descontinuidade do sistema.
+
+% A definição das atividades, passos, ou procedimentos que compõem os métodos podem (ou mesmo deve) estarem baseados em autores. Esses autores, normalmente, estão relacionados à engenharia de software.
+
+% O tempo verbal a ser utilizado na descrição dos métodos é o passado, considerando que trata-se de métodos que foram aplicados para a obtenção dos resultados a serem apresentados.
