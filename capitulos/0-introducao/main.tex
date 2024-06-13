@@ -6,52 +6,105 @@
 %% Título e rótulo de capítulo (rótulos não devem conter caracteres especiais, acentuados ou cedilha)
 \chapter{Introdução}\label{cap:introducao}
 
-Em 1997 o professor de sistemas de informação Ramnath Challappa utilizou o termo Computação em nuvem pela primeira vez para representar um conceito tecnológico que já era utilizado desde os anos 1950. Antes de ganhar o nome mais atual, a tecnologia chegou a ser chamada de \textit{Utility Computing}, fazendo alusão ao acesso compartilhado e de forma simultânea a computadores mainframe, que ocupavam muitas vezes salas completas e custavam caro. \citep{dellcloud}
+Em 1997 o professor de sistemas de informação Ramnath Challappa utilizou o termo Computação em nuvem
+pela primeira vez para representar um conceito tecnológico que já era utilizado desde os anos 1950.
+Antes de ganhar o nome mais atual, a tecnologia chegou a ser chamada de \textit{Utility Computing},
+fazendo alusão ao acesso compartilhado e de forma simultânea a computadores mainframe, que ocupavam
+muitas vezes salas completas e custavam caro. \citep{dellcloud}
 
-A computação em nuvem atualmente já aparece como pilar de soluções tecnológicas em situações de escalas variadas. Por um lado, uma grande empresa pode utilizá-la para prover a infraestrutura de grandes aplicações de operação crítica, e por outro lado, um desenvolvedor pode executar cargas de trabalhos em uma instância remota, desativá-la após concluir e pagar apenas pelo tempo de uso do recurso. \citep{taurioncloud}
+A computação em nuvem atualmente já aparece como pilar de soluções tecnológicas em situações de
+escalas variadas. Por um lado, uma grande empresa pode utilizá-la para prover a infraestrutura de
+grandes aplicações de operação crítica, e por outro lado, um desenvolvedor pode executar cargas de
+trabalhos em uma instância remota, desativá-la após concluir e pagar apenas pelo tempo de uso do
+recurso. \citep{taurioncloud}
 
-\textit{VDI} ou Infraestrutura de \textit{desktops} Virtuais é o termo usado para referenciar um ambiente de infraestrutura que hospeda \textit{desktops} virtuais e provê para usuários finais a medida que são requisitados. Tanto ambientes \textit{on premise} quanto em nuvem utilizam a mesma base conceitual de virtualização para tal arquitetura, a grande diferença está na forma em que os recursos são precificados. Em servidores locais, o recurso deve ser comprado previamente, gerenciado e protegido, já em ambientes de nuvem, onde o modelo de responsabilidade compartilhada exime o usuário de responsabilidades de segurança e gerenciamento físicos dos recursos o preço é pago pela utilização dos recursos. \citep{vmwarevdi}
+\gls{vdi} é o termo usado para referenciar um ambiente de infraestrutura que hospeda \glspl{desktop}
+virtuais e provê para usuários finais a medida que são requisitados. Tanto ambientes \gls{onPremise} quanto em nuvem utilizam a mesma
+base conceitual de virtualização para tal arquitetura, a grande diferença está na forma em que os
+recursos são precificados. Em servidores locais, o recurso deve ser comprado previamente, gerenciado
+e protegido, já em ambientes de nuvem, onde o modelo de responsabilidade compartilhada exime o
+usuário de responsabilidades de segurança e gerenciamento físicos dos recursos o preço é pago pela
+utilização dos recursos. \citep{vmwarevdi}
 
-Embora tenham sido feitos progressos utilizando \textit{VDI} em nuvem e a influência dos fatores de qualidade de serviço em sistemas de ensino baseados em \textit{VDI} \citep{qoselearning}, poucos estudos foram realizados com o fim de apresentar uma infraestrutura completa de aplicação que sustente \textit{desktops} virtuais em nuvem pública para utilização em ensino e pesquisa.
+Embora tenham sido feitos progressos utilizando \gls{vdi} em nuvem e a influência dos fatores de
+qualidade de serviço em sistemas de ensino baseados em \gls{vdi} \citep{qoselearning}, poucos
+estudos foram realizados com o fim de apresentar uma infraestrutura completa de aplicação que
+sustente \glspl{desktop} virtuais em nuvem pública para utilização em ensino e pesquisa.
 
-O objetivo deste trabalho é propor um formato de infraestrutura de \textit{desktops} virtuais em nuvem pública para sustentar ensino e pesquisa, materializado através de um protótipo de aplicação que garante o acesso à recursos computacionais a partir de qualquer dispositivo com um navegador de internet instalado.
+O objetivo deste trabalho é propor um formato de infraestrutura de \glspl{desktop} virtuais em
+nuvem pública para sustentar ensino e pesquisa, materializado através de um protótipo de aplicação
+que garante o acesso à recursos computacionais a partir de qualquer dispositivo com um navegador de
+internet instalado.
 
-Através da aplicação, os responsáveis pela infraestrutura disponibilizarão templates de imagens\footnote{Templates de images são cópias do sistema operacional com todas as configurações já estabelecidas. Eles facilitam a configuração de um novo \textit{desktop}, reduzindo o tempo até estarem acessíveis para o usuário final} que podem ser usadas. Os professores poderão autorizar e gerenciar quais tipos de imagens, os alunos podem acessar. Por fim os alunos poderão acessar os recursos computacionais de qualquer lugar, dentro ou fora da universidade.
+Através da aplicação, os responsáveis pela infraestrutura disponibilizarão templates de
+imagens\footnote{Templates de images são cópias do sistema operacional com todas as configurações já
+estabelecidas. Eles facilitam a configuração de um novo \gls{desktop}, reduzindo o tempo até
+estarem acessíveis para o usuário final} que podem ser usadas. Os professores poderão autorizar e
+gerenciar quais tipos de imagens, os alunos podem acessar. Por fim os alunos poderão acessar os
+recursos computacionais de qualquer lugar, dentro ou fora da universidade.
 
-No cenário de uma aula de laboratório onde um conjunto de softwares é necessário para a execução das atividades e os mesmos demandam uma capacidade computacional maior do que os dispositivos físicos dos alunos é capaz de fornecer, ainda sim todos seriam capazes de participar, já que esses dispositivos servem como interface para os recursos computacionais em nuvem.
+No cenário de uma aula de laboratório onde um conjunto de softwares é necessário para a execução das
+atividades e os mesmos demandam uma capacidade computacional maior do que os dispositivos físicos
+dos alunos é capaz de fornecer, ainda sim todos seriam capazes de participar, já que esses
+dispositivos servem como interface para os recursos computacionais em nuvem.
 
-Em outro cenário, também será possível a um pesquisador acessar recursos computacionais com dados persistidos entre sessões. 
+Em outro cenário, também será possível a um pesquisador acessar recursos computacionais com dados
+persistidos entre sessões. 
 
 \section{Objetivos}\label{sec:objetivos}
 
-Na seção a seguir, os objetivos que norteiam o desenvolvimento do trabalho serão apresentados na forma de um objetivo principal e objetivos específicos que delimitam as etapas do projeto.
+Na seção a seguir, os objetivos que norteiam o desenvolvimento do trabalho serão apresentados na
+forma de um objetivo principal e objetivos específicos que delimitam as etapas do projeto.
 
 \subsection{Objetivo geral}\label{subsec:objetivoGeral}
 
-O objetivo do trabalho é propor um formato de infraestrutura de \textit{desktops} virtuais em nuvem pública para sustentar ensino e pesquisa.
+O objetivo do trabalho é propor um formato de infraestrutura de \glspl{desktop} virtuais em nuvem
+pública para sustentar ensino e pesquisa.
 
 \subsection{Objetivos específicos}\label{subsec:objetivosEspecificos}
 
 \begin{itemize}
-    \item Analisar o desempenho dos protocolos de conexão com \textit{desktops} remotos para definir quais protocolos serão utilizados.
+    \item Analisar o desempenho dos protocolos de conexão com \glspl{desktop} remotos para definir
+    quais protocolos serão utilizados.
 
     \item Elaborar um diagrama de arquitetura de aplicação em nuvem.
 
-    \item Desenvolver um protótipo de aplicação baseado no diagrama de arquitetura, com segmentação de acesso por tipo de usuário, onde alunos acessam \textit{desktops} virtuais através de navegadores de internet, professores gerenciam os recursos que os alunos têm acesso e os administradores de sistema disponibilizam templates de máquina que podem ser utilizados dentro da aplicação.
+    \item Desenvolver um protótipo de aplicação baseado no diagrama de arquitetura, com segmentação
+    de acesso por tipo de usuário, onde alunos acessam \glspl{desktop} virtuais através de
+    navegadores de internet, professores gerenciam os recursos que os alunos têm acesso e os
+    administradores de sistema disponibilizam templates de máquina que podem ser utilizados dentro
+    da aplicação.
 
-    \item Levantar uma estimativa de custo do protótipo de aplicação construído, levando em consideração aspectos de utilização mensal dos recursos de núvem.
+    \item Levantar uma estimativa de custo do protótipo de aplicação construído, levando em
+    consideração aspectos de utilização mensal dos recursos de núvem.
 \end{itemize}
 
 \section{Justificativa}\label{sec:justificativa}
 
-Em 2021, o censo de educação superior mostrou que cerca de 3,9 milhões de estudantes ingressaram em instituições de ensino superior e que 77,7\% destes concluíram o ensino médio na rede pública de ensino. \citep{inep2021}
-Para aqueles que não possuem computadores portáteis de uso próprio, ainda é um desafio lidar com demandas que exigem o acesso a esse tipo de equipamento.
+Em 2021, o censo de educação superior mostrou que cerca de 3,9 milhões de estudantes ingressaram em
+instituições de ensino superior e que 77,7\% destes concluíram o ensino médio na rede pública de
+ensino. \citep{inep2021}
+Para aqueles que não possuem computadores portáteis de uso próprio, ainda é um desafio lidar com
+demandas que exigem o acesso a esse tipo de equipamento.
 
-No contexto da UTFPR, os alunos têm a possibilidade de utilizar os equipamentos em aulas de laboratório ou na biblioteca. Porém a pandemia de COVID-19 evidenciou que essas políticas de acesso ainda não são suficientes para promover o acesso igualitário entre os estudantes.
+No contexto da UTFPR, os alunos têm a possibilidade de utilizar os equipamentos em aulas de
+laboratório ou na biblioteca. Porém a pandemia de COVID-19 evidenciou que essas políticas de acesso
+ainda não são suficientes para promover o acesso igualitário entre os estudantes.
 
-Esse trabalho apresenta uma proposta de interesse compartilhado. Universidades públicas que dependem de licitação para adquirir equipamentos, otimizarão o uso de seus recursos, uma vez que a solução do trabalho requisita dispositivos com configurações modestas para acesso, abrindo caminho para economia de custos com equipamentos e também para reutilização de computadores com capacidade reduzida, além de promover o acesso facilitado à recursos em nuvem dimensionáveis para pesquisa. E alunos terão a possibilidade de acesso a recursos computacionais através de qualquer dispositivo com acesso à internet e que tenha um navegador web.
+Esse trabalho apresenta uma proposta de interesse compartilhado. Universidades públicas que dependem
+de licitação para adquirir equipamentos, otimizarão o uso de seus recursos, uma vez que a solução do
+trabalho requisita dispositivos com configurações modestas para acesso, abrindo caminho para
+economia de custos com equipamentos e também para reutilização de computadores com capacidade
+reduzida, além de promover o acesso facilitado à recursos em nuvem dimensionáveis para pesquisa. E
+alunos terão a possibilidade de acesso a recursos computacionais através de qualquer dispositivo com
+acesso à internet e que tenha um navegador web.
 
 
 \section{Estrutura do trabalho}\label{sec:estruturaTrabalho}
 
-O trabalho está estruturado em três capítulos. O Capítulo 1 apresenta o assunto do trabalho, bem como o tema e os objetivos da produção. O Capítulo 2 detalha os conceitos utilizados para a concepção do projeto, o estado da arte e mostra outros trabalhos e pesquisas que já foram publicados e que estão relacionados com o tema do atual trabalho. Por fim, o Capítulo 3 descreve quais materiais e métodos serão empregados para o cumprimento dos objetivos propostos, bem como o cronograma de atividades a serem realizadas.
+O trabalho está estruturado em três capítulos. O Capítulo 1 apresenta o assunto do trabalho, bem
+como o tema e os objetivos da produção. O Capítulo 2 detalha os conceitos utilizados para a
+concepção do projeto, o estado da arte e mostra outros trabalhos e pesquisas que já foram publicados
+e que estão relacionados com o tema do atual trabalho. Por fim, o Capítulo 3 descreve quais
+materiais e métodos serão empregados para o cumprimento dos objetivos propostos, bem como o
+cronograma de atividades a serem realizadas.

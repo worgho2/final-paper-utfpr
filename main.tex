@@ -94,7 +94,7 @@
 %% Ferramenta para criação de glossários
 \makeglossaries%% Não comente esta linha
 \include{./PreTexto/entradas-siglas}%% Entradas da lista de abreviaturas e siglas - Comente para remover este item
-\include{./PosTexto/entradas-glossario}%% Entradas do glossário - Comente para remover este item
+\include{./PosTexto/entradas-glossario.tex}%% Entradas do glossário - Comente para remover este item
 
 %% Ferramenta para criação de nomenclaturas
 \makenomenclature%% Não comente esta linha
@@ -130,7 +130,7 @@
 %\includepdf[scale=1.0,pages=1]{./PreTexto/folha-aprovacao.pdf} % para adicionar o pdf enviado pelo professor apenas substitua o documento folha-aprovacao.pdf dentro da pasta PreTexto
 
 %% Dedicatória
-% \include{./PreTexto/dedicatoria}%% Comente para remover este item
+\include{./PreTexto/dedicatoria}%% Comente para remover este item
 
 %% Agradecimentos
 % \include{./PreTexto/agradecimentos}%% Comente para remover este item
@@ -179,12 +179,12 @@
 
 
 % \part{Introdução}
-\include{./capitulos/01-introducao}
-\include{./capitulos/02-referencial-teorico}
-\include{./capitulos/03-materiais-e-metodos}
-\include{./capitulos/04-resultados}
+\include{./capitulos/0-introducao/main.tex}
+\include{./capitulos/1-referencial-teorico/main.tex}
+\include{./capitulos/2-materiais-e-metodos/main.tex}
+\include{./capitulos/3-resultados/main.tex}
 % \part{Conclusão}
-\include{./capitulos/05-conclusao}
+\include{./capitulos/4-conclusao/main.tex}
 
 %% Capítulos após este comando criam marcadores do pdf na raiz
 % \phantompart%% Comente para remover este item
@@ -200,14 +200,14 @@
 }%% Não comente esta linha
 
 %% Glossário
-%\incluirglossario %% Comente para remover este item
+\incluirglossario %% Comente para remover este item
 
 %% Arquivos de apêndices
  \begin{arquivosdeapendices}%% Os arquivos de apêndices devem se incluídos neste ambiente - Não comente esta linha
 %   %\partapendices%% Página de início dos apêndices - adiciona uma página com o título Apêndices
 %   %% Capítulo de exemplo
-   \include{./PosTexto/apendicea}%% Apêndice - Comente para remover este item
-   \include{./PosTexto/apendiceb}%% Apêndice - Comente para remover este item
+  %  \include{./PosTexto/apendicea}%% Apêndice - Comente para remover este item
+  %  \include{./PosTexto/apendiceb}%% Apêndice - Comente para remover este item
  \end{arquivosdeapendices}%% Não comente esta linha
 
 
@@ -224,8 +224,8 @@
 \begin{arquivosdeanexos}%% Os arquivos de anexos devem se incluídos neste ambiente - Não comente esta linha
   %\partanexos%% Página de início dos anexos - adiciona uma página com o título Anexos
 
-  \include{./PosTexto/anexoa}%% Anexo - Comente para remover este item
-  \include{./PosTexto/anexob}%% Anexo - Comente para remover este item
+  % \include{./PosTexto/anexoa}%% Anexo - Comente para remover este item
+  % \include{./PosTexto/anexob}%% Anexo - Comente para remover este item
 \end{arquivosdeanexos}%% Não comente esta linha
 
 %% Índice - Adiciona um índice remissivo.

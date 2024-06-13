@@ -941,7 +941,7 @@
       \end{flushleft}
       %\singlespacing
 }{%%
-      \\
+      \hfill\break
       \par\textbf{\nomepalavraschave:}
       \ifthenelse{\imprimirnumerodepalavraschave > 0}{\imprimirpalavrachavea}{}%%
       \ifthenelse{\imprimirnumerodepalavraschave > 1}{; \imprimirpalavrachaveb}{}%%
@@ -961,7 +961,8 @@
       \end{flushleft}
       %\singlespacing
 }{%%
-      \\
+      
+      \hfill\break
       \par\textbf{\nomekeywords:}
       \ifthenelse{\imprimirnumerodekeywords > 0}{\imprimirkeyworda}{}%%
       \ifthenelse{\imprimirnumerodekeywords > 1}{; \imprimirkeywordb}{}%%

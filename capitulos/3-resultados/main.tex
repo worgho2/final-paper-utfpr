@@ -1,14 +1,27 @@
 %%%% CAPÍTULO 4 - RESULTADOS E DISCUSSÃO
 
-\chapter{Resultados}\label{cap:resultados}
+\chapter{Resultados}
+\label{cap:resultados}
 
-TODO
+Este capítulo apresenta aspectos da implementação do sistema proposto, bem como as discussões acerca
+das métricas obtidas durante os testes realizados.
+
+O capítulo está divido em sete seções.
+A \autoref{sec:escopoSistema} busca considerar aspectos técnicos e conceituais do sistema afim de delimitar o escopo do sistema.
+Na \autoref{sec:modelagemSistema} os diagramas e processos de modelagem do sistema são apresentados
+seguindo as definições formais apresentadas no \autoref{cap:materiaisemetodos}.
+A \autoref{sec:apresentacaoSistema} apresenta o sistema do ponto de vista do usuário, focando nas funcionalidades e interações com o sistema,
+já a \autoref{sec:implementacaoSistema} foca em nos aspectos técnicos mais relevantes na implementação do sistema.
+A \autoref{sec:implantacaoSistema} apresenta os cenários de implantação do sistema, trazendo perspectivas de uso e capacidade de escala.
+Na \autoref{sec:discussoes} aspectos relevantes dos resultados de testes e discussões são apresentados.
+Por fim, os trabalhos e produções tecnológicas que buscam resolver problemas semelhantes ao proposto neste trabalho são apresentados na \autoref{sec:trabalhosRelacionados}.
 
 % Este capítulo apresenta o que foi obtido como resultado do trabalho, que, em princípio, é o sistema desenvolvido. Se não for um sistema, como, por exemplo, uma solução na área de redes, neste capítulo é reportada a solução proposta. Neste caso, a divisão do capítulo em seções é realizada, se necessária, de acordo com o trabalho.
 
 % O capítulo pode conter seções de acordo com o tipo de sistema e a necessidade de documentação mais extensa de determinados aspectos. Caso o trabalho se refira à comparação entre tecnologias ou dados obtidos como resultados do uso do sistema, além da descrição do sistema, há os dados obtidos com os testes e a discussão desses dados. Nesse caso haverá uma seção para os dados obtidos desses testes e as discussões.
 
-\section{Escopo do sistema}\label{sec:escopoSistema}
+\section{Escopo do sistema}
+\label{sec:escopoSistema}
 
 TODO
 
@@ -23,7 +36,8 @@ TODO
 
 % O sistema deve permitir a um gerente emitir relatórios de livros mais vendidos, e compradores mais assíduos, bem como sugerir compras para compradores baseadas em seus interesses anteriores.
 
-\section{Modelagem do sistema}\label{sec:modelagemSistema}
+\section{Modelagem do sistema}
+\label{sec:modelagemSistema}
 
 TODO
 
@@ -36,7 +50,8 @@ TODO
 
 % Nesta seção também estão os diagramas da modelagem de banco de dados, como entidade-relacionamento. Nesse item pode ser apresentada a descrição de cada uma das classes do modelo de classes apresentado acima, assim como a descrição das tabelas do banco de dados. Também podem estar documentados modelos e padronizações utilizados para a interface, diagramas de navegação, a representação da arquitetura do sistema e dos padrões de projeto utilizados.
 
-\section{Apresentação do sistema}\label{sec:apresentacaoSistema}
+\section{Apresentação do sistema}
+\label{sec:apresentacaoSistema}
 
 TODO
 
@@ -52,7 +67,8 @@ TODO
 % \fonte{}%% Fonte
 % \end{figure}
 
-\section{Implementação do sistema}\label{sec:implementacaoSistema}
+\section{Implementação do sistema}
+\label{sec:implementacaoSistema}
 
 TODO
 
@@ -104,19 +120,34 @@ TODO
 
 % Nesta seção estão os resultados obtidos da realização de testes quantitativos e qualitativos, independentemente da quantidade, tipo e volume de testes realizados. Os resultados dos testes são discutidos tendo como base o referencial teórico e os objetivos pretendidos com o trabalho. Esses testes podem resultar de implantação e testes de uso do sistema. 
 
-\section{Trabalhos Relacionados}\label{sec:trabalhosRelacionados} 
+\section{Trabalhos Relacionados}
+\label{sec:trabalhosRelacionados}
 
-O trabalho desenvolvido por \citet{qoselearning} realiza uma análise quantitativa do impacto de parâmetros de conexão de rede em ambientes de ensino remoto sustentados por uma estrutura de \textit{VDI}. A análise é feita a partir de um experimento com o objetivo de clarificar a relação entre a qualidade de conexão com a internet e a usabilidade de sistemas de ensino remoto.
+O trabalho desenvolvido por \citet{qoselearning} realiza uma análise quantitativa do impacto de
+parâmetros de conexão de rede em ambientes de ensino remoto sustentados por uma estrutura de \gls{vdi}.
+A análise é feita a partir de um experimento com o objetivo de clarificar a relação entre a qualidade de
+conexão com a internet e a usabilidade de sistemas de ensino remoto.
 
-O resultado do experimento mostrou que é possível realizar atividades como escrita, desenhos e consumo de mídias, sem grandes prejuízos para a usabilidade, mas é necessário que a conexão com a internet tenha qualidade. Outro ponto importante é que fora atividades de visualização de vídeos, a largura de banda não é um fator de grande consumo nesses tipos de ambientes.
+O resultado do experimento mostrou que é possível realizar atividades como escrita, desenhos e
+consumo de mídias, sem grandes prejuízos para a usabilidade, mas é necessário que a conexão com a
+internet tenha qualidade. Outro ponto importante é que fora atividades de visualização de vídeos, a
+largura de banda não é um fator de grande consumo nesses tipos de ambientes.
 
-Outro trabalho de grande relevância para essa produção, desenvolvido por \citet{edufirestick}, apresenta um sistema de \textit{VDI} para educação remota utilizando as mesmas tecnologias propostas no presente trabalho. 
+Outro trabalho de grande relevância para essa produção, desenvolvido por \citet{edufirestick},
+apresenta um sistema de \gls{vdi} para educação remota utilizando as mesmas tecnologias propostas
+no presente trabalho. 
 
-A proposta da produção é de criar uma \textit{VDI} de baixo custo com Instâncias EC2 Spot\footnote{Instâncias EC2 Spot são máquinas virtuais oferecidas pela AWS em um modelo de precificação mais barato que o modelo comum, utilizando o excedente de capacidade computacional} da \textit{AWS} e com o Apache Guacamole para gerenciamento das conexões, e permitindo o acesso de qualquer dispositivo com um navegador de internet, até mesmo televisões smart, como apresentado no trabalho.
+A proposta da produção é de criar uma \gls{vdi} de baixo custo com \glspl{ec2SpotInstance} da
+\gls{aws} e com o \gls{guacamole} para gerenciamento das conexões, e permitindo o acesso de
+qualquer dispositivo com um navegador de internet, até mesmo através televisões com acesso à internet,
+como apresentado no trabalho.
 
-A solução proposta por \citet{edufirestick} aborda um cenário de aula de laboratório, onde um professor pode agendar um evento de criação das máquinas virtuais para os alunos e no horário da aula, todos poderiam acessar o recurso reservado para a aula.
+A solução proposta por \citet{edufirestick} aborda um cenário de aula de laboratório, onde um
+professor pode agendar um evento de criação das máquinas virtuais para os alunos e no horário da
+aula, todos poderiam acessar o recurso reservado para a aula.
 
-Em termos de custos operacionais, o trabalho apresenta uma estimativa de custo por usuário de USD\$ 0.87 mensais com a utilização dos seguintes parâmetros:
+Em termos de custos operacionais, o trabalho apresenta uma estimativa de custo por usuário de
+USD\$ 0.87 mensais com a utilização dos seguintes parâmetros:
 
 \begin{itemize}
     \item Tempo de conexão diária: 18 horas
@@ -127,6 +158,11 @@ Em termos de custos operacionais, o trabalho apresenta uma estimativa de custo p
     \item Região: São Paulo
 \end{itemize}
 
-Em termos de preço pela transferência de dados, o trabalho relata um custo de USD\$ 0.06 por hora em picos onde o uso de banda chaga a 2 MB/s. O custo dos outros serviços que suportam a infraestrutura, foi estimado em USD\$ 200.00 mensais.
+Em termos de preço pela transferência de dados, o trabalho relata um custo de USD\$ 0.06 por hora em
+picos onde o uso de banda chaga a 2 MB/s. O custo dos outros serviços que suportam a infraestrutura,
+foi estimado em USD\$ 200.00 mensais.
 
-O trabalho feito por \citet{edufirestick} apresenta um panorama muito promissor e consoante aos objetivos do presente trabalho, demostrando que é possível executar a solução em um cenário de laboratório. Mas ainda não apresenta resultados referentes ao gerenciamento de \textit{desktops} que tenham os dados persistidos, para outros cenários de uso, como o de pesquisa por exemplo.
+O trabalho feito por \citet{edufirestick} apresenta um panorama muito promissor e consoante aos
+objetivos do presente trabalho, demostrando que é possível executar a solução em um cenário de
+laboratório. Mas ainda não apresenta resultados referentes ao gerenciamento de \glspl{desktop} que
+tenham os dados persistidos, para outros cenários de uso, como o de pesquisa por exemplo.
