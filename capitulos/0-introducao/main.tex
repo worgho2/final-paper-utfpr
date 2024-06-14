@@ -6,6 +6,8 @@
 %% Título e rótulo de capítulo (rótulos não devem conter caracteres especiais, acentuados ou cedilha)
 \chapter{Introdução}\label{cap:introducao}
 
+(REVISAR INTRODUÇÃO)
+
 Em 1997 o professor de sistemas de informação Ramnath Challappa utilizou o termo Computação em nuvem
 pela primeira vez para representar um conceito tecnológico que já era utilizado desde os anos 1950.
 Antes de ganhar o nome mais atual, a tecnologia chegou a ser chamada de \textit{Utility Computing},
@@ -19,12 +21,12 @@ trabalhos em uma instância remota, desativá-la após concluir e pagar apenas p
 recurso. \citep{taurioncloud}
 
 \gls{vdi} é o termo usado para referenciar um ambiente de infraestrutura que hospeda \glspl{desktop}
-virtuais e provê para usuários finais a medida que são requisitados. Tanto ambientes \gls{onPremise} quanto em nuvem utilizam a mesma
-base conceitual de virtualização para tal arquitetura, a grande diferença está na forma em que os
-recursos são precificados. Em servidores locais, o recurso deve ser comprado previamente, gerenciado
-e protegido, já em ambientes de nuvem, onde o modelo de responsabilidade compartilhada exime o
-usuário de responsabilidades de segurança e gerenciamento físicos dos recursos o preço é pago pela
-utilização dos recursos. \citep{vmwarevdi}
+virtuais e provê para usuários finais a medida que são requisitados. Tanto ambientes \gls{onPremise}
+quanto em nuvem utilizam a mesma base conceitual de virtualização para tal arquitetura, a grande
+diferença está na forma em que os recursos são precificados. Em servidores locais, o recurso deve
+ser comprado previamente, gerenciado e protegido, já em ambientes de nuvem, onde o modelo de
+responsabilidade compartilhada exime o usuário de responsabilidades de segurança e gerenciamento
+físicos dos recursos o preço é pago pela utilização dos recursos. \citep{vmwarevdi}
 
 Embora tenham sido feitos progressos utilizando \gls{vdi} em nuvem e a influência dos fatores de
 qualidade de serviço em sistemas de ensino baseados em \gls{vdi} \citep{qoselearning}, poucos
@@ -51,60 +53,81 @@ dispositivos servem como interface para os recursos computacionais em nuvem.
 Em outro cenário, também será possível a um pesquisador acessar recursos computacionais com dados
 persistidos entre sessões. 
 
-\section{Objetivos}\label{sec:objetivos}
+\section{Objetivos}
+\label{sec:objetivos}
+% OK
 
-Na seção a seguir, os objetivos que norteiam o desenvolvimento do trabalho serão apresentados na
-forma de um objetivo principal e objetivos específicos que delimitam as etapas do projeto.
+A seguir, o objetivo geral e os objetivos específicos do trabalho são apresentados. O objetivo geral
+é o propósito principal do trabalho, que através dos objetivos específicos é desdobrado em partes
+menores que enriquecem o escopo do trabalho.
 
-\subsection{Objetivo geral}\label{subsec:objetivoGeral}
+\subsection{Objetivo geral}
+\label{subsec:objetivoGeral}
+% OK
 
-O objetivo do trabalho é propor um formato de infraestrutura de \glspl{desktop} virtuais em nuvem
-pública para sustentar ensino e pesquisa.
+Desenvolver um sistema de \gls{vdi} em nuvem pública capaz de prover acesso a \glspl{desktop}
+virtuais para ensino e pesquisa a partir de qualquer dispositivo com um navegador de internet
+instalado.
 
-\subsection{Objetivos específicos}\label{subsec:objetivosEspecificos}
+\subsection{Objetivos específicos}
+\label{subsec:objetivosEspecificos}
+% OK
 
 \begin{itemize}
-    \item Analisar o desempenho dos protocolos de conexão com \glspl{desktop} remotos para definir
-    quais protocolos serão utilizados.
+    \item Modelar a infraestrutura do sistema de \gls{vdi}, utilizando serviços de computação em nuvem pública, garantindo escalabilidade, alta disponibilidade e segurança dos dados.
 
-    \item Elaborar um diagrama de arquitetura de aplicação em nuvem.
+    \item Modelar o sistema utilizando práticas de desenvolvimento de software que garantam a extensibilidade do sistema validada através da cobertura de testes unitários dos casos de uso.
 
-    \item Desenvolver um protótipo de aplicação baseado no diagrama de arquitetura, com segmentação
-    de acesso por tipo de usuário, onde alunos acessam \glspl{desktop} virtuais através de
-    navegadores de internet, professores gerenciam os recursos que os alunos têm acesso e os
-    administradores de sistema disponibilizam templates de máquina que podem ser utilizados dentro
-    da aplicação.
+    \item Implementar a \gls{iac} para todos os componentes do sistema, permitindo a implantação completa em novos ambientes de forma automatizada.
 
-    \item Levantar uma estimativa de custo do protótipo de aplicação construído, levando em
-    consideração aspectos de utilização mensal dos recursos de núvem.
+    \item Implementar um sistema de configuração para que sejam possível conectar um provedor de identidade e autenticação ao sistema no momento da implantação.
+
+    \item Apresentar uma estimativa de custo de utilização do sistema contemplando diferentes cenários de utilização.
+
+    \item Desenvolver uma documentação externa, que aborde tanto a configuração do sistema em novos ambientes quanto o uso do sistema através da interface \textit{web} principal ou da \gls{api} que o sistema disponibiliza.
 \end{itemize}
 
-\section{Justificativa}\label{sec:justificativa}
+\section{Justificativa}
+\label{sec:justificativa}
+% OK
 
 Em 2021, o censo de educação superior mostrou que cerca de 3,9 milhões de estudantes ingressaram em
 instituições de ensino superior e que 77,7\% destes concluíram o ensino médio na rede pública de
 ensino. \citep{inep2021}
-Para aqueles que não possuem computadores portáteis de uso próprio, ainda é um desafio lidar com
-demandas que exigem o acesso a esse tipo de equipamento.
+Para aqueles que não possuem computadores de uso próprio, ainda é um desafio lidar com demandas
+acadêmicas que exigem o acesso a esse tipo de equipamento dentro e fora da universidade.
 
-No contexto da UTFPR, os alunos têm a possibilidade de utilizar os equipamentos em aulas de
-laboratório ou na biblioteca. Porém a pandemia de COVID-19 evidenciou que essas políticas de acesso
-ainda não são suficientes para promover o acesso igualitário entre os estudantes.
+No contexto da \gls{utfpr}, os alunos têm a possibilidade de utilizar os equipamentos em aulas de
+laboratório ou na biblioteca. Porém a pandemia de COVID-19 evidenciou que essas alternativas ainda
+não são suficientes para promover o acesso igualitário entre os estudantes. Este cenário é ainda mais
+restrito para pesquisadores que necessitam de recursos computacionais mais robustos para executar
+suas atividades.
 
-Esse trabalho apresenta uma proposta de interesse compartilhado. Universidades públicas que dependem
-de licitação para adquirir equipamentos, otimizarão o uso de seus recursos, uma vez que a solução do
-trabalho requisita dispositivos com configurações modestas para acesso, abrindo caminho para
-economia de custos com equipamentos e também para reutilização de computadores com capacidade
-reduzida, além de promover o acesso facilitado à recursos em nuvem dimensionáveis para pesquisa. E
-alunos terão a possibilidade de acesso a recursos computacionais através de qualquer dispositivo com
-acesso à internet e que tenha um navegador web.
+Portanto, a principal motivação para a realização deste trabalho é a possibilidade de promover o
+acesso a recursos computacionais de forma remota, a partir de qualquer dispositivo com acesso à
+internet e que tenha um navegador web, de forma que os alunos e pesquisadores possam acessar
+recursos computacionais de qualquer lugar, através de dispositivos com capacidade computacional
+limitada.
+
+Não menos importante, o trabalho também visa a redução de custos com aquisição de equipamentos para
+universidades públicas e uma abordagem de consumo de recursos computacionais como serviço, que
+não restringe o acesso a recursos robustos a processos licitatórios e aquisições de equipamentos.
 
 
-\section{Estrutura do trabalho}\label{sec:estruturaTrabalho}
+\section{Estrutura do trabalho}
+\label{sec:estruturaTrabalho}
+% OK
 
-O trabalho está estruturado em três capítulos. O Capítulo 1 apresenta o assunto do trabalho, bem
-como o tema e os objetivos da produção. O Capítulo 2 detalha os conceitos utilizados para a
-concepção do projeto, o estado da arte e mostra outros trabalhos e pesquisas que já foram publicados
-e que estão relacionados com o tema do atual trabalho. Por fim, o Capítulo 3 descreve quais
-materiais e métodos serão empregados para o cumprimento dos objetivos propostos, bem como o
-cronograma de atividades a serem realizadas.
+Este trabalho está organizado em cinco capítulos, conforme a seguir:
+
+\begin{itemize}
+    \item \textbf{\autoref{cap:introducao} - Introdução}: apresenta o assunto do trabalho, bem como o tema e os objetivos da produção.
+
+    \item \textbf{\autoref{cap:revisaoDaLiteratura} - Revisão da Literatura}: detalha os conceitos utilizados para a concepção do projeto, o estado da arte e mostra outros trabalhos e pesquisas que já foram publicados e que estão relacionados com o tema do atual trabalho.
+
+    \item \textbf{\autoref{cap:metodologia} - Metodologia}: descreve quais materiais e métodos serão empregados para o cumprimento dos objetivos propostos.
+
+    \item \textbf{\autoref{cap:resultados} - Resultados}: apresenta os resultados obtidos com a execução do projeto e discute os aspectos relevantes.
+
+    \item \textbf{\autoref{cap:conclusao} - Conclusão}: apresenta as conclusões obtidas com o desenvolvimento do trabalho e sugere aprimeiramentos e trabalhos futuros.
+\end{itemize}
