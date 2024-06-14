@@ -23,18 +23,19 @@ Por fim, os trabalhos e produções tecnológicas que buscam resolver problemas 
 \section{Escopo do sistema}
 \label{sec:escopoSistema}
 
-TODO
+O sistema \textit{Virtual Lab} deve possibilidar a criação e gerenciamento de instâncias de máquinas virtuais para uso em laboratórios remotos de ensino e pesquisa.
+O acesso deve ser feito por meio de um navegador de internet, permitindo a utilização de qualquer dispositivo com um navagador de internet com acesso à rede.
 
-% Apresenta o escopo do sistema (contendo entre dois ou cinco parágrafos) de forma bastante sucinta, considerando aspectos técnicos e conceituais. O escopo define o que é o sistema, consistindo das funcionalidades e características que o sistema deve conter. É importante apresentar também o escopo negativo, ou seja, as funcionalidades e características que o sistema não irá conter. 
-% Exemplo:
+O sistema deve acomodar dois tipos de usuários: usuários comuns e administradores.
+Os usuários comuns devem ter permissão de criar instâncias de máquinas virtuais com base em templates pré-definidos, gerenciar suas próprias instâncias, bem como o conteúdo instalado nas mesmas.
+Os administradores devem ter as mesmas permissões dos usuários comuns, além de gerenciar os templates de instância, controlar o acesso dos usuários comuns ao sistema e aos recursos de hardware.
 
-% O sistema XYZ deve gerenciar todos os processos de uma livraria virtual, desde a aquisição até a venda dos livros para o consumidor final. O acesso dos compradores e gerentes deve ser feito por meio de um site WEB, incluindo a possibilidade de acesso por outras tecnologias (ex. celular, tablet). Os clientes poderão fazem as compras pagando com cartão de crédito ou depósito bancário. Existem promoções eventuais pelas quais os livros podem ser comprados com desconto.
+O sistema deve permitir o acesso aos usuários através de autenticação por meio de usuário e senha, bem como através de um provedor de identidade externo, caso o ambiente de uso do sistema já possua um provedor de identidade.
 
-% De início, a livraria vai trabalhar apenas com livros novos a serem adquiridos de editoras que tenham sistema automatizado de aquisição. Desta forma, o sistema a ser desenvolvido deve conectar-se aos sistemas das editoras para efetuar as compras.
+Inicialmente, um usuário administrador deve criar os templates de instância indicando o sistema operacional e a quantidade de armazenamento disponível.
+Os usuários comuns devem então criar instâncias com base nesses templates, escolhendo entre os tipos de hardware permitidos.
 
-% O sistema deve calcular o custo de entrega baseado no peso dos livros e na distância do ponto de entrega. Eventualmente podem haver promoções do tipo “entrega gratuita” para determinadas localidades.
-
-% O sistema deve permitir a um gerente emitir relatórios de livros mais vendidos, e compradores mais assíduos, bem como sugerir compras para compradores baseadas em seus interesses anteriores.
+Ao ser criada, a instância deve passar por um processo de configuração inicial para garantir que o sistema operacional esteja pronto para uso, e então ser disponibilizada para o usuário, que poderá acessá-la atráves da página de conexões do sistema. As instâncias devem ser encerradas automaticamente após um período de inatividade.
 
 \section{Modelagem do sistema}
 \label{sec:modelagemSistema}
