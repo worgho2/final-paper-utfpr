@@ -1,155 +1,251 @@
-%%%% CAPÍTULO 3 - MATERIAL E MÉTODOS (PODE SER OUTRO TÍTULO DE ACORDO COM O TRABALHO REALIZADO)
+%%%% CAPÍTULO 3 - METODOLOGIA
 
-\chapter{Metodologia}\label{cap:metodologia}
+\chapter{Metodologia}
+\label{cap:metodologia}
 
-% A ênfase deste capítulo está em reportar o que e como será feito para alcançar o objetivo do trabalho. Este capítulo pode ser subdividido, inicialmente, em duas seções, sendo uma para os materiais e outra para os métodos.
+Este capítulo aborda as metodologias de modelagem e desenvolvimento utilizadas no trabalho.
 
-Este capítulo apresenta o plano de trabalho a ser seguido para que os objetivos citados
-anteriormente sejam alcançados. Primeiramente, ferramentas e tecnologias utilizadas serão discutidas seguidas dos métodos a serem empregados para que os objetivos sejam atingidos.
+\section{Escopo do sistema}
+\label{sec:escopoDoSistema}
 
-\section{Materiais}\label{sec:materiais}
+O sistema \textit{Virtual Lab} deve possibilidar a criação e gerenciamento de instâncias de máquinas virtuais para uso em laboratórios remotos de ensino e pesquisa.
+O acesso deve ser feito por meio de um navegador de internet, permitindo a utilização de qualquer dispositivo com um navagador de internet com acesso à rede.
 
-O objetivo do trabalho é apresentar um modelo de arquitetura voltado para nuvem, e para tal, algumas ferramentas e tecnologias foram escolhidas para a construção da solução.
+O sistema deve acomodar dois tipos de usuários: usuários comuns e administradores.
+Os usuários comuns devem ter permissão de criar instâncias de máquinas virtuais com base em templates pré-definidos, gerenciar suas próprias instâncias, bem como o conteúdo instalado nas mesmas.
+Os administradores devem ter as mesmas permissões dos usuários comuns, além de gerenciar os templates de instância, controlar o acesso dos usuários comuns ao sistema e aos recursos de hardware.
 
-\subsection{Amazon Web Services}\label{subsec:amazonWebServices}
+O sistema deve permitir o acesso aos usuários através de autenticação por meio de usuário e senha, bem como através de um provedor de identidade externo, caso o ambiente de uso do sistema já possua um provedor de identidade.
 
-Popularmente conhecida pela sigla \textit{AWS}, a empresa subsidiária da Amazon detêm a maior fatia de mercado do segmento de computação em nuvem. A \textit{AWS} foi escolhida como provedor de serviços de nuvem porque disponibiliza uma gama de serviços que possibilitam a execução do trabalho.
+Inicialmente, um usuário administrador deve criar os templates de instância indicando o sistema operacional e a quantidade de armazenamento disponível.
+Os usuários comuns devem então criar instâncias com base nesses templates, escolhendo entre os tipos de hardware permitidos.
 
-A princípio o projeto contará com os seguintes recursos oferecidos pela \citet{awsconceitosbasicos}: 
+Ao ser criada, a instância deve passar por um processo de configuração inicial para garantir que o sistema operacional esteja pronto para uso, e então ser disponibilizada para o usuário, que poderá acessá-la atráves da página de conexões do sistema. As instâncias devem ser encerradas automaticamente após um período de inatividade.
 
-\begin{itemize}
+\section{Modelagem}
+\label{sec:modelagemDoSistema}
 
-    \item \textbf{\textit{Elastic Cloud Computing (EC2)}}: São instâncias virtualizadas que serão utilizadas como desktop virtual para o usuário final.
-    
-    \item \textbf{\textit{Lambda}}: São funções \textit{serverless}\footnote{funções serverless fazem uma abstração a nível de aplicação para que o desenvolvedor consiga executar literalmente funções de código em um ambiente de nuvem sem a necessidade de configurar uma aplicação ou o servidor que a hospeda} que executarão parte da lógica envolvida na aplicação. Essas funções são executadas a medida que são requisitadas, e são desativadas com inatividade.
-    
-    \item \textbf{\textit{Simple Storage Service (S3)}}: É um serviço de armazenamento de objetos que será utilizado para guardar dados estáticos, como arquivos de texto, fotos ou vídeos.
-    
-    \item \textbf{\textit{Event Bridge}}: É um serviço que possibilita a comunicação entre recursos através de eventos. Com ele é possível publicar e consumir eventos com informações customizadas.
-    
-    \item \textbf{\textit{Fargate, Elastic Container Service (ECS) e Elastic Container Registry (ECR)}}: Os serviços são altamente relacionados e servem para orquestrar e executar aplicações baseadas em containers. De forma simples, o \textit{ECR} armazena as imagens de containers, o \textit{Fargate} é o ambiente de execução e o \textit{ECS} atua como orquestrador entre os dois outros serviços. Eles serão responsáveis por executar o serviço que conecta os usuários aos seus respectivos \textit{desktops} virtuais.
-    
-    \item \textbf{\textit{Aurora Serverless}}: É um serviço de banco de dados relacional serverless que será utilizado para armazenar todas as informações derivadas de regras de negócio.
+TODO
 
-    \item \textbf{\textit{Cloud Development Kit (CDK)}}: É um \textit{framework}\footnote{Um framework é um conjunto de bibliotecas que auxiliam no desenvolvimento de aplicações} utilizado para a definição da infraestrutura de forma programática. Ao contrário de configurar os recursos de nuvem manualmente, com o \textit{CDK} é possível descrever como código, quais são os recursos a serem alocados e suas comunicações. Ele é imprescindível no trabalho, já que possibilita a replicação do modelo de arquitetura.
-    
-\end{itemize}
+\section{Ferramentas e Tecnologias}
+\label{sec:ferramentasETecnologias}
 
-Todos os serviços acima certamente serão utilizados, porém existem outros serviços que não foram listados porque não há argumentos suficientes nessa etapa do projeto para listá-los.
+A \autoref{tab:ferramentasETecnologiasUtilizadas} apresenta uma lista de ferramentas, tecnologias e serviços utilizados na implementação do sistema. As versões utilizadas estão escritas de acordo com o padrão de versionamento semântico. (TODO: referenciar)
 
-A execução do trabalho conta também com um apoio da \textit{AWS} em forma de créditos a serem utilizados na plataforma e assistência técnica de um intermediário.
+% Make de last column to be as wide as possible wrapping the text
+\begin{longtable}{p{0.25\linewidth} p{0.15\linewidth} p{0.525\linewidth}}%% Ambiente longtable
+\caption{Ferramentas e tecnologias utilizadas\label{tab:ferramentasETecnologiasUtilizadas}} \\%% Legenda e rótulo
+\toprule
+\textbf{Nome} & \textbf{Versão} & \textbf{Descrição} \\
+\midrule
+\endfirsthead%% Encerra cabeçalho da primeira página
+\caption[]{Ferramentas e tecnologias utilizadas} \\%% Legenda
+\multicolumn{3}{r}{\textbf{(continuação)}} \\
+\toprule
+\textbf{Nome} & \textbf{Versão} & \textbf{Descrição} \\
+% \midrule
+\endhead%% Encerra cabeçalho das demais páginas
+% \midrule
+\multicolumn{3}{r}{\textbf{(continua)}} \\
+\endfoot%% Encerra rodapé das demais páginas
+% \bottomrule
+\\[-0.5\linha]
+\caption*{\nomefonte: Autoria própria (2024)} \\
+\endlastfoot%% Encerra rodapé da última página
+Node.js & \textsuperscript{$\wedge$}18.19.0 & Ambiente de execução de javascript utilizado em todos os serviços de backend \\
 
-\subsection{Apache Guacamole}\label{subsec:apacheGuacamole}
+\hline
 
-O Apache Guacamole é uma aplicação gratuita de código aberto definido como: \textit{clientless remote desktop gateway}. \citep{apacheguacamole} Com uma tradução livre, seria um portão para acesso a \textit{desktops} remotos sem cliente.
+ECMAScript & ES2020 & Especificação formal da linguagem javascript a qual o código escrito é compatível \\
 
-O termo \textit{clientless} remete ao fato da aplicação ser agnóstica quando ao cliente que a consome. Isso significa que existe um protocolo de conexão bem definido e documentado, que pode ser reproduzido em qualquer linguagem de programação. 
+\hline
 
-No contexto desse trabalho o cliente da aplicação implementará o protocolo do guacamole para se comunicar com o servidor, que por sua vez efetuará a conexão do usuário.
+Typescript & {$\leq$}5.4.0 & Extensão do Javascript que adiciona suporte para tipagem, utilizada na implementação de todos os serviços de backend e do cliente web do sistema \\
+
+\hline
+
+Npm & 10.2.3 & Gerenciador de dependências do Node.js \\
+
+\hline
+
+Shell Script & \gls{n/a} & Linguagem de scripts utilizada para implementar a configuração automatizada das instâncias baseadas em LINUX \\
+
+\hline
+
+Windows PowerShell Script & 5 & Linguagem de scripts utilizada para implementar a configuração automatizada das instâncias baseadas em WINDOWS \\
+
+\hline
+
+Apache Velocity Template Language & \gls{n/a} & Engine de templates utilizada para definir as permissões de conexão dos usuários ao serviços de notificações do servidor ao cliente \\
+
+\hline
+
+Markdown & \gls{n/a} & Linguagem de marcação de texto utilizada na documentação do sistema \\
+
+\hline
+
+OpenApi & 3.0.0 & Especificação para documentação de API. \\
+
+\hline
+
+Zod & \textsuperscript{$\wedge$}3.23.8 & Biblioteca utilizada para validar o conteúdo das requisições dos serviços \\
+
+\hline
+
+Prettier & \textsuperscript{$\wedge$}3.3.1 & Utilitário utilizado para garantir a estilização do código. \\
+
+\hline
+
+Jest & \textsuperscript{$\wedge$}29.7.0 & Framework de teste para javascript \\
+
+\hline
+
+Eslint & \textsuperscript{$\wedge$}8.56.0 & Utilitário de análise estática de código. \\
+
+\hline
+
+AWS CDK & 2.142.1 & Framework utilizado para definição dos componentes de infraestrutura como código \\
+
+\hline
+
+SST & 2.43.0 & Framework para construção de aplicações full-stack na AWS utilizando infraestrutura como código \\
+
+\hline
+
+Docusaurus & \textsuperscript{$\wedge$}3.4.0 & Gerador de documentação em formato de site estático. \\
+
+\hline
+
+React & \textsuperscript{$\wedge$}18.0.0 & Biblioteca utilizada no desenvolvimento do cliente web do sistema \\
+
+\hline
+
+Stoplight Elements & \textsuperscript{$\wedge$}8.3.1 & Biblioteca utilizada para renderização da documentação da API. \\
+
+\hline
+
+docker & 24.0.5 & Ferramenta utilizada para a criação do ambiente isolado do gateway de conexão \\
+
+\hline
+
+Chakra UI & \textsuperscript{$\wedge$}2.8.2 & Biblioteca de componentes de interface utilizada no cliente web. \\
+
+\hline
+
+Apache Guacamole & 1.5.3 & Utilizado para intermediar a conexão entre o cliente web e gateway de conexão. \\
+
+\hline
+
+Vite & \textsuperscript{$\wedge$}5.0.12 & Ferramenta responsável por gerenciar a implementação e o empacotamento do cliente web \\
+
+\hline
+
+React Icons & \textsuperscript{$\wedge$}5.0.1 & Biblioteca de Icones utilizada no cliente web \\
+
+\hline
+
+MongoDB Atlas & sdk \textsuperscript{$\wedge$}6.0.3 & Serviço de banco de dados não relacional utilizado para armazenar todos os dados do sistema. \\
+
+\hline
+
+AWS Amplify & sdk \textsuperscript{$\wedge$}6.0.16 & Biblioteca com integrações facilitadas, uitilizada no cliente web para autenticação e conexão com AWS AppSync \\
+
+\hline
+
+AWS Lambda PowerTools & \textsuperscript{$\wedge$}2.1.1 & Biblioteca utilizada para integrar a geração de logs dos serviços com o AWS CloudWatch \\
+
+\hline
+
+AWS AppSync & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a comunicação em tempo real entre os serviçoes de backend e o cliente web \\
+
+\hline
+
+AWS Systems Manager Parameter Store & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as configurações do sistema. \\
+
+\hline
+
+AWS Event Bridge & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de eventos utilizado como barramento de comunicação entre os serviços de backend. \\
+
+\hline
+
+AWS CloudFormation & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar a definição dos componentes de infraestrutura como código \\
+
+\hline
+
+AWS Cognito User Pool & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de usuários e credenciais. Ele foi utilizado para gerenciar dados sensíveis, mantendo somente dados operacionais na integração com o banco de dados. \\
+
+\hline
+
+AWS Event Bridge Scheduler & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de agendamento de operações utilizado no sistema de desligamento automático de instâncias osciosas \\
+
+\hline
+
+AWS Service Catalog & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de modelos de IaC utilizado para o controle do ciclo de vida da instância e seus recursos dependentes \\
+
+\hline
+
+AWS CloudWatch & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de monitoramento utilizado para agregar os logs dos sistemas. \\
+
+\hline
+
+AWS Lambda & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de computação serverless utilizado para executar o serviço de API e tratamento de eventos do sistema \\
+
+\hline
+
+AWS Api Gateway & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço gerenciado para criação de APIs serverless. \\
+
+\hline
+
+AWS Identity and Access Management & sdk \textsuperscript{$\wedge$}3.592.0 & Serivço utilizado para delimitação de todas as permissões atreladas aos componentes de infraestrutura do sistema \\
+
+\hline
+
+AWS S3 & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de armazenamento de objetos utilizado para servir o cliente web e armazenar todos os arquivos imutaveis do sistema \\
+
+\hline
+
+AWS CloudFront & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de distribuição de conteúdo utilizado como camada distribuída de cache para os serviços \\
+
+\hline
+
+AWS Certificate Manager & sdk \textsuperscript{$\wedge$}3.592.0 & Serviços utilizado para o gerenciamento dos certificados de domínio atrelados ao cliente web e à documentação \\
+
+\hline
+
+AWS Application Load Balancer & sdk \textsuperscript{$\wedge$}3.592.0 & Balanceador de carga gerenciado utilizado para gerenciar as conexões entre o cliente web e o cluster de containers rodando o Gateway de conexão. \\
+
+\hline
+
+AWS Elastic Container Service & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a implantação do gateway de conexão, no formato de cluster de containeres com escalabilidade previsível \\
+
+\hline
+
+AWS Elastic Container Registry & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as imagens de container do gateway de conexão \\
+
+\hline
+
+AWS Simple Notification Service & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de publisher Subscriber utilizado para a transacionar as mensagens emitidas na criação de instâncias \\
+
+\hline
+
+AWS EC2 & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço central utilizado para gerenciar as instâncias, regras de conexão e as imagens de sistema operacional \\
+
+\hline
+
+\end{longtable}
+
+\section{Implementa\c{c}\~ao}
+\label{sec:implementacao}
 
 
-\subsection{Node.js}\label{subsec:nodeJs}
 
-O Node.js é um ambiente de execução de \textit{javascript} baseado em eventos assíncronos otimizado para a criação de aplicações de rede escaláveis. Ele será utilizado dentro das funções \textit{serverless} para executar partes das lógicas de negócio. \citep{nodejs}
+TODO
 
-Ele foi escolhido por ter hoje uma das maiores comunidades de desenvolvedores ativos, além de fornecer artefatos para a implementação das lógicas a serem desenvolvidas.
+\section{Testes e Valida\c{c}\~ao}
+\label{sec:testesEValidacao}
 
-\subsection{Next.js}\label{subsec:nextJs}
+TODO
 
-O Next.js é um \textit{framework} de código aberto para o desenvolvimento de aplicações web. Com ele é possível executar renderização de elementos de tela no servidor e também geração de páginas estáticas. \citep{nextjs}
+\section{Implanta\c{c}\~ao do sistema}
+\label{sec:implantacaoDoSistema}
 
-Ele foi escolhido para esse trabalho para a criação do sistema web, intermediando a conexão com os servidores da infraestrutura. Toda a lógica de autenticação, visualização dos componentes disponíveis e gerenciamento dos recursos, exceto criação dos templates de imagem de máquina, serão implementados nesta aplicação web.
-
-% Materiais são as ferramentas, as tecnologias, os ambientes de desenvolvimento e outros que são utilizados para realizar as atividades desde a definição dos requisitos à implantação do sistema. Exemplos de materiais: linguagens de programação e de modelagem, banco de dados e seus gerenciadores, editores para análise e modelagem, ambiente e plataforma de desenvolvimento.
-
-% Cada um dos materiais pode ter uma subseção própria ou serem descritos em uma mesma seção. De qualquer forma, essa seção não precisa ser muito extensa, deve abranger apenas um conhecimento básico sobre cada um dos materiais e o que é mais relevante ou utilizado para o trabalho proposto. De maneira geral, não há necessidade de incluir informações históricas sobre os materiais. Centrar-se nos conceitos e particularidades mais relevantes para o trabalho. Exceto se necessário para o entendimento do objeto do trabalho ou considerado relevante para o tipo de pesquisa.
-
-\section{Métodos}\label{sec:metodo}
-
-Inicialmente, um estudo será realizado para analisar a performance dos protocolos de conexão com \textit{desktops} remotos já presentes no Apache Guacamole, sendo eles \textit{SSH}, \textit{VNC} e \textit{RDP}. Como os protocolos estão em uma camada mais abstrata da solução, a viabilidade de implementação de um outro protocolo ainda não integrado com o Guacamole será avaliada e implementada, se possível. Caso contrário será listada como aprimoramento do trabalho atual.
-
-Durante o estudo diversos cenários de conexão serão testados, visando cobrir casos de uso onde softwares que demandam maior capacidade de processamento de vídeo são utilizados. Como resultado, são esperados parâmetros para nortear o dimensionamento dos recursos computacionais empregados na solução.
-
-Em seguida, um diagrama de infraestrutura será construído com o apoio de uma equipe especializada da \textit{AWS}, que ajudará na idealização dos componentes e identificação de pontos a serem otimizados. Como resultado, espera-se uma base conceitual da infraestrutura para nortear o desenvolvimento.
-
-A partir desse momento, o protótipo da aplicação será construído a partir das seguintes etapas:
-
-\begin{enumerate}
-    \item Configuração das bases de código com versionamento, suporte a documentação, integração e entrega contínuas.
-    \item Configuração da conta na \textit{AWS} com ativação dos créditos cedidos pela empresa.
-    \item Configuração dos componentes de servidor do Apache Guacamole.
-    \item Desenvolvimento das lógicas de negócio com funções \textit{serverless}.
-    \item Desenvolvimento dos componentes da arquitetura como código.
-    \item Desenvolvimento da aplicação web.
-\end{enumerate}
-
-Com o protótipo construído, algumas métricas de custo serão avaliadas para que uma estimativa de custo de aplicação seja descrita, levando em consideração parâmetros de utilização coerentes com o cenário atual da UTFPR. Como resultado, é de interesse saber se a implementação do projeto é viável economicamente.
-
-Por fim, o projeto será documentado e apresentado à universidade em forma de proposta de implementação.
-
-\section{Requisitos Funcionais}\label{sec:requisitosFuncionais}
-
-O desenvolvimento do protótipo será realizado com base em requisitos funcionais. Estes que por sua vez fundamentam uma base aceitável de funcionalidades e casos de uso que fazem sentido para a utilização do projeto como solução de software. São eles:
-
-\begin{itemize}
-    \item \textbf{RF-001}: O software deverá permitir o login de usuários através das credenciais institucionais.
-
-    \item \textbf{RF-002}: O software deverá distinguir os usuários com base em seu papel dentro da instituição. (Aluno, Professor, Administrador do Sistema)
-
-    \item \textbf{RF-003}: O software deverá permitir que o usuário (aluno e professor) liste os \textit{desktops} que tem acesso.
-
-    \item \textbf{RF-004}: O software deverá permitir que o usuário (aluno e professor) inicie uma sessão com um \textit{desktop} que tenha acesso.
-    
-    \item \textbf{RF-005}: O software deverá permitir que o usuário (aluno e professor) finalize a sessão com um \textit{desktop} que tenha acesso.
-    
-    \item \textbf{RF-006}: O software deverá permitir que o usuário (aluno e professor) mantenha a sessão ativa com um \textit{desktop} mesmo que o software seja fechado.
-    
-    \item \textbf{RF-007}: O software deverá permitir que o usuário (aluno e professor) exclua um \textit{desktop} que tenha acesso.
-
-    \item \textbf{RF-008}: O software deverá permitir que o usuário (aluno e professor) crie um novo \textit{desktop} a menos que tenha atingido o máximo de sua permissão.
-    
-    \item \textbf{RF-009}: O software deverá permitir que o usuário professor altere os limites de utilização de um usuário aluno.
-
-    \item \textbf{RF-010}: O software deverá estabelecer a conexão com o \textit{desktop} utilizando uma conexão criptografada via \textit{SSL}.
-
-    \item \textbf{RF-011}: O software deverá permitir que o usuário (professor) liste os alunos que utilizam o software.
-
-    \item \textbf{RF-012}: O software deverá encerrar \textit{desktops} inativos que não foram previamente configurados para permanecer ininterruptos.
-    
-    \item \textbf{RF-013}: O software deverá coletar métricas de utilização dos \textit{desktops}.
-    
-    \item \textbf{RF-014}: O software deverá permitir ao usuário a visualização das métricas coletadas, respeitando sua política de acesso.
-    
-    \item \textbf{RF-015}: O software deverá emitir alertas via e-mail do tempo de utilização em casos onde o \textit{dekstop} não é programado para desligar automaticamente.
-    
-    \item \textbf{RF-016}: O software deverá permitir que o usuário (administrador) crie templates de imagem de máquina.
-    
-    \item \textbf{RF-017}: O software deverá permitir que o usuário (administrador) delete templates de imagem de máquina.
-
-    \item \textbf{RF-018}: O software deverá registrar todas as ações auditáveis realizadas dentro do software.
-
-    \item  \textbf{RF-019}: O software deverá permitir que o usuário (professor e administrador) liste todas as ações auditáveis.
-    
-\end{itemize}
-
-\section{Requisitos Não Funcionais}\label{sec:requisitosFuncionais}
-
-Além dos requisitos funcionais, a construção do protótipo levará em conta os seguintes requisitos não funcionais:
-
-\begin{itemize}
-    \item \textbf{RNF-001}: O software deverá permitir o acesso através de um navegador web.
-
-    \item \textbf{RNF-002}: O software deverá ser construído de maneira replicável, sem a necessidade de configuração manual do ambiente de nuvem.
-
-    \item \textbf{RNF-003}: O software deverá ser acessível, seguindo as boas práticas de desenvolvimento para a plataforma.
-\end{itemize}
-
-
-% Os métodos definem, de certa maneira, um plano geral do trabalho, com as principais atividades realizadas durante seu processo de desenvolvimento. São apenas as atividades, o que será feito e o que se espera obter com as mesmas. O que é obtido com a realização dessas atividades está no \autoref{cap:resultados}. 
-
-% Os métodos são, basicamente, uma sequência de atividades realizadas para definir o sistema, modelar o problema e a solução, implementar a solução, testar e implantar essa solução. Essas atividades devem enfatizar a forma de uso dos materiais de acordo com o referencial teórico e como foi procedido no sentido de alcançar os objetivos do trabalho.
-% Os métodos incluem os procedimentos utilizados para se alcançar o objetivo do trabalho. Assim, ele abrange o ciclo de vida do sistema, da identificação do problema à implantação da solução. A identificação pode incluir a definição dos requisitos por parte do usuário e/ou cliente definindo a proposta do sistema. A implantação pode incluir a forma de gerar os instaladores, os recursos e forma de instalação do sistema, a forma de manutenção e de descontinuidade do sistema.
-
-% A definição das atividades, passos, ou procedimentos que compõem os métodos podem (ou mesmo deve) estarem baseados em autores. Esses autores, normalmente, estão relacionados à engenharia de software.
-
-% O tempo verbal a ser utilizado na descrição dos métodos é o passado, considerando que trata-se de métodos que foram aplicados para a obtenção dos resultados a serem apresentados.
