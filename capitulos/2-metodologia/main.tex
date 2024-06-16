@@ -30,7 +30,7 @@ TODO
 \section{Ferramentas e Tecnologias}
 \label{sec:ferramentasETecnologias}
 
-A \autoref{tab:ferramentasETecnologiasUtilizadas} apresenta uma lista de ferramentas, tecnologias e serviços utilizados na implementação do sistema. As versões utilizadas estão escritas de acordo com o padrão de versionamento semântico. (TODO: referenciar)
+A \autoref{tab:ferramentasETecnologiasUtilizadas} apresenta uma lista de ferramentas, tecnologias e serviços utilizados na implementação do sistema. As versões utilizadas estão escritas de acordo com o padrão de versionamento semântico. \citep{semverdocs}
 
 % Make de last column to be as wide as possible wrapping the text
 \begin{longtable}{p{0.25\linewidth} p{0.15\linewidth} p{0.525\linewidth}}%% Ambiente longtable
@@ -52,187 +52,190 @@ A \autoref{tab:ferramentasETecnologiasUtilizadas} apresenta uma lista de ferrame
 \\[-0.5\linha]
 \caption*{\nomefonte: Autoria própria (2024)} \\
 \endlastfoot%% Encerra rodapé da última página
-Node.js & \textsuperscript{$\wedge$}18.19.0 & Ambiente de execução de javascript utilizado em todos os serviços de backend \\
+Node.js \citep{nodejsdocs} & \textsuperscript{$\wedge$}18.19.0 & Ambiente de execução de javascript utilizado em todos os serviços de backend \\
 
 \hline
 
-ECMAScript & ES2020 & Especificação formal da linguagem javascript a qual o código escrito é compatível \\
+ECMAScript \citep{ecmascriptdocs} & ES2020 & Especificação formal da linguagem javascript a qual o código escrito é compatível \\
 
 \hline
 
-Typescript & {$\leq$}5.4.0 & Extensão do Javascript que adiciona suporte para tipagem, utilizada na implementação de todos os serviços de backend e do cliente web do sistema \\
+Typescript \citep{typescriptdocs} & {$\leq$}5.4.0 & Extensão do Javascript que adiciona suporte para tipagem, utilizada na implementação de todos os serviços de backend e do cliente web do sistema \\
 
 \hline
 
-Npm & 10.2.3 & Gerenciador de dependências do Node.js \\
+NPM \citep{npmdocs} & 10.2.3 & Gerenciador de dependências do Node.js \\
 
 \hline
 
-Shell Script & \gls{n/a} & Linguagem de scripts utilizada para implementar a configuração automatizada das instâncias baseadas em LINUX \\
+Shell Script \citep{shellscriptdocs} & \gls{n/a} & Linguagem de scripts utilizada para implementar a configuração automatizada das instâncias baseadas em LINUX \\
 
 \hline
 
-Windows PowerShell Script & 5 & Linguagem de scripts utilizada para implementar a configuração automatizada das instâncias baseadas em WINDOWS \\
+Windows PowerShell Script \citep{windowspowershelldocs} & 5 & Linguagem de scripts utilizada para implementar a configuração automatizada das instâncias baseadas em WINDOWS \\
 
 \hline
 
-Apache Velocity Template Language & \gls{n/a} & Engine de templates utilizada para definir as permissões de conexão dos usuários ao serviços de notificações do servidor ao cliente \\
+Apache Velocity Template Language \citep{apachevelocitydocs} & 2.3 & Engine de templates utilizada para definir as permissões de conexão dos usuários ao serviços de notificações do servidor ao cliente \\
 
 \hline
 
-Markdown & \gls{n/a} & Linguagem de marcação de texto utilizada na documentação do sistema \\
+Markdown \citep{markdowndocs} & \gls{n/a} & Linguagem de marcação de texto utilizada na documentação do sistema \\
 
 \hline
 
-OpenApi & 3.0.0 & Especificação para documentação de API. \\
+OpenAPI \citep{openapidocs} & 3.0.0 & Especificação para documentação de API. \\
 
 \hline
 
-Zod & \textsuperscript{$\wedge$}3.23.8 & Biblioteca utilizada para validar o conteúdo das requisições dos serviços \\
+Zod \citep{zoddocs} & \textsuperscript{$\wedge$}3.23.8 & Biblioteca utilizada para validar o conteúdo das requisições dos serviços \\
 
 \hline
 
-Prettier & \textsuperscript{$\wedge$}3.3.1 & Utilitário utilizado para garantir a estilização do código. \\
+Prettier \citep{prettierdocs} & \textsuperscript{$\wedge$}3.3.1 & Utilitário utilizado para garantir a estilização do código. \\
 
 \hline
 
-Jest & \textsuperscript{$\wedge$}29.7.0 & Framework de teste para javascript \\
+Jest \citep{jestdocs} & \textsuperscript{$\wedge$}29.7.0 & Framework de teste para javascript \\
 
 \hline
 
-Eslint & \textsuperscript{$\wedge$}8.56.0 & Utilitário de análise estática de código. \\
+Eslint \citep{eslintdocs} & \textsuperscript{$\wedge$}8.56.0 & Utilitário de análise estática de código. \\
 
 \hline
 
-AWS CDK & 2.142.1 & Framework utilizado para definição dos componentes de infraestrutura como código \\
+AWS CDK \citep{awscdkdocs} & 2.142.1 & Framework utilizado para definição dos componentes de infraestrutura como código \\
 
 \hline
 
-SST & 2.43.0 & Framework para construção de aplicações full-stack na AWS utilizando infraestrutura como código \\
+SST \citep{sstdocs} & 2.43.0 & Framework para construção de aplicações full-stack na AWS utilizando infraestrutura como código \\
 
 \hline
 
-Docusaurus & \textsuperscript{$\wedge$}3.4.0 & Gerador de documentação em formato de site estático. \\
+Docusaurus \citep{docusaurusdocs} & \textsuperscript{$\wedge$}3.4.0 & Gerador de documentação em formato de site estático. \\
 
 \hline
 
-React & \textsuperscript{$\wedge$}18.0.0 & Biblioteca utilizada no desenvolvimento do cliente web do sistema \\
+React \citep{reactdocs} & \textsuperscript{$\wedge$}18.0.0 & Biblioteca utilizada no desenvolvimento do cliente web do sistema \\
 
 \hline
 
-Stoplight Elements & \textsuperscript{$\wedge$}8.3.1 & Biblioteca utilizada para renderização da documentação da API. \\
+Stoplight Elements \citep{stoplightdocs} & \textsuperscript{$\wedge$}8.3.1 & Biblioteca utilizada para renderização da documentação da API. \\
 
 \hline
 
-docker & 24.0.5 & Ferramenta utilizada para a criação do ambiente isolado do gateway de conexão \\
+Docker \citep{dockerdocs} & 24.0.5 & Ferramenta utilizada para a criação do ambiente isolado do gateway de conexão \\
 
 \hline
 
-Chakra UI & \textsuperscript{$\wedge$}2.8.2 & Biblioteca de componentes de interface utilizada no cliente web. \\
+Chakra UI \citep{chakrauidocs} & \textsuperscript{$\wedge$}2.8.2 & Biblioteca de componentes de interface utilizada no cliente web. \\
 
 \hline
 
-Apache Guacamole & 1.5.3 & Utilizado para intermediar a conexão entre o cliente web e gateway de conexão. \\
+Apache Guacamole \citep{apacheguacamoledocs} & 1.5.3 & Utilizado para intermediar a conexão entre o cliente web e gateway de conexão. \\
 
 \hline
 
-Vite & \textsuperscript{$\wedge$}5.0.12 & Ferramenta responsável por gerenciar a implementação e o empacotamento do cliente web \\
+Vite \citep{vitedocs} & \textsuperscript{$\wedge$}5.0.12 & Ferramenta responsável por gerenciar a implementação e o empacotamento do cliente web \\
 
 \hline
 
-React Icons & \textsuperscript{$\wedge$}5.0.1 & Biblioteca de Icones utilizada no cliente web \\
+MongoDB Atlas \citep{mongodbatlasdocs} & sdk \textsuperscript{$\wedge$}6.0.3 & Serviço de banco de dados não relacional utilizado para armazenar todos os dados do sistema. \\
 
 \hline
 
-MongoDB Atlas & sdk \textsuperscript{$\wedge$}6.0.3 & Serviço de banco de dados não relacional utilizado para armazenar todos os dados do sistema. \\
+AWS Amplify \citep{awsamplifydocs} & sdk \textsuperscript{$\wedge$}6.0.16 & Biblioteca com integrações facilitadas, uitilizada no cliente web para autenticação e conexão com AWS AppSync \\
 
 \hline
 
-AWS Amplify & sdk \textsuperscript{$\wedge$}6.0.16 & Biblioteca com integrações facilitadas, uitilizada no cliente web para autenticação e conexão com AWS AppSync \\
+AWS Lambda PowerTools \citep{awslambdapowertools} & \textsuperscript{$\wedge$}2.1.1 & Biblioteca utilizada para integrar a geração de logs dos serviços com o AWS CloudWatch \\
 
 \hline
 
-AWS Lambda PowerTools & \textsuperscript{$\wedge$}2.1.1 & Biblioteca utilizada para integrar a geração de logs dos serviços com o AWS CloudWatch \\
+AWS AppSync \citep{awsappsync} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a comunicação em tempo real entre os serviçoes de backend e o cliente web \\
 
 \hline
 
-AWS AppSync & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a comunicação em tempo real entre os serviçoes de backend e o cliente web \\
+AWS Systems Manager \citep{awssystemsmanagerdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as configurações do sistema. \\
 
 \hline
 
-AWS Systems Manager Parameter Store & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as configurações do sistema. \\
+AWS Event Bridge \citep{awseventbridgedocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de eventos utilizado como barramento de comunicação entre os serviços de backend. Oferece também a funcionalidade de agendamento de eventos, utilizado no sistema de desligamento automático de instâncias osciosas. \\
 
 \hline
 
-AWS Event Bridge & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de eventos utilizado como barramento de comunicação entre os serviços de backend. \\
+AWS CloudFormation \citep{awscloudformationdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar a definição dos componentes de infraestrutura como código \\
 
 \hline
 
-AWS CloudFormation & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar a definição dos componentes de infraestrutura como código \\
+AWS Cognito \citep{awscognito} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de usuários e credenciais. Ele foi utilizado para gerenciar dados sensíveis, mantendo somente dados operacionais na integração com o banco de dados. \\
 
 \hline
 
-AWS Cognito User Pool & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de usuários e credenciais. Ele foi utilizado para gerenciar dados sensíveis, mantendo somente dados operacionais na integração com o banco de dados. \\
+AWS Service Catalog \citep{awsservicecatalogdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de modelos de IaC utilizado para o controle do ciclo de vida da instância e seus recursos dependentes \\
 
 \hline
 
-AWS Event Bridge Scheduler & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de agendamento de operações utilizado no sistema de desligamento automático de instâncias osciosas \\
+AWS CloudWatch \citep{awscloudwatchdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de monitoramento utilizado para agregar os logs dos sistemas. \\
 
 \hline
 
-AWS Service Catalog & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de modelos de IaC utilizado para o controle do ciclo de vida da instância e seus recursos dependentes \\
+AWS Lambda \citep{awslambdadocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de computação serverless utilizado para executar o serviço de API e tratamento de eventos do sistema \\
 
 \hline
 
-AWS CloudWatch & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de monitoramento utilizado para agregar os logs dos sistemas. \\
+AWS Api Gateway \citep{awsapigatewaydocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço gerenciado para criação de APIs serverless. \\
 
 \hline
 
-AWS Lambda & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de computação serverless utilizado para executar o serviço de API e tratamento de eventos do sistema \\
+AWS Identity and Access Management \citep{awsiamdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serivço utilizado para delimitação de todas as permissões atreladas aos componentes de infraestrutura do sistema \\
 
 \hline
 
-AWS Api Gateway & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço gerenciado para criação de APIs serverless. \\
+AWS S3 \citep{awss3docs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de armazenamento de objetos utilizado para servir o cliente web e armazenar todos os arquivos imutaveis do sistema \\
 
 \hline
 
-AWS Identity and Access Management & sdk \textsuperscript{$\wedge$}3.592.0 & Serivço utilizado para delimitação de todas as permissões atreladas aos componentes de infraestrutura do sistema \\
+AWS CloudFront \citep{awscloudfrontdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de distribuição de conteúdo utilizado como camada distribuída de cache para os serviços \\
 
 \hline
 
-AWS S3 & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de armazenamento de objetos utilizado para servir o cliente web e armazenar todos os arquivos imutaveis do sistema \\
+AWS Certificate Manager \citep{awscertificatemanagerdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviços utilizado para o gerenciamento dos certificados de domínio atrelados ao cliente web e à documentação \\
 
 \hline
 
-AWS CloudFront & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de distribuição de conteúdo utilizado como camada distribuída de cache para os serviços \\
+AWS Elastic Load Balancing \citep{awselasticloadbalancing} & sdk \textsuperscript{$\wedge$}3.592.0 & Balanceador de carga gerenciado utilizado para gerenciar as conexões entre o cliente web e o cluster de containers rodando o Gateway de conexão. \\
 
 \hline
 
-AWS Certificate Manager & sdk \textsuperscript{$\wedge$}3.592.0 & Serviços utilizado para o gerenciamento dos certificados de domínio atrelados ao cliente web e à documentação \\
+AWS Elastic Container Service \citep{awsecsdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a implantação do gateway de conexão, no formato de cluster de containeres com escalabilidade previsível \\
 
 \hline
 
-AWS Application Load Balancer & sdk \textsuperscript{$\wedge$}3.592.0 & Balanceador de carga gerenciado utilizado para gerenciar as conexões entre o cliente web e o cluster de containers rodando o Gateway de conexão. \\
+AWS Elastic Container Registry \citep{awsecrdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as imagens de container do gateway de conexão \\
 
 \hline
 
-AWS Elastic Container Service & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a implantação do gateway de conexão, no formato de cluster de containeres com escalabilidade previsível \\
+AWS Simple Notification Service \citep{awssnsdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de publisher Subscriber utilizado para a transacionar as mensagens emitidas na criação de instâncias \\
 
 \hline
 
-AWS Elastic Container Registry & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as imagens de container do gateway de conexão \\
-
-\hline
-
-AWS Simple Notification Service & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de publisher Subscriber utilizado para a transacionar as mensagens emitidas na criação de instâncias \\
-
-\hline
-
-AWS EC2 & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço central utilizado para gerenciar as instâncias, regras de conexão e as imagens de sistema operacional \\
+AWS EC2 \citep{awsec2docs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço central utilizado para gerenciar as instâncias, regras de conexão e as imagens de sistema operacional \\
 
 \hline
 
 \end{longtable}
+
+O ecossistema de tecnologias utilizado foi escolhido a partir de alguns critérios, como a familiaridade com o ambiente de desenvolvimento, a facilidade de integração entre as ferramentas e a disponibilidade de documentação e comunidade de suporte.
+
+Visto que a \gls{utfpr} já possui integração com a \gls{aws}, a escolha da provedor de nuvem pública foi trivial, já que a infraestrutura de serviços da \gls{aws} é também utilizada em projetos a nível empresarial e acadêmico a nível global, oferecendo um portfólio extenso de serviços que atendem as necessidades do sistema.
+
+O SST foi escolhido como um facilitador tanto para o fluxo de desenvolvimento local quanto para a definição de todos os componentes de arquiteura como código. A ferramenta disponibiliza componentes de alto nível que já implementam as melhores práticas de segurança e controle de custos. Além disso, o SST estabelece uma conexão entre os serviços da \gls{aws}, como as funções Lambda, e o código escrito localmente, fazendo com que seja possível testar e depurar o código no seu ambiente próprio de implantação.
+
+O \gls{guacamole} foi escolhido como intermediador da conexão entre o cliente web e as instâncias de máquinas virtuais, porque trata-se de uma ferramenta de código aberto bem estabelecida que fornece os componentes necessários para a conexão remota a partir de um navegador de internet. Além disso, ele é compatível com os protocolos de conexão remota utilizados no trabalho. No contexto do desenvolvimento do sistema, o \gls{guacamole} foi utilizado de forma customizada. Apenas \textit{daemon} que implementa a conexão remota, o componente web que renderiza a interface de conexão e o protocolo de comunicação em si foram utilizados.
+
+Essa customização foi necessária para que o sistema pudesse controlar todos os aspectos de interface e conexão, caso contrário, seria necessário utilizar a aplicação web já existente do \gls{guacamole}. Se esse fosse o caso, a customização do sistema dependeria de um conjunto de regras de negócio implementadas diretamente no \gls{guacamole}, o que dificultaria a manutenção e a evolução do sistema.
+
 
 \section{Implementa\c{c}\~ao}
 \label{sec:implementacao}
@@ -244,7 +247,201 @@ TODO
 \section{Testes e Valida\c{c}\~ao}
 \label{sec:testesEValidacao}
 
-TODO
+Os testes do sistema foram realizados de duas formas, a primeira através de testes unitários e a segunda através da execução manual de um teste \textit{end-to-end} percorrendo os caminhos críticops da aplicação. (TODO, Refereciar)
+
+Os testes unitários foram implementados através do framework \textit{Jest} a fim validar de forma satisfatória todos os casos de uso dos serviços de backend. Como visto anteriormente, a estrutura do projeto já foi projetada para facilitar a escrita de testes utilizando \glspl{adapter} implementados especificamente para reproduzir o comportamento dos serviços reais da camada de infraestrutura.
+
+A seguir os testes unitários dos casos de usos mais importantes implementados serão listados, com suas condições iniciais e resultados esperados. O \autoref{cap:anexoa} apresenta o relatório de cobertura dos testes com os resultados obtidos.
+
+\begin{table}[h]
+\caption{Testes unitários do caso de uso: Desligar instância ociosa}
+\label{tab:testeDesligarInstanciaOciosa}
+\begin{tabularx}{\textwidth}{p{0.45\textwidth} p{0.5\textwidth}}
+\toprule
+\textbf{Condição inicial} & \textbf{Resultado esperado} \\ \midrule
+
+Quando a entrada do caso de uso é inválida & Deve retornar um erro de validação \\ \hline
+
+Quando a instância indicada não existe & Não deve realizar nenhuma ação \\ \hline
+
+Quando a instância indicada existe e pertence a um usuário & Deve desligar a instância \\ 
+
+\bottomrule
+\end{tabularx}
+\fonte{Autoria própria (2024)}%% Fonte
+\end{table}
+
+Os casos de teste da \autoref{tab:testeDesligarInstanciaOciosa} são importantes para garantir que quando o agendamento para desligamento é acionado, a instância de fato será desligada, evitando assim que recursos sejam desperdiçados e que o usuário consiga acessar a instância de outro local diferente do cliente web do sistema.
+
+
+\begin{table}[h]
+\caption{Testes unitários do caso de uso: Deletar instância}
+\label{tab:testeDeletarInstancia}
+\begin{tabularx}{\textwidth}{p{0.45\textwidth} p{0.5\textwidth}}
+\toprule
+\textbf{Condição inicial} & \textbf{Resultado esperado} \\ \midrule
+
+Quando a entrada do caso de uso é inválida & Deve retornar um erro de validação \\ \hline
+
+Quando o usuário não tem permissão para deletar a instância & Deve retornar um erro de permissão \\ \hline
+
+Quando a instância indicada não existe & Não retornar um erro de instância não encontrada \\ \hline
+
+Quando o cargo do usuário não é administrador e a instância pertence a outro usuário & Deve retornar um erro de permissão \\ \hline
+
+Quando o usuário tem permissão para deletar a instância & Deve deletar a instância e todos os recursos associados \\
+
+\bottomrule
+\end{tabularx}
+\fonte{Autoria própria (2024)}%% Fonte
+\end{table}
+
+Na \autoref{tab:testeDeletarInstancia} os testes também são importantes para o gerenciamento correto dos recursos da nuvem, já que é preciso deletar o registro do objeto no banco de dados e também todos os recursos que foram criados na nuvem, como a instância, o grupo de segurança, volumes de armazenamento, estes que se ficarem foram de uso, podem gerar custos desnecessários e difíceis de rastrear.
+
+
+\begin{table}[h]
+\caption{Testes unitários do caso de uso: Obter informações de conexão com instância} 
+\label{tab:testeObterInformacoesDeConexaoComInstancia}
+\begin{tabularx}{\textwidth}{p{0.45\textwidth} p{0.5\textwidth}}
+\toprule
+\textbf{Condição inicial} & \textbf{Resultado esperado} \\ \midrule
+
+Quando a entrada do caso de uso é inválida & Deve retornar um erro de validação \\ \hline
+
+Quando o usuário não está habilitado para acessar o sistema & Deve retornar um erro de permissão \\ \hline
+
+Quando a instância indicada não existe & Deve retornar um erro de instância não encontrada \\ \hline
+
+Quando o sistema não consegue obter a senha da instância & Deve retornar um erro interno \\ \hline
+
+Quando o usuário não é o dono da instância e não é administrador & Deve retornar um erro de permissão \\ \hline
+
+Quando o usuário tem acesso à instância e a mesma ainda não está pronta para conexão & Deve retornar um erro de violação do caso de uso \\ \hline
+
+Quando o usuário tem acesso à instância e a mesma não está ligada & Deve retornar um erro de violação do caso de uso \\ \hline
+
+Quando o usuário tem acesso à instâcia e o protocolo interno de conexão é \gls{rdp} & Deve retornar as informações de conexão com a instância \\ \hline
+
+Quando o usuário tem acesso à instâcia e o protocolo interno de conexão é \gls{vnc} & Deve retornar as informações de conexão com a instância \\
+
+\bottomrule
+\end{tabularx}
+\fonte{Autoria própria (2024)}%% Fonte
+\end{table}
+
+Os testes da \autoref{tab:testeObterInformacoesDeConexaoComInstancia} garantem dentre outras coisas,que só será possível iniciar uma conexão com a instância se a mesma estiver de fato preparada para receber conexões. Para chegar nesse estado, a instância precisa passar por várias etapas que sem a validação correta, ficariam praticamente impossíveis de serem rastreadas e corrigidas.
+
+
+\begin{table}[h]
+\caption{Testes unitários do caso de uso: Criar instância}
+\label{tab:testeCriarInstancia}
+\begin{tabularx}{\textwidth}{p{0.45\textwidth} p{0.5\textwidth}}
+\toprule
+\textbf{Condição inicial} & \textbf{Resultado esperado} \\ \midrule
+
+Quando a entrada do caso de uso é inválida & Deve retornar um erro de validação \\ \hline
+
+Quando o usuário não está habilitado para acessar o sistema & Deve retornar um erro de permissão \\ \hline
+
+Quando o usuário não é encontrado no sistema & Deve retornar um erro de usuário não encontrado \\ \hline
+
+Quando o template de instância indicado não existe & Deve retornar um erro de template não encontrado \\ \hline
+
+Quando o tipo de hardware indicado não existe & Deve retornar um erro de tipo de hardware não encontrado \\ \hline
+
+Quando a imagem de sistema operacional indicada não existe & Deve retornar um erro de imagem não encontrada \\ \hline
+
+Quando o cargo do usuário não é administrador e o dono indicado é diferente do usuário & Deve retornar um erro de permissão \\ \hline
+
+Quando o usuário não é administrador e o limite de instâncias do usuário foi atingido & Deve retornar um erro de violação do caso de uso \\ \hline
+
+Quando o usuário não é administrador e o tipo de hardware indicado não é permitido para o usuário & Deve retornar um erro de violação do caso de uso \\ \hline
+
+Quando o usuário não é administrador e a opção de hibernação não é permitida para o usuário & Deve retornar um erro de violação do caso de uso \\ \hline
+
+Quando o usuário tem permissão para criar a instância & Deve criar a instância e retornar as informações da instância \\
+
+\bottomrule
+\end{tabularx}
+\fonte{Autoria própria (2024)}%% Fonte
+\end{table}
+
+Os testes da \autoref{tab:testeCriarInstancia} são importantes para garantir que a criação de instâncias seja feita de forma segura e controlada, evitando que usuários mal intencionados possam criar instâncias sem permissão ou que usuários comuns possam criar instâncias com configurações que não são permitidas para o seu cargo.
+
+\begin{table}[h]
+\caption{Testes unitários do caso de uso: Notificar mudança de estado de instância}
+\label{tab:testeNotificarMudancaEstadoInstancia}
+\begin{tabularx}{\textwidth}{p{0.45\textwidth} p{0.5\textwidth}}
+\toprule
+\textbf{Condição inicial} & \textbf{Resultado esperado} \\ \midrule
+
+Quando a entrada do caso de uso é inválida & Deve retornar um erro de validação \\ \hline
+
+Quando a instância indicada não existe & Não deve realizar nenhuma ação \\ \hline
+
+Quando o usuário dono da instância não existe & Não deve realizar nenhuma ação \\ \hline
+
+Quando a instância recebe o estado de ligada & Deve sinalizar o sistema de desligamento automático e notificar o usuário dono da instância sobre a mudança de estado \\ \hline
+
+Quando a instância recebe qualquer outro estado & Deve notificar o usuário dono da instância sobre a mudança de estado \\
+
+\bottomrule
+\end{tabularx}
+\fonte{Autoria própria (2024)}%% Fonte
+\end{table}
+
+Os testes da \autoref{tab:testeNotificarMudancaEstadoInstancia} são importantes para garantir que o sistema notifique os usuários sobre as mudanças de estado das instâncias, permitindo a atualização da interface do cliente web em tempo real evitando que o usuário tenha que recarregar a página para visualizar as mudanças.
+
+\begin{table}[h]
+\caption{Testes unitários do caso de uso: Criar template de instância a partir de instância}
+\label{tab:testesCriarTemplateDeInstanciaAPartirDeInstancia}
+\begin{tabularx}{\textwidth}{p{0.45\textwidth} p{0.5\textwidth}}
+\toprule
+\textbf{Condição inicial} & \textbf{Resultado esperado} \\ \midrule
+
+Quando a entrada do caso de uso é inválida & Deve retornar um erro de validação \\ \hline
+
+Quando o usuário não é administrador & Deve retornar um erro de permissão \\ \hline
+
+Quando a instância indicada não existe & Deve retornar um erro de instância não encontrada \\ \hline
+
+Quando a instância utilizada como base ainda não terminou de ser configurada & Deve retornar um erro de violação do caso de uso \\ \hline
+
+Quando a quantidade de armazenamento indicada é menor que o armazenamento mínimo requerido pela imagem de sistema operacional & Deve retornar um erro de violação do caso de uso \\ \hline
+
+Quando todas as condições são atendidas & Deve criar o template de instância e retornar as informações do template \\
+
+\bottomrule
+\end{tabularx}
+\fonte{Autoria própria (2024)}%% Fonte
+\end{table}
+
+Os testes da \autoref{tab:testesCriarTemplateDeInstanciaAPartirDeInstancia} são importantes para garantir que os administradores possam criar templates de instâncias a partir de instâncias já criadas. As verificações nesse caso de uso garantem que os usuários terão templates válidos para criar instâncias que funcionem corretamente.
+
+\begin{table}[h]
+\caption{Testes unitários do caso de uso: Cadastrar usuário}
+\label{tab:testecadastrarusuario}
+\begin{tabularx}{\textwidth}{p{0.45\textwidth} p{0.5\textwidth}}
+\toprule
+\textbf{Condição inicial} & \textbf{Resultado esperado} \\ \midrule
+
+Quando a entrada do caso de uso é inválida & Deve retornar um erro de validação \\ \hline
+
+Quando já existe um usuário no banco de dados com o \textit{username} recebido na entrada & Deve retornar o usuário já cadastrado \\ \hline
+
+Quando não existir um registro no banco de dados com o \textit{username} recebido na entrada & Deve criar o usuário e retornar as informações do usuário \\
+
+Quando o tipo de hardware de instância padrão indicado não existe & Deve retornar um erro interno \\
+
+\bottomrule
+\end{tabularx}
+\fonte{Autoria própria (2024)}%% Fonte
+\end{table}
+
+Os testes da \autoref{tab:testecadastrarusuario} validam se a sincronia entre o \textit{AWS Congito} e o banco de dados do sistema prevê casos de borda para que não haja duplicidade de usuários no sistema e os mesmo possam ser criados de forma controlada, tanto através do cliente web, quanto através do \textit{console} ou \textit{cli} da AWS.
+    
+
+
 
 \section{Implanta\c{c}\~ao do sistema}
 \label{sec:implantacaoDoSistema}
