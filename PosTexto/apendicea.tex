@@ -3,15 +3,100 @@
 %% Texto ou documento elaborado pelo autor, a fim de complementar sua argumentação, sem prejuízo da unidade nuclear do trabalho.
 
 %% Título e rótulo de apêndice (rótulos não devem conter caracteres especiais, acentuados ou cedilha)
-\chapter{Título do Apêndice A com um Texto Muito Longo que Pode Ocupar Mais de uma Linha}\label{cap:apendicea}
+\chapter{Relatório de Cobertura de Testes}
+\label{cap:apendicea}
 
-Quando houver necessidade pode-se apresentar como apêndice documento(s) auxiliar(es) e/ou complementar(es) como: legislação, estatutos, gráficos, tabelas, etc. Os apêndices são enumerados com letras maiúsculas: \autoref{cap:apendicea}, \autoref{cap:apendiceb}, etc.
+Este apêndice apresenta o relatório de cobertura de testes dos arquivos importados em casos de teste. A \autoref{tab:coberturaDosArquivosImportadosEmCasosDeTeste} apresenta a cobertura de linhas, funções e condicionais dos arquivos importados em casos de teste. Esses dados foram obtidos a partir do relatório gerado pelo \textit{framework} de testes Jest, que é utilizado para executar os testes automatizados do projeto.
 
-No \latex\ apêndices são editados como capítulos. O comando \verb|\appendix| faz com que todos os capítulos seguintes sejam considerados apêndices.
+É importante ressaltar que as estatísticas são calculadas com base nos arquivos que são importados em casos de testes. Portanto, arquivos não importados ficam de fora do cálculo.
 
-Apêndices complementam o texto principal da tese com informações para leitores com especial interesse no tema, devendo ser considerados leitura opcional, ou seja, o entendimento do texto principal da tese não deve exigir a leitura atenta dos apêndices.
+O resultado acumulado da cobertura de linhas, funções e condicionais dos arquivos é de 1043/1117 (93.4\%), 218/244 (89.3\%) e 443/618 (71.7\%), respectivamente. Calculados a partir da execução de 131 casos de teste, distribuídos em 26 arquivos.
 
-Apêndices usualmente contemplam provas de teoremas, deduções de fórmulas matemáticas, diagramas esquemáticos, gráficos e trechos de código. Quanto a este último, código extenso não deve fazer parte da tese, mesmo como apêndice. O ideal é disponibilizar o código na Internet para os interessados em examiná-lo ou utilizá-lo.
+\begin{longtable}{@{\extracolsep{\fill}}p{0.45\linewidth}lll}%% Ambiente longtable
+\caption{Cobertura dos arquivos importados em casos de teste\label{tab:coberturaDosArquivosImportadosEmCasosDeTeste}} \\%% Legenda e rótulo
+\toprule
+\textbf{Arquivo} & \textbf{Linhas} & \textbf{Funções} & \textbf{Condicionais} \\
+\midrule
+\endfirsthead%% Encerra cabeçalho da primeira página
+\caption[]{Cobertura dos arquivos importados em casos de teste} \\%% Legenda
+\multicolumn{4}{r}{\textbf{(continuação)}} \\
+\toprule
+\textbf{Arquivo} & \textbf{Linhas} & \textbf{Funções} & \textbf{Condicionais} \\
+% \midrule
+\endhead%% Encerra cabeçalho das demais páginas
+% \midrule
+\multicolumn{4}{r}{\textbf{(continua)}} \\
+\endfoot%% Encerra rodapé das demais páginas
+\bottomrule
+\\[-0.5\linha]
+\caption*{\nomefonte: Autoria própria (2024)} \\
+\endlastfoot%% Encerra rodapé da última página
+
+\_\_tests\_\_/fixtures/testDatabaseInstanceManager.ts & 11/17 (64.7\%) & 1/3 (33.3\%) & 0/1 (0.0\%) \\ \hline
+packages/api/application/auth.ts & 25/25 (100.0\%) & 7/7 (100.0\%) & 1/4 (25.0\%) \\ \hline
+packages/api/application/use-cases/instance/auto-turn-instance-off.ts & 13/13 (100.0\%) & 2/2 (100.0\%) & 7/11 (63.6\%) \\ \hline
+packages/api/application/use-cases/instance/delete-instance.ts & 19/19 (100.0\%) & 2/2 (100.0\%) & 9/12 (75.0\%) \\ \hline
+packages/api/application/use-cases/instance/get-instance-connection.ts & 37/37 (100.0\%) & 2/2 (100.0\%) & 17/20 (85.0\%) \\ \hline
+packages/api/application/use-cases/instance/launch-instance.ts & 42/44 (95.5\%) & 2/2 (100.0\%) & 17/24 (70.8\%) \\ \hline
+packages/api/application/use-cases/instance/link-launched-instance.ts & 23/23 (100.0\%) & 2/2 (100.0\%) & 8/11 (72.7\%) \\ \hline
+packages/api/application/use-cases/instance/list-instances.ts & 25/25 (100.0\%) & 5/5 (100.0\%) & 12/15 (80.0\%) \\ \hline
+packages/api/application/use-cases/instance/notify-instance-state-change.ts & 25/25 (100.0\%) & 2/2 (100.0\%) & 10/13 (76.9\%) \\ \hline
+packages/api/application/use-cases/instance/reboot-instance.ts & 28/28 (100.0\%) & 2/2 (100.0\%) & 14/17 (82.4\%) \\ \hline
+packages/api/application/use-cases/instance/schedule-instance-operation.ts & 8/8 (100.0\%) & 2/2 (100.0\%) & 5/8 (62.5\%) \\ \hline
+packages/api/application/use-cases/instance/turn-instance-off.ts & 29/29 (100.0\%) & 2/2 (100.0\%) & 14/17 (82.4\%) \\ \hline
+packages/api/application/use-cases/instance/turn-instance-on.ts & 29/29 (100.0\%) & 2/2 (100.0\%) & 14/17 (82.4\%) \\ \hline
+packages/api/application/use-cases/instance/unschedule-instance-operation.ts & 8/8 (100.0\%) & 2/2 (100.0\%) & 5/8 (62.5\%) \\ \hline
+packages/api/application/use-cases/instance-template/create-instance-template-from-instance.ts & 28/28 (100.0\%) & 2/2 (100.0\%) & 10/13 (76.9\%) \\ \hline
+packages/api/application/use-cases/instance-template/create-instance-template.ts & 26/26 (100.0\%) & 2/2 (100.0\%) & 9/13 (69.2\%) \\ \hline
+packages/api/application/use-cases/instance-template/delete-instance-template.ts & 18/19 (94.7\%) & 3/4 (75.0\%) & 6/9 (66.7\%) \\ \hline
+packages/api/application/use-cases/instance-template/get-instance-template.ts & 15/15 (100.0\%) & 2/2 (100.0\%) & 6/9 (66.7\%) \\ \hline
+packages/api/application/use-cases/instance-template/list-instance-templates.ts & 15/15 (100.0\%) & 2/2 (100.0\%) & 6/10 (60.0\%) \\ \hline
+packages/api/application/use-cases/instance-template/update-instance-template.ts & 21/21 (100.0\%) & 3/3 (100.0\%) & 8/12 (66.7\%) \\ \hline
+packages/api/application/use-cases/misc/list-instance-types.ts & 12/12 (100.0\%) & 2/2 (100.0\%) & 5/8 (62.5\%) \\ \hline
+packages/api/application/use-cases/misc/list-recommended-machine-images.ts & 12/12 (100.0\%) & 2/2 (100.0\%) & 5/8 (62.5\%) \\ \hline
+packages/api/application/use-cases/user/get-user.ts & 18/18 (100.0\%) & 2/2 (100.0\%) & 11/14 (78.6\%) \\ \hline
+packages/api/application/use-cases/user/list-users.ts & 13/13 (100.0\%) & 2/2 (100.0\%) & 5/8 (62.5\%) \\ \hline
+packages/api/application/use-cases/user/sign-in-user.ts & 14/14 (100.0\%) & 2/2 (100.0\%) & 7/10 (70.0\%) \\ \hline
+packages/api/application/use-cases/user/sign-up-user.ts & 22/22 (100.0\%) & 2/2 (100.0\%) & 9/12 (75.0\%) \\ \hline
+packages/api/application/use-cases/user/update-user-quotas.ts & 22/22 (100.0\%) & 4/4 (100.0\%) & 10/13 (76.9\%) \\ \hline
+packages/api/application/use-cases/user/update-user-role.ts & 19/19 (100.0\%) & 2/2 (100.0\%) & 8/11 (72.7\%) \\ \hline
+packages/api/domain/application-events/instance-connection-ended.ts & 6/6 (100.0\%) & 1/1 (100.0\%) & 0/0 (100.0\%) \\ \hline
+packages/api/domain/application-events/instance-launched.ts & 8/8 (100.0\%) & 1/1 (100.0\%) & 0/0 (100.0\%) \\ \hline
+packages/api/domain/application-events/instance-state-changed.ts & 8/8 (100.0\%) & 1/1 (100.0\%) & 0/0 (100.0\%) \\ \hline
+packages/api/domain/decorators/use-case-execute.ts & 11/11 (100.0\%) & 3/3 (100.0\%) & 1/1 (100.0\%) \\ \hline
+packages/api/domain/dtos/application-event.ts & 8/8 (100.0\%) & 2/2 (100.0\%) & 0/0 (100.0\%) \\ \hline
+packages/api/domain/dtos/errors.ts & 21/23 (91.3\%) & 7/8 (87.5\%) & 16/18 (88.9\%) \\ \hline
+packages/api/domain/dtos/instance-connection-type.ts & 2/2 (100.0\%) & 0/0 (100.0\%) & 0/0 (100.0\%) \\ \hline
+packages/api/domain/dtos/instance-platform.ts & 2/2 (100.0\%) & 0/0 (100.0\%) & 0/0 (100.0\%) \\ \hline
+packages/api/domain/dtos/instance-state.ts & 2/2 (100.0\%) & 0/0 (100.0\%) & 0/0 (100.0\%) \\ \hline
+packages/api/domain/dtos/principal.ts & 2/2 (100.0\%) & 0/0 (100.0\%) & 0/0 (100.0\%) \\ \hline
+packages/api/domain/dtos/role.ts & 2/2 (100.0\%) & 0/0 (100.0\%) & 0/0 (100.0\%) \\ \hline
+packages/api/domain/dtos/seek-paginated.ts & 2/2 (100.0\%) & 0/0 (100.0\%) & 0/0 (100.0\%) \\ \hline
+packages/api/domain/dtos/virtual-instance-type.ts & 2/2 (100.0\%) & 0/0 (100.0\%) & 0/0 (100.0\%) \\ \hline
+packages/api/domain/entities/instance-template.ts & 31/34 (91.2\%) & 8/9 (88.9\%) & 2/9 (22.2\%) \\ \hline
+packages/api/domain/entities/instance.ts & 44/47 (93.6\%) & 16/17 (94.1\%) & 16/21 (76.2\%) \\ \hline
+packages/api/domain/entities/user.ts & 33/36 (91.7\%) & 10/11 (90.9\%) & 15/21 (71.4\%) \\ \hline
+packages/api/infrastructure/auth/in-memory-auth.ts & 7/7 (100.0\%) & 2/2 (100.0\%) & 5/6 (83.3\%) \\ \hline
+packages/api/infrastructure/config-vault/in-memory-config-vault.ts & 4/4 (100.0\%) & 2/2 (100.0\%) & 0/1 (0.0\%) \\ \hline
+packages/api/infrastructure/connection-encoder/guacamole-connection-encoder.ts & 18/18 (100.0\%) & 4/4 (100.0\%) & 0/1 (0.0\%) \\ \hline
+packages/api/infrastructure/event-publisher/in-memory-event-publisher.ts & 7/9 (77.8\%) & 4/4 (100.0\%) & 3/4 (75.0\%) \\ \hline
+packages/api/infrastructure/instance-repository/in-memory-instance-repository.ts & 53/59 (89.8\%) & 22/23 (95.7\%) & 36/48 (75.0\%) \\ \hline
+packages/api/infrastructure/instance-template-repository/in-memory-instance-template-repository.ts & 39/45 (86.7\%) & 15/16 (93.8\%) & 27/35 (77.1\%) \\ \hline
+packages/api/infrastructure/logger/in-memory-logger.ts & 12/14 (85.7\%) & 5/7 (71.4\%) & 1/1 (100.0\%) \\ \hline
+packages/api/infrastructure/user-repository/in-memory-user-repository.ts & 35/52 (67.3\%) & 12/22 (54.5\%) & 17/35 (48.6\%) \\ \hline
+packages/api/infrastructure/virtualization-gateway/in-memory-virtualization-gateway.ts & 107/128 (83.6\%) & 36/41 (87.8\%) & 66/89 (74.2\%) \\
+
+
+\end{longtable}
+
+
+% Quando houver necessidade pode-se apresentar como apêndice documento(s) auxiliar(es) e/ou complementar(es) como: legislação, estatutos, gráficos, tabelas, etc. Os apêndices são enumerados com letras maiúsculas: \autoref{cap:apendicea}, \autoref{cap:apendiceb}, etc.
+
+% No \latex\ apêndices são editados como capítulos. O comando \verb|\appendix| faz com que todos os capítulos seguintes sejam considerados apêndices.
+
+% Apêndices complementam o texto principal da tese com informações para leitores com especial interesse no tema, devendo ser considerados leitura opcional, ou seja, o entendimento do texto principal da tese não deve exigir a leitura atenta dos apêndices.
+
+% Apêndices usualmente contemplam provas de teoremas, deduções de fórmulas matemáticas, diagramas esquemáticos, gráficos e trechos de código. Quanto a este último, código extenso não deve fazer parte da tese, mesmo como apêndice. O ideal é disponibilizar o código na Internet para os interessados em examiná-lo ou utilizá-lo.
 
 %% Título e rótulo de seção (rótulos não devem conter caracteres especiais, acentuados ou cedilha)
 %\section{Título da Seção Secundária do Apêndice B}\label{sec:secaoapendicea}

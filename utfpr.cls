@@ -1611,6 +1611,10 @@
  {% luiz - o xmakefirstuc está funcionando, todavia a primeira coisa que vem é o número... e depois o texto, então ele não deixa a primeira letra maiúscula por causa disso... tem que ver como resolver
      \l@chapapp{\ABNTEXsectionfont\xmakefirstuc{#1}}{#2}{\cftsectionname}
  }
+
+
+% Comandos customizados
+\newcommand{\shellcmd}[1]{\\\indent\indent\texttt{\footnotesize\# #1}\\}
  
  
 

@@ -25,7 +25,75 @@ Ao ser criada, a instância deve passar por um processo de configuração inicia
 \section{Modelagem}
 \label{sec:modelagemDoSistema}
 
-TODO
+O processo de modelagem do sistema partiu de alguns princípios elementares para a construção de um sistema de software: 
+
+\begin{itemize}
+    \item \textbf{Objetividade}: Criar apenas modelos que sejam necessários para a compreensão do sistema. Modelos em excesso tornam o processo de desenvolvimento mais complexo e custoso.
+
+    \item \textbf{Facilidade de alteração}: Os modelos devem ser fáceis de serem alterados, de forma que as mudanças no sistema possam ser refletidas rapidamente nos modelos. Esse princípio é de extrema importância tanto para a extensibilidade do sistema quanto para o isolamento dos componentes em cenários de teste.
+
+    \item \textbf{Arquitetura do sistema em primeiro lugar}: Na concepção dos componentes do sistema, é importante considerar a arquitetura do sistema como um todo, de forma que os componentes sejam coesos e acoplados de forma apropriada. Esse princípio também é relevante quando pensamos na utilização de serviços de computação em nuvem, que possuem características próprias de arquitetura, infraestrutura, segurança e modelo de cobrança.
+
+    \item \textbf{Componentes funcionalmente independentes}: Os componentes do sistema devem ser independentes entre si, isso não significa que eles não possam se comunicar, mas que o nível de encapsulamento deve entregar funcionalidades claras e bem definidas.
+
+    \item \textbf{Consistência das informações em todos os níveis}: As informações que são transmitidas entre os componentes do sistema devem ser verificadas e validadas em todos os níveis, garantindo que a integridade do sistema seja mantida.
+
+\end{itemize}
+
+O processo de modelagem do sistema foi dividido nas seguintes etapas: levantamento de requisitos, conceitos de projeto, projeto de arquitura. \citep{pressman2016}
+
+\subsection{Levantamento de Requisitos}
+\label{subsec:levantamentoDeRequisitos}
+
+% especificação dos requisitos funcionais e não funcionais, e casos de uso
+
+Inicialmente, os requisitos do sistema foram identificados a partir de discussões recorrentes com o orientador do trabalho, que possui experiência em desenvolvimento de sistemas de software e em ambientes de ensino e pesquisa. Além disso, é um dos responsáveis pelo gerenciamento dos recursos de infraestrutura da \gls{utfpr} servidos em nuvem publica através da \gls{aws}.
+
+Os requisitos foram divididos em funcionais e não funcionais, e como uma forma de orientar o desenvolvimento, foram criados casos de uso para representar as interações entre os usuários e o sistema.
+
+As Tabelas \ref{tab:requisitosFuncionaisDoSistema} e \ref{tab:requisitosNaoFuncionaisDoSistema} apresentam os requisitos funcionais e não funcionais do sistema, respectivamente.
+
+\begin{table}[h]
+\caption{Requisitos funcionais do sistema}
+\label{tab:requisitosFuncionaisDoSistema}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Identificador} & \textbf{Descrição} \\ \midrule
+
+RF01 & TODO \\ \hline
+
+\bottomrule
+\end{tabularx}
+\fonte{Autoria própria (2024)}%% Fonte
+\end{table}
+
+\begin{table}[h]
+\caption{Requisitos não funcionais do sistema}
+\label{tab:requisitosNaoFuncionaisDoSistema}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Identificador} & \textbf{Descrição} \\ \midrule
+
+RNF01 & TODO \\ \hline
+
+\bottomrule
+\end{tabularx}
+\fonte{Autoria própria (2024)}%% Fonte
+\end{table}
+    
+
+
+
+\subsection{Conceitos de Projeto}
+\label{subsec:conceitosDeProjeto}
+
+arquitetura hexagonal, inversão de dependencia, clean architecture, modularidade
+
+\subsection{Projeto de Arquitetura}
+\label {subsec:projetoDeArquitetura}
+
+diagrama de componentes, diagrama de sequencia, diagrama de classes
+
 
 \section{Ferramentas e Tecnologias}
 \label{sec:ferramentasETecnologias}
@@ -236,22 +304,21 @@ O \gls{guacamole} foi escolhido como intermediador da conexão entre o cliente w
 
 Essa customização foi necessária para que o sistema pudesse controlar todos os aspectos de interface e conexão, caso contrário, seria necessário utilizar a aplicação web já existente do \gls{guacamole}. Se esse fosse o caso, a customização do sistema dependeria de um conjunto de regras de negócio implementadas diretamente no \gls{guacamole}, o que dificultaria a manutenção e a evolução do sistema.
 
-
 \section{Implementa\c{c}\~ao}
 \label{sec:implementacao}
 
-
-
 TODO
 
-\section{Testes e Valida\c{c}\~ao}
-\label{sec:testesEValidacao}
+\section{Testes Automatizados}
+\label{sec:testesAutomatizados}
 
-Os testes do sistema foram realizados de duas formas, a primeira através de testes unitários e a segunda através da execução manual de um teste \textit{end-to-end} percorrendo os caminhos críticops da aplicação. (TODO, Refereciar)
+Testes exaustivos não garantem a ausência de falhas, mas podem reduzir a probabilidade de falhas críticas. \citep{pressman2016}
 
-Os testes unitários foram implementados através do framework \textit{Jest} a fim validar de forma satisfatória todos os casos de uso dos serviços de backend. Como visto anteriormente, a estrutura do projeto já foi projetada para facilitar a escrita de testes utilizando \glspl{adapter} implementados especificamente para reproduzir o comportamento dos serviços reais da camada de infraestrutura.
+Os testes do sistema foram realizados de duas formas, a primeira através de testes unitários automatizados e a segunda através da execução manual de um teste \textit{end-to-end} percorrendo os caminhos críticos da aplicação.
 
-A seguir os testes unitários dos casos de usos mais importantes implementados serão listados, com suas condições iniciais e resultados esperados. O \autoref{cap:anexoa} apresenta o relatório de cobertura dos testes com os resultados obtidos.
+Os testes unitários foram implementados através do framework \textit{Jest} a fim validar de forma satisfatória todos os casos de uso dos serviços de backend. Como visto anteriormente, a estrutura do projeto já foi planejada para facilitar a escrita de testes utilizando \glspl{adapter} implementados especificamente para reproduzir o comportamento dos serviços reais da camada de infraestrutura.
+
+A seguir os testes unitários dos casos de usos mais importantes implementados serão listados, com suas condições iniciais e resultados esperados. O \autoref{cap:apendicea} apresenta o relatório de cobertura dos testes por arquivo com os resultados obtidos.
 
 \begin{table}[h]
 \caption{Testes unitários do caso de uso: Desligar instância ociosa}
@@ -439,10 +506,123 @@ Quando o tipo de hardware de instância padrão indicado não existe & Deve reto
 \end{table}
 
 Os testes da \autoref{tab:testecadastrarusuario} validam se a sincronia entre o \textit{AWS Congito} e o banco de dados do sistema prevê casos de borda para que não haja duplicidade de usuários no sistema e os mesmo possam ser criados de forma controlada, tanto através do cliente web, quanto através do \textit{console} ou \textit{cli} da AWS.
-    
-
-
 
 \section{Implanta\c{c}\~ao do sistema}
 \label{sec:implantacaoDoSistema}
 
+Essa seção descreve o processo de implantação do sistema em um ambiente de produção. Isso significa que após a execução das etapas a seguir, o sistema estará disponível para ser acessado pelos usuários finais.
+
+A implantação do \textit{Virtual Lab} depende do acesso a uma conta da \gls{aws} com permissões administrativas para criar e gerenciar todos os serviços descritos na \autoref{sec:ferramentasETecnologias}. 
+
+Além disso, é necessário ter o utilitário de linha de comando \textit{aws-cli} instalado e configurado com as credenciais de acesso configuradas, visto que o processo é automatizado. \citep{awsclidocs}. A documentação mais detalhada sobre o processo de configuração do \textit{aws-cli} pode ser encontrada no site oficial da \gls{aws}, bem como na documentação do repositorio do projeto.
+
+A seguir são descritas as etapas necessárias para a implantação a partir do código fonte do sistema, utilizando um computador com as seguintes configurações:
+
+\begin{itemize}
+    \item Sistema operacional: \textit{Ubuntu 24.04 LTS}
+    \item Processador: \textit{Intel Core i7-1165G7 CPU @ 2.80GHz x 8}
+    \item Memória \gls{ram}: 15,3 GiB 
+    \item Espaço em disco: 472,8 GiB
+\end{itemize}
+
+Contando também com os seguintes softwares instalados:
+
+\begin{itemize}
+    \item \textit{Node.js} versão 18.19.0
+    \item \textit{npm} versão 10.2.3
+    \item \textit{Docker} versão 24.0.5
+    \item \textit{aws-cli} versão 2.11.9
+\end{itemize}
+
+\subsection{Configuração das dependências}
+\label{subsec:configuracaoDasDependencias}
+
+Com o código fonte do sistema em mãos, o primeiro passo é instalarm todas as dependências do projeto. Para isso, basta executar o seguinte comando em um terminal na raiz do projeto:
+
+\shellcmd{npm install}
+
+Esse comando irá instalar todas as dependências do projeto, incluindo as dependências de desenvolvimento, que também são necessárias para o processo de implantação.
+
+Com o término da execução, uma nova pasta chamada \textit{node\_modules} será criada na raiz do projeto, contendo todas as dependências instaladas.
+
+\subsection{Variáveis de ambiente}
+\label{subsec:variaveisDeAmbienteEFeatureFlags}
+
+O próximo passo é configurar as variáveis de ambiente do sistema. Elas são necessárias para a identificação das credenciais de acesso à \gls{aws}, bem como para a configuração do comportamento de certos componentes do sistema.
+
+A primeira etapa é criar um novo arquivo chamado \textit{.env} na raiz do projeto. No projeto existe um arquivo chamado \textit{.env.example} que contém um exemplo das variáveis de ambiente necessárias. Para criar uma cópia desse arquivo, basta executar o seguinte comando:
+
+\shellcmd{cp .env.example .env}
+
+Todas variáveis do arquivo são opcionais, por se tratarem de variáveis de ambiente, o sistema irá utilizar valores padrão caso as variáveis não sejam definidas. A seguir é apresentada uma lista das variáveis de ambiente disponíveis e suas descrições:
+
+\begin{itemize}
+    \item \textit{READABLE\_LOG\_FORMAT}: Define o formato dos logs do sistema. Quando definido como \textit{true}, os logs serão formatados de forma legível. Caso contrário, os logs serão formatados de forma compacta. O valor padrão é \textit{false}.
+
+    \item \textit{RETAIN\_USER\_POOL\_ON\_DELETE}: Define se o \textit{AWS Cognito User Pool} deve ser mantido após a exclusão do sistema. Quando definido como \textit{true}, o \textit{User Pool} será mantido. Caso contrário, o \textit{User Pool} será excluído. O valor padrão é \textit{false}. Em ambientes de produção, é recomendado manter o \textit{User Pool} após a exclusão do sistema, para que os usuários possam ser recuperados em caso de falha.
+
+    \item \textit{USER\_POOL\_IDENTITY\_PROVIDER}: Define se um provedor de identidade externo deve ser utilizado em conjunto com o \textit{AWS Cognito User Pool}. Quando definido como \textit{true}, um provedor de identidade externo será utilizado e um botão será habilitado na tela de \textit{login} para utilizar essa funcionalidade. Caso contrário, o provedor de identidade padrão da \gls{aws} será utilizado. O valor padrão é \textit{false}. Caso essa variável seja definida como \textit{true}, as seguintes variáveis de ambiente também deverão ser definidas:
+
+    \begin{itemize}
+        \item \textit{USER\_POOL\_IDENTITY\_PROVIDER\_CLIENT\_ID}: O ID do cliente do provedor de identidade externo.
+
+        \item \textit{USER\_POOL\_IDENTITY\_PROVIDER\_CLIENT\_SECRET}: O segredo do cliente do provedor de identidade externo.
+
+        \item \textit{USER\_POOL\_IDENTITY\_PROVIDER\_ISSUER\_URL}: A URL do provedor de identidade externo.
+    \end{itemize}
+
+    \item \textit{USER\_POOL\_SELF\_SIGN\_UP}: Define se os usuários podem se cadastrar no sistema por conta própria. Quando definido como \textit{true}, o auto-cadastro será permitido e o cliente web apresentará uma tela de cadastro. Caso contrário, o auto-cadastro será desativado e o cliente web esconderá a tela de cadastro. O valor padrão é \textit{false}. Vale lembrar que usuários auto-cadastrados recebem uma permissão de usuário pendente e precisam ser aprovados por um administrador antes de poderem acessar o sistema.
+
+    \item \textit{NEW\_RELIC\_LAMBDA\_INSTRUMENTATION}: Define se a instrumentação do \textit{New Relic} deve ser ativada para as funções \textit{Lambda}. Quando definido como \textit{true}, a instrumentação será ativada. Caso contrário, a instrumentação será desativada. O valor padrão é \textit{false}. Caso essa variável seja definida como \textit{true}, as seguintes variáveis de ambiente também deverão ser definidas:
+
+    \begin{itemize}
+
+        \item \textit{NEW\_RELIC\_ACCOUNT\_ID}: O ID da conta do \textit{New Relic}.
+
+        \item \textit{NEW\_RELIC\_TRUSTED\_ACCOUNT\_KEY}: Caso a conta do \textit{New Relic} seja gerenciada por outra conta do \textit{New Relic}, o ID da conta gerenciadora, caso contrário, o valor deve ser o mesmo que o \textit{NEW\_RELIC\_ACCOUNT\_ID}.
+
+        \item \textit{NEW\_RELIC\_LICENSE\_KEY}: A chave de licença do \textit{New Relic}.
+
+    \end{itemize}
+
+    \item \textit{CLIENT\_CUSTOM\_DOMAIN}: Define se o cliente web deve ser servido em um domínio personalizado. Quando definido como \textit{true}, o cliente web será servido em um domínio personalizado. Caso contrário, o cliente web será servido em um domínio padrão. O valor padrão é \textit{false}. Caso essa variável seja definida como \textit{true}, as seguintes variáveis de ambiente também deverão ser definidas:
+
+    \begin{itemize}
+
+        \item \textit{CLIENT\_CUSTOM\_DOMAIN\_NAME}: O nome do domínio personalizado. Exemplo: \textit{virtual-lab.example.com}.
+
+        \item \textit{CLIENT\_CUSTOM\_DOMAIN\_CERTIFICATE\_ARN}: O ARN do certificado do domínio personalizado criado manualmente no \textit{AWS Certificate Manager} \citep{awscertificatemanagerdocs}. Essa é o unico recurso que deve ser criado manualmente.
+
+    \end{itemize}
+
+    \item \textit{DOCS\_CUSTOM\_DOMAIN}: Define se o site de documentação deve ser servido em um domínio personalizado. Quando definido como \textit{true}, o site de documentação será servido em um domínio personalizado. Caso contrário, o site de documentação será servido em um domínio padrão. O valor padrão é \textit{false}. Caso essa variável seja definida como \textit{true}, as seguintes variáveis de ambiente também deverão ser definidas:
+
+    \begin{itemize}
+
+        \item \textit{DOCS\_CUSTOM\_DOMAIN\_NAME}: O nome do domínio personalizado. Exemplo: \textit{docs.virtual-lab.example.com}.
+
+        \item \textit{DOCS\_CUSTOM\_DOMAIN\_CERTIFICATE\_ARN}: O ARN do certificado do domínio personalizado criado manualmente no \textit{AWS Certificate Manager} \citep{awscertificatemanagerdocs}. Caso o certificado utilizado no cliente web também suporte o domínio da documentação, essa variável pode receber o mesmo valor da variável \textit{CLIENT\_CUSTOM\_DOMAIN\_CERTIFICATE\_ARN}.
+
+    \end{itemize}
+
+\end{itemize}
+
+Uma forma de indicar quais credenciais de acesso à \gls{aws} o sistema deve utilizar para fazer a implantação é inserir as seguintes variáveis de ambiente no arquivo \textit{.env}:
+
+\begin{itemize}
+    \item \textit{AWS\_ACCESS\_KEY\_ID}: O ID da chave de acesso da \gls{aws}.
+    \item \textit{AWS\_SECRET\_ACCESS\_KEY}: A chave de acesso secreta da \gls{aws}.
+\end{itemize}
+
+\subsection{Comando de implanta\c{c}\~ao}
+\label{subsec:comandoDeImplantacao}
+
+Nesse ponto, todos os pré-requisitos foram atendidos e o sistema está pronto para ser implantado. Para isso, basta executar o seguinte comando na raiz do projeto, substituindo \textit{<stage>} por um nome de ambiente desejado (por exemplo, \textit{production} ou \textit{staging}):
+
+\shellcmd{npm run deploy -- --stage <stage>}
+
+Esse comando irá provisionar todos os componentes de infraestrutura necessários na \gls{aws}, bem como implantar os serviços de backend, o cliente web e o site da documentação. O processo pode levar alguns minutos na primeira execução, já que tudo será criado do zero.
+
+Com o processo concluído, uma mensagem de conclusão será exibida no terminal, contendo as URLs de acesso ao cliente web e ao site de documentação. O sistema estará disponível para ser acessado pelos usuários finais.
+
+Caso uma mudança tenha sido feita no código fonte do sistema e seja necessário atualizar a implantação, basta executar o comando de implantação novamente. Apenas os componentes afetados pela mudança serão atualizados, o que torna o processo mais rápido.
