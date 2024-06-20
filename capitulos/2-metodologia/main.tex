@@ -40,7 +40,7 @@ O processo de modelagem do sistema partiu de alguns princípios elementares para
 
 \end{itemize}
 
-O processo de modelagem do sistema foi dividido nas seguintes etapas: levantamento de requisitos, conceitos de projeto, projeto de arquitura. \citep{pressman2016}
+O processo de modelagem do sistema foi dividido nas seguintes etapas: levantamento de requisitos, projeto de arquitetura e projeto de componentes \citep{pressman2016}.
 
 \subsection{Levantamento de Requisitos}
 \label{subsec:levantamentoDeRequisitos}
@@ -53,44 +53,144 @@ Os requisitos foram divididos em funcionais e não funcionais, e como uma forma 
 
 As Tabelas \ref{tab:requisitosFuncionaisDoSistema} e \ref{tab:requisitosNaoFuncionaisDoSistema} apresentam os requisitos funcionais e não funcionais do sistema, respectivamente.
 
-\begin{table}[h]
-\caption{Requisitos funcionais do sistema}
-\label{tab:requisitosFuncionaisDoSistema}
-\begin{tabularx}{\textwidth}{l X}
+\begin{longtable}{@{\extracolsep{\fill}}l p{.8\textwidth}}%% Ambiente longtable
+\caption{Requisitos funcionais do sistema\label{tab:requisitosFuncionaisDoSistema}} \\%% Legenda e rótulo
 \toprule
-\textbf{Identificador} & \textbf{Descrição} \\ \midrule
-
-RF01 & TODO \\ \hline
-
-\bottomrule
-\end{tabularx}
-\fonte{Autoria própria (2024)}%% Fonte
-\end{table}
-
-\begin{table}[h]
-\caption{Requisitos não funcionais do sistema}
-\label{tab:requisitosNaoFuncionaisDoSistema}
-\begin{tabularx}{\textwidth}{l X}
+\textbf{Identificador} & \textbf{Descrição} \\
+\midrule
+\endfirsthead%% Encerra cabeçalho da primeira página
+\caption[]{Requisitos funcionais do sistema} \\%% Legenda
+\multicolumn{2}{r}{\textbf{(continuação)}} \\
 \toprule
-\textbf{Identificador} & \textbf{Descrição} \\ \midrule
+\textbf{Identificador} & \textbf{Descrição} \\
+% \midrule
+\endhead%% Encerra cabeçalho das demais páginas
+% \midrule
+\multicolumn{2}{r}{\textbf{(continua)}} \\
+\endfoot%% Encerra rodapé das demais páginas
+% \bottomrule
+\\[-0.5\linha]
+\caption*{\nomefonte: Autoria própria (2024)} \\
+\endlastfoot%% Encerra rodapé da última página
 
-RNF01 & TODO \\ \hline
+RF01 & Deve haver três tipos de permissões de usuário no sistema: \gls{upen}, \gls{ucom} e \gls{uadm} \\ \hline
 
-\bottomrule
-\end{tabularx}
-\fonte{Autoria própria (2024)}%% Fonte
-\end{table}
-    
+RF02 & O usuário deve ser capaz de registrar-se no sistema utilizando um e-mail válido, senha e nome de usuário \\ \hline
 
+RF03 & O usuário deve ser capaz de autenticar-se no sistema utilizando um e-mail válido e senha \\ \hline
 
+RF04 & O usuário deve ser capaz de autenticar-se no sistema utilizando um provedor de identidade externo \\ \hline
 
-\subsection{Conceitos de Projeto}
-\label{subsec:conceitosDeProjeto}
+RF05 & O usuário deve ser capaz de encerrar a sessão no sistema \\ \hline
 
-arquitetura hexagonal, inversão de dependencia, clean architecture, modularidade
+RF06 & O usuário deve ser capaz de confirmar seu endereço de e-mail \\ \hline
+
+RF07 & O usuário deve ser capaz de ver suas informações de perfil \\ \hline
+
+RF08 & O usuário deve ser capaz de visualizar as suas cotas de uso no sistema \\ \hline
+
+RF09 & Tanto o \gls{ucom} quanto o \gls{uadm} devem ser capazes de criar instâncias com base em templates de instância e suas cotas de uso disponíveis \\ \hline
+
+RF10 & Tanto o \gls{ucom} quanto o \gls{uadm} devem ser capazes de listar de forma paginada as instâncias que possuem \\ \hline
+
+RF11 & Tanto o \gls{ucom} quanto o \gls{uadm} devem ser capazes de visualizar detalhes, como estado e recursos, das instâncias que possuem \\ \hline
+
+RF12 & Tanto o \gls{ucom} quanto o \gls{uadm} devem ser capazes de excluir instâncias que possuem \\ \hline
+
+RF13 & Tanto o \gls{ucom} quanto o \gls{uadm} devem ser capazes de ligar instâncias desligadas que possuem \\ \hline
+
+RF14 & Tanto o \gls{ucom} quanto o \gls{uadm} devem ser capazes de desligar instâncias ligadas que possuem \\ \hline
+
+RF15 & Tanto o \gls{ucom} quanto o \gls{uadm} devem ser capazes de reiniciar instâncias ligadas que possuem \\ \hline
+
+RF16 & Tanto o \gls{ucom} quanto o \gls{uadm} devem ser capazes de acessar as instâncias ligadas que possuem \\ \hline
+
+RF17 & O \gls{uadm} deve ser capaz de listar de forma paginada todos os templates de instância disponíveis \\ \hline
+
+RF18 & O \gls{uadm} deve ser capaz de criar templates de instância \\ \hline
+
+RF19 & O \gls{uadm} deve ser capaz de editar templates de instância \\ \hline
+
+RF20 & O \gls{uadm} deve ser capaz de excluir templates de instância \\ \hline
+
+RF21 & O \gls{uadm} deve ser capaz de criar templates de instância a partir de suas instâncias \\ \hline
+
+RF22 & O \gls{uadm} deve ser capaz de listar de forma paginada todos os usuários do sistema \\ \hline
+
+RF23 & O \gls{uadm} deve ser capaz de editar a permissão de usuários do sistema \\ \hline
+
+RF24 & O \gls{uadm} deve ser capaz de alterar a cota de uso de usuários do sistema \\ \hline
+
+RF25 & O usuário deve ser capaz de visualizar as notificações enviadas pelo sistema \\ \hline
+
+RF26 & O sistema deve ser capaz de enviar notificações para os usuários alertando sobre a mudança de estado de suas instâncias \\ \hline
+
+RF27 & O sistema permitir o uso de filtros pré-definidos e busca textual para todos os recursos de listagem \\ 
+
+RF28 & O sistema deve ser capaz de desligar automaticamente instâncias ociosas \\ \hline
+
+RF29 & O sistema deve forcener uma lista de imagens de sistema operacional recomendadas para a criação de templates de instância \\ \hline
+
+RF30 & O usuário deve ser capaz de acessar a documentação do sistema \\ \hline
+
+\end{longtable}
+
+\begin{longtable}{@{\extracolsep{\fill}}l p{.8\textwidth}}%% Ambiente longtable
+\caption{Requisitos não funcionais do sistema\label{tab:requisitosNaoFuncionaisDoSistema}} \\%% Legenda e rótulo
+\toprule
+\textbf{Identificador} & \textbf{Descrição} \\
+\midrule
+\endfirsthead%% Encerra cabeçalho da primeira página
+\caption[]{Requisitos não funcionais do sistema} \\%% Legenda
+\multicolumn{2}{r}{\textbf{(continuação)}} \\
+\toprule
+\textbf{Identificador} & \textbf{Descrição} \\
+% \midrule
+\endhead%% Encerra cabeçalho das demais páginas
+% \midrule
+\multicolumn{2}{r}{\textbf{(continua)}} \\
+\endfoot%% Encerra rodapé das demais páginas
+% \bottomrule
+\\[-0.5\linha]
+\caption*{\nomefonte: Autoria própria (2024)} \\
+\endlastfoot%% Encerra rodapé da última página
+
+RNF01 & O sistema deve ser responsivo e acessível em dispositivos móveis, mesmo que algumas funcionalidades sejam limitadas \\ \hline
+
+RNF02 & O sistema deve ser capaz de lidar com um grande número de usuários simultâneos \\ \hline
+
+RNF03 & O sistema deve ser capaz de lidar com um grande número de instâncias simultâneas \\ \hline
+
+RNF04 & O sistema deve atualizar as informações do estado das instâncias em tempo real, sem técnicas de \textit{polling}\footnote{O \textit{polling} é uma técnica utilizada para acompanhar o status de uma operação baseada na execução de requisições espaçadas por um intervalo de tempo pré-definido. Essa técnica pode ser custosa e esgotar os recursos do sistema}. \\ \hline
+
+RNF05 & O sistema deve ser capaz de lidar com a criação de instâncias em menos de 5 minutos \\ \hline
+
+RNF06 & O sistema deve apresentar eventuais erros de forma clara e objetiva \\ \hline
+
+RNF07 & O sistema deve sinalizar ao usuário enquanto realiza operações assíncronas \\ \hline
+
+RNF08 & O sistema deve tratar uma conexão como ativa com uma instância se a mesma estiver sendo feita a partir do sistema. Caso contrário, a instância será considerada ociosa \\ \hline
+
+RNF09 & A documentação do sistema deve ser clara e objetiva, contendo explicações tanto sobre o funcionamento do sistema quanto sobre a utilização do sistema, além de apresentar todos os \textit{endpoints} da API \\ \hline
+
+\end{longtable}
 
 \subsection{Projeto de Arquitetura}
-\label {subsec:projetoDeArquitetura}
+\label{subsec:projetoDeArquitetura}
+% Organização dos componentes.
+
+Em seguida, o projeto de arquitetura do sistema foi elaborado a fim de produzir representações de alto nível dos componentes do sistema e das camadas de dado e serviço \citep{pressman2016}.
+
+A apresentação do projeto de arquitetura foi construída utilizando o modelo de visualização de arquitetura de sistemas \textit{C4}, que promove uma abordagem que parte de uma visão abstrata do sistema, passando por visões de contexto, contêineres e componentes, até chegar à visão de código \citep{brown2018}.
+
+
+
+\subsection{Projeto de Componentes}
+\label{subsec:projetoDeComponentes}
+% 
+
+
+
 
 diagrama de componentes, diagrama de sequencia, diagrama de classes
 
