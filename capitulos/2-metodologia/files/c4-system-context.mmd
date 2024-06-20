@@ -3,10 +3,8 @@ C4Context
         Person(user, "Usuário", "Docentes e Discentes <br/> da Universidade")
         System_Ext(external-auth-provider, "Provedor de Identidade<br/>Universitário", "Serviço que possibilita o acesso aos <br/>recursos e sistemas da universidade")
 
-        Boundary(system, "Sistema", "SYSTEM") {
-            System(virtual-lab, "Sistema Virtual Lab", "Possibilita que os usuários <br/> acessem os recursos computacionais")
+        System(virtual-lab, "Sistema Virtual Lab", "Possibilita que os usuários <br/> acessem os recursos computacionais")
             System_Ext(instance-fleet, "Frota de Instâncias", "Desktops virtuais em nuvem publica<br/> gerenciados pelo sistema")
-        }
     }
 
     BiRel(user, virtual-lab, "Acesso ao sistema e conexão<br/> com as instâncias", "HTTPS, Websocket, Guacamole")
@@ -14,7 +12,8 @@ C4Context
     BiRel(virtual-lab, instance-fleet, "Intermediação <br/> das Conexões", "RDP, VNC")
     BiRel(virtual-lab, external-auth-provider, "Integração entre os <br/> Serviços de Autenticação", "OIDC")
 
-    UpdateRelStyle(user, virtual-lab, $offsetX="-190", $offsetY="-50")
+    UpdateRelStyle(user, virtual-lab, $offsetX="-180", $offsetY="-5")
     UpdateRelStyle(virtual-lab, instance-fleet, $offsetX="-35", $offsetY="-30")
     UpdateRelStyle(user, external-auth-provider, $offsetX="-35", $offsetY="-30")
-    UpdateRelStyle(virtual-lab, external-auth-provider, $offsetX="10", $offsetY="-35")
+    UpdateRelStyle(virtual-lab, external-auth-provider, $offsetX="-15", $offsetY="0")
+    UpdateLayoutConfig($c4ShapeInRow="2")

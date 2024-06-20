@@ -181,16 +181,35 @@ RNF09 & A documentação do sistema deve ser clara e objetiva, contendo explica�
 
 Em seguida, o projeto de arquitetura do sistema foi elaborado a fim de produzir representações de alto nível dos componentes do sistema e das camadas de dado e serviço \citep{pressman2016}.
 
-A apresentação do projeto de arquitetura foi construída utilizando o modelo de visualização de arquitetura de sistemas \textit{C4}, que promove uma abordagem que parte de uma visão abstrata do sistema, passando por visões de contexto, contêineres e componentes, até chegar à visão de código \citep{brown2018}.
+A apresentação do projeto de arquitetura foi construída utilizando o modelo de visualização de arquitetura de sistemas \textit{C4}, que promove uma abordagem que parte de uma visão abstrata do sistema, passando por visões de contexto, \textit{containers} e componentes, até chegar à visão de código \citep{brown2018}.
 
+A figura \autoref{fig:diagramaC4ContextoDoSistema} apresenta o diagrama de contexto do sistema, que mostra as interações do sistema com os atores externos, como os usuários e o provedor de identidade externo. Esse diagrama é a ponto de partida inicial para uma visão geral do contexto, onde o sistema em si é representado como um bloco central.
+
+\begin{figure}[H]
+%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Diagrama C4: Contexto do Sistema}
+\label{fig:diagramaC4ContextoDoSistema}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/c4-system-context.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
+
+Com uma ideia bem definida de como o sistema interage com o ambiente externo, o próximo passo foi a definição dos \textit{containers}, que são os componentes de alto nível que compõem o sistema, além de explicitar os protocolos de comunicação. O diagrama da \autoref{fig:diagramaC4ConteineresDoSistema} representa o resultado dessa etapa.
+
+\begin{figure}[H]
+%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Diagrama C4: \textit{containers} do Sistema}
+\label{fig:diagramaC4ConteineresDoSistema}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/c4-container.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
+
+A partir do diagrama de \textit{containers} do sistema, foi possível a estruturação interna de cada \textit{container} em componentes, que são as partes fundamentais para a implementação do sistema.
+Nessa etapa, foram criados dois diagramas de componentes, um para a aplicação de API e outro para o gateway de conexão, que são os elos principais do sistema, representados nas figuras \autoref{fig:diagramaC4ComponentesDaAPI} e \autoref{fig:diagramaC4ComponentesDoGateway}, respectivamente.
 
 
 \subsection{Projeto de Componentes}
 \label{subsec:projetoDeComponentes}
 % 
-
-
-
 
 diagrama de componentes, diagrama de sequencia, diagrama de classes
 

@@ -1,0 +1,52 @@
+C4Container
+    Enterprise_Boundary(eb-university, "Universidade") {
+        System_Ext(instance-fleet, "Frota de Instâncias", "Desktops virtuais em nuvem publica<br/> gerenciados pelo sistema")
+        Person(user, "Usuário", "Docentes e Discentes <br/> da Universidade")
+        System_Ext(external-auth-provider, "Provedor de Identidade<br/>Universitário", "Serviço que possibilita o acesso aos <br/>recursos e sistemas da universidade")
+
+        Boundary(system, "Sistema Virtual Lab", "SOFTWARE SYSTEM") {
+            Container(connection-gateway, "Gateway de Conexão", "Node.js + Javascript + Guacd", "Implementa a comunicação entre <br/> o protocolo Guacamole e os <br/> protocolos VNC e RDP, além<br/> de gerenciar as conexões ativas")
+            Container(web, "Applicação Web", "Typescript + React", "Fornece todas as ferramentas<br/> para interação com o sistema")
+            Container(pub-sub, "Serviço de Mensagens <br/> em Tempo Real", "AWS AppSync GraphQL API", "Consumo de mensagens <br/>enviadas pelo sistema")
+            Container(event-bridge, "Barramento de Eventos", "AWS Event Bridge", "Publicação e distribuição <br/> de eventos em larga escala")
+            Container(api, "Aplicação de API", "Node.js + Typescript", "Controla todos os recursos do sistema<br/>; Integrações; Permissões")
+            ContainerDb(database, "Banco de Dados", "MongoDB NoSQL", "Armazenamento de todos os <br/> dados operacionais do sistema")
+        }
+    }
+    
+
+    Rel(user, web, "Acesso ao sistema e conexão<br/> com as instâncias", "HTML5/HTTPS")
+    Rel(user, external-auth-provider, "Autenticação e <br/>Autorização", "OAuth")
+
+    BiRel(external-auth-provider, web, "Integração entre os <br/> Serviços de Autenticação", "OIDC")
+
+    Rel(connection-gateway, instance-fleet, "Conexão com protocolos <br/> especializados", "RDP, VNC")
+    Rel(connection-gateway, event-bridge, "Envio de Eventos <br/> de Osciosidade", "JSON/HTTPS")
+
+    Rel(web, api, "Interação com o sistema", "JSON/HTTPS")
+    Rel(web, connection-gateway, "Conexão com Instâncias", "WebSocket, Guacamole")
+
+    Rel(pub-sub, web, "Entrega de<br/> Mensagens", "GraphQL")
+
+    Rel(api, database, "Persistência <br/> de dados", "MongoDB")
+    Rel(api, pub-sub, "Envio de Mensagens", "GraphQL")
+    BiRel(api, event-bridge, "Troca de Eventos", "JSON/HTTPS")
+
+    UpdateLayoutConfig($c4ShapeInRow="3")
+    
+    UpdateRelStyle(user, web, $offsetX="-175", $offsetY="-50")
+    UpdateRelStyle(user, external-auth-provider, $offsetX="-40", $offsetY="-40")
+
+    UpdateRelStyle(external-auth-provider, web, $offsetX="60", $offsetY="-40")
+
+    UpdateRelStyle(connection-gateway, instance-fleet, $offsetX="-145", $offsetY="-40")
+    UpdateRelStyle(connection-gateway, event-bridge, $offsetX="-110", $offsetY="-10")
+
+    UpdateRelStyle(web, api, $offsetX="0", $offsetY="-25")
+    UpdateRelStyle(web, connection-gateway, $offsetX="-40", $offsetY="40")
+
+    UpdateRelStyle(pub-sub, web, $offsetX="-30", $offsetY="-40")
+    
+    UpdateRelStyle(api, database, $offsetX="-35", $offsetY="-40")
+    UpdateRelStyle(api, pub-sub, $offsetX="10", $offsetY="-10")
+    UpdateRelStyle(api, event-bridge, $offsetX="-47", $offsetY="-45")
