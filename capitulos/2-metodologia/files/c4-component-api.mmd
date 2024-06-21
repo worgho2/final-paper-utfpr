@@ -1,0 +1,121 @@
+C4Component    
+    Container_Boundary(system, "Aplicação de API") {
+        Boundary(application-ports1, "Ports", "INTERFACES") {
+            Component(auth, "Auth", "", "Interface de autenticação")
+            UpdateElementStyle(auth, $bgColor="gray")
+
+            Component(logger, "Logger", "", "Interface de logs")
+            UpdateElementStyle(logger, $bgColor="gray")
+
+            Component(event-publisher, "Publicador de Eventos", "", "Interface de publicação de <br/> eventos")
+            UpdateElementStyle(event-publisher, $bgColor="gray")
+
+            Component(connection-encoder, "Codificação de Conexão", "", "Interface de codificação de conexão")
+            UpdateElementStyle(connection-encoder, $bgColor="gray")
+        }
+
+
+        Boundary(use-cases, "Modulos de Casos de Uso", "MODULES") {
+            Component(user-module, "Usuário", "", "Casos de uso de usuários")
+            UpdateElementStyle(user-module, $bgColor="blue")
+            
+            Component(instance-module, "Instância", "", "Casos de uso de instâncias")
+            UpdateElementStyle(instance-module, $bgColor="red")
+
+            Component(instance-template-module, "Template de Instância", "", "Casos de uso de <br/> templates de instâncias")
+            UpdateElementStyle(instance-template-module, $bgColor="green")
+
+            Component(misc-module, "Diversos", "", "Casos de uso auxiliares")
+            UpdateElementStyle(misc-module, $bgColor="orange")
+        }
+
+        Boundary(application-ports2, "Ports", "INTERFACES") {
+            Component(instance-template-repository, "Repositório de <br/> Templates de Instância", "", "Interface de armazenamento dos <br/> dados de templates de instâncias")
+            UpdateElementStyle(instance-template-repository, $bgColor="gray")
+
+            Component(instance-repository, "Repositório de Instâncias", "", "Interface de armazenamento dos <br/> dados de instâncias")
+            UpdateElementStyle(instance-repository, $bgColor="gray")
+
+            Component(virtualization-gateway, "Gateway de Virtualização", "", "Interface de comunicação com o <br/> serviço de virtualização")
+            UpdateElementStyle(virtualization-gateway, $bgColor="gray")
+
+            Component(user-repository, "Repositório de Usuários", "", "Interface de armazenamento dos <br/> dados de usuários")
+            UpdateElementStyle(user-repository, $bgColor="gray")
+
+
+            Component(config-vault, "Vault de Configuração", "", "Interface de configuração")
+            UpdateElementStyle(config-vault, $bgColor="gray")
+        }
+    }
+
+    UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="1")
+
+
+    Rel(user-module, logger, "")
+    UpdateRelStyle(user-module, logger, $lineColor="blue")
+
+    Rel(user-module, auth, "")
+    UpdateRelStyle(user-module, auth, $lineColor="blue")
+
+    Rel(user-module, user-repository, "")
+    UpdateRelStyle(user-module, user-repository, $lineColor="blue")
+
+    Rel(user-module, virtualization-gateway, "")
+    UpdateRelStyle(user-module, virtualization-gateway, $lineColor="blue")
+
+    
+
+    Rel(instance-module, logger, "")
+    UpdateRelStyle(instance-module, logger, $lineColor="red")
+
+    Rel(instance-module, instance-repository, "")
+    UpdateRelStyle(instance-module, instance-repository, $lineColor="red")
+
+    Rel(instance-module, virtualization-gateway, "")
+    UpdateRelStyle(instance-module, virtualization-gateway, $lineColor="red")
+
+    Rel(instance-module, auth, "")
+    UpdateRelStyle(instance-module, auth, $lineColor="red")
+
+    Rel(instance-module, connection-encoder, "")
+    UpdateRelStyle(instance-module, connection-encoder, $lineColor="red")
+
+    Rel(instance-module, config-vault, "")
+    UpdateRelStyle(instance-module, config-vault, $lineColor="red")
+
+    Rel(instance-module, user-repository, "")
+    UpdateRelStyle(instance-module, user-repository, $lineColor="red")
+
+    Rel(instance-module, instance-template-repository, "")
+    UpdateRelStyle(instance-module, instance-template-repository, $lineColor="red")
+
+    Rel(instance-module, event-publisher, "")
+    UpdateRelStyle(instance-module, event-publisher, $lineColor="red")
+
+
+
+    Rel(instance-template-module,logger, "")
+    UpdateRelStyle(instance-template-module,logger, $lineColor="green")
+
+    Rel(instance-template-module,auth, "")
+    UpdateRelStyle(instance-template-module,auth, $lineColor="green")
+
+    Rel(instance-template-module,instance-repository, "")
+    UpdateRelStyle(instance-template-module,instance-repository, $lineColor="green")
+
+    Rel(instance-template-module,instance-template-repository, "")
+    UpdateRelStyle(instance-template-module,instance-template-repository, $lineColor="green")
+
+    Rel(instance-template-module,virtualization-gateway, "")
+    UpdateRelStyle(instance-template-module,virtualization-gateway, $lineColor="green")
+
+
+
+    Rel(misc-module, logger, "")
+    UpdateRelStyle(misc-module, logger, $lineColor="orange")
+
+    Rel(misc-module, auth, "")
+    UpdateRelStyle(misc-module, auth, $lineColor="orange")
+
+    Rel(misc-module, virtualization-gateway, "")
+    UpdateRelStyle(misc-module, virtualization-gateway, $lineColor="orange")

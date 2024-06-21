@@ -1,0 +1,41 @@
+C4Component    
+    Container(web, "Applicação Web", "Typescript + React", "Fornece todas as ferramentas<br/> para interação com o sistema")
+    System_Ext(instance-fleet, "Frota de Instâncias", "Desktops virtuais em nuvem publica<br/> gerenciados pelo sistema")
+
+    Container_Boundary(system, "Gateway de Conexão") {
+        Component(server, "Servidor", "", "Classe que gerencia o <br/> servidor WebSocket")
+        UpdateElementStyle(server, $bgColor="gray")
+
+        Component(client-connection, "Conexão de Cliente", "", "Classe que gerencia a <br/> conexão do cliente")
+        UpdateElementStyle(client-connection, $bgColor="gray")
+
+        Component(guacd-client, "Cliente Guacd", "", "Classe responsável por adaptar <br/> e o protocolo genérico de conexão <br/> aos protocolos específicos")
+        UpdateElementStyle(guacd-client, $bgColor="gray")
+
+        Component(event-publisher, "Publicador de Eventos", "", "Classe responsável pela <br/> publicação de eventos no <br/> barramento de eventos do sistema")
+        UpdateElementStyle(event-publisher, $bgColor="gray")
+
+        Component(crypt, "Decodificação de Conexão", "", "Classe responsável por decodificar <br/> a conexão dos clientes")
+        UpdateElementStyle(crypt, $bgColor="gray")
+    }
+
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+
+    BiRel(web, server, "Conexão com as instâncias <br/> através de protocolo genérico", "Guacamole/WebSocket")
+    UpdateRelStyle(web, server, $offsetX="0", $offsetY="-60")
+
+    Rel(server, client-connection, "Para cada <br/> nova conexão, <br/> cria uma")
+    UpdateRelStyle(server, client-connection, $offsetX="-40", $offsetY="-30")
+
+    Rel(server, event-publisher, "Para cada <br/> conexão ou desconexão, <br/> notifica o sistema através do")
+    UpdateRelStyle(server, event-publisher, $offsetX="-160", $offsetY="0")
+
+    Rel(client-connection, guacd-client, "Abre conexão <br/> com as instâncias <br/> através do")
+    UpdateRelStyle(client-connection, guacd-client, $offsetX="-47", $offsetY="-30")
+
+    Rel(client-connection, crypt, "Valida as credenciais <br/> da conexão através <br/> da classe")
+    UpdateRelStyle(client-connection, crypt, $offsetX="5", $offsetY="0")
+
+    BiRel(guacd-client, instance-fleet, "Conexão com as instâncias <br/> através de protocolos específicos", "RDP, VNC")
+    UpdateRelStyle(guacd-client, instance-fleet, $offsetX="-10", $offsetY="-60")
+    

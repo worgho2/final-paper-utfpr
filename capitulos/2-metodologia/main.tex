@@ -181,7 +181,7 @@ RNF09 & A documentação do sistema deve ser clara e objetiva, contendo explica�
 
 Em seguida, o projeto de arquitetura do sistema foi elaborado a fim de produzir representações de alto nível dos componentes do sistema e das camadas de dado e serviço \citep{pressman2016}.
 
-A apresentação do projeto de arquitetura foi construída utilizando o modelo de visualização de arquitetura de sistemas \textit{C4}, que promove uma abordagem que parte de uma visão abstrata do sistema, passando por visões de contexto, \textit{containers} e componentes, até chegar à visão de código \citep{brown2018}.
+A apresentação do projeto de arquitetura foi construída utilizando o modelo de visualização de arquitetura de sistemas \textit{C4}, que promove uma abordagem partindo de uma visão abstrata até do sistema, passando por visões de contexto, \textit{containers} e componentes, de forma a facilitar a compreensão do sistema como um todo \citep{brown2018}.
 
 A figura \autoref{fig:diagramaC4ContextoDoSistema} apresenta o diagrama de contexto do sistema, que mostra as interações do sistema com os atores externos, como os usuários e o provedor de identidade externo. Esse diagrama é a ponto de partida inicial para uma visão geral do contexto, onde o sistema em si é representado como um bloco central.
 
@@ -204,14 +204,61 @@ Com uma ideia bem definida de como o sistema interage com o ambiente externo, o 
 \end{figure}
 
 A partir do diagrama de \textit{containers} do sistema, foi possível a estruturação interna de cada \textit{container} em componentes, que são as partes fundamentais para a implementação do sistema.
-Nessa etapa, foram criados dois diagramas de componentes, um para a aplicação de API e outro para o gateway de conexão, que são os elos principais do sistema, representados nas figuras \autoref{fig:diagramaC4ComponentesDaAPI} e \autoref{fig:diagramaC4ComponentesDoGateway}, respectivamente.
+Nessa etapa, foram criados dois diagramas de componentes, um para a aplicação de API e outro para o gateway de conexão, que são as partes modeladas e implementadas por completo, enquanto os demais possuem apenas a definição de alto nível.
+
+A \autoref{fig:diagramaC4ComponentesDaAPI} apresenta o diagrama de componentes da aplicação de API, que é responsável por orquestrar todas as operações do sistema que estão dispostas em quatro módulos de funcionalidades:
+
+\begin{itemize}
+    \item \textbf{Usuário}: Módulo responsável por gerenciar as informações e permisões dos usuários do sistema.
+
+    \item \textbf{Instância}: Módulo responsável por gerenciar as instâncias do sistema e as operações que podem ser realizadas sobre elas.
+
+    \item \textbf{Template de Instância}: Módulo responsável por gerenciar os templates de instância disponíveis no sistema e as operações que podem ser realizadas sobre eles.
+
+    \item \textbf{Diversos}: Módulo responsável por gerenciar os recursos do sistema que servem de apoio para a aplicação \textit{web}, como a listagem de recursos recomendados utilizados na criação de templates de instância.
+
+\end{itemize}
+
+Nesse diagrama, a relação entre os módulos e os \glspl{port}, que são as interfaces da camada de aplicação, é explicitada. Porém, a explicação detalhada das comunicação não está presente pois cada módulo é composto por diversos casos de uso que são tratados de forma independente. Portanto, uma seta originada em um módulo e direcionada a um \gls{port} significa que pelo menos um caso de uso do módulo necessita de um \gls{adapter} que implementa a interface do \gls{port} para ser executado. 
+
+A discussão sobre \glspl{port} e \glspl{adapter} é mais aprofundada na \autoref{sec:implementacao},
+onde os padrões de arquitetura de código utilizados são apresentados.
+
+\begin{figure}[H]
+%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Diagrama C4: Componentes da Aplicação de API}
+\label{fig:diagramaC4ComponentesDaAPI}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/c4-component-api.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
+
+O gateway de conexão é o componente responsável por intermediar a conexão entre o cliente web e as instâncias de máquinas virtuais. O diagrama de componentes do gateway de conexão é apresentado na \autoref{fig:diagramaC4ComponentesDoGateway}.
+
+No gateway de conexão, além do gerenciamento das conexões com as instâncias de máquinas virtuais, o processo de identificação de conexões ativas e ociosas é realizado. Isso é de suma importância para o fluxo do sistema, já que seria difícil identificar a osciosidade através de alertas sensíveis às métricas de consumo dos recursos das instâncias.
+
+Esse elo do sistema foi projetado para ser escalável horizontalmente, isto é, caso a demanda de conexões aumente, é possível adicionar mais instâncias do gateway de conexão para atender a demanda, sem a necessidade de alterar a arquitetura do sistema. Esse processo de escalabilidade é transparente para o usuário e também não afeta a disponibilidade do sistema.
+
+Essa decisão foi tomada como uma medida de aprimoramento das perspectivas utilizadas no trabalho de \citet{edufirestick}, que é discutido na \autoref{sec:trabalhosRelacionados}. A escalabilidade horizontal é uma característica importante para sistemas que possuem uma demanda variável, como é o caso de sistemas de ensino e pesquisa, que podem ter picos de uso em determinados períodos do ano. Dessa forma o sistema pode "crescer" para atender a demanda e "encolher" quando a demanda diminuir para economizar custos.
+
+\begin{figure}[H]
+%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Diagrama C4: Componentes do Gateway de Conexão}
+\label{fig:diagramaC4ComponentesDoGateway}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/c4-component-connection-gateway.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
 
 
-\subsection{Projeto de Componentes}
-\label{subsec:projetoDeComponentes}
-% 
+\section{Projeto Detalhado}
+\label{sec:projetoDetalhado}
 
-diagrama de componentes, diagrama de sequencia, diagrama de classes
+TODO
+
+% \subsection{Projeto de Componentes}
+% \label{subsec:projetoDeComponentes}
+% % 
+
+% diagrama de componentes, diagrama de sequencia, diagrama de classes
 
 
 \section{Ferramentas e Tecnologias}
@@ -630,6 +677,16 @@ Os testes da \autoref{tab:testecadastrarusuario} validam se a sincronia entre o 
 \label{sec:implantacaoDoSistema}
 
 Essa seção descreve o processo de implantação do sistema em um ambiente de produção. Isso significa que após a execução das etapas a seguir, o sistema estará disponível para ser acessado pelos usuários finais.
+
+Como resultado do processo de modelagem aplicado no decorrer deste capítulo, obtendo-se a arquitetura do sistema, a implementação dos serviços de backend e do cliente web, então foi possível estabelecer o diagrama de infraestrutura de nuvem do sistema, que relaciona todos os serviços e recursos da \gls{aws} especificados na \autoref{tab:ferramentasETecnologiasUtilizadas} e como eles são conectados para a execução do \textit{Virtual Lab} em um ambiente de produção. Esse diagrama é apresentado na \autoref{fig:diagramaDeinfraestruturaAws}.
+
+\begin{figure}[H]
+%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Diagrama de infraestrutura dos serviços de nuvem do \textit{Virtual Lab} na \gls{aws}}
+\label{fig:diagramaDeinfraestruturaAws}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/infra-diagram.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
 
 A implantação do \textit{Virtual Lab} depende do acesso a uma conta da \gls{aws} com permissões administrativas para criar e gerenciar todos os serviços descritos na \autoref{sec:ferramentasETecnologias}. 
 
