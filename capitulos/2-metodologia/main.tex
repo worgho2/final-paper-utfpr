@@ -175,6 +175,49 @@ RNF09 & A documentação do sistema deve ser clara e objetiva, contendo explica�
 
 \end{longtable}
 
+
+Os casos de uso do sistema foram modelados a partir dos requisitos funcionais identificados. De forma a dividir as responsabilidades do sistema em módulos, os casos de uso foram agrupados em quatro módulos principais: instância, template de instância, usuário e diversos, representados nas Figuras \ref{fig:casoDeUsoInstancia}, \ref{fig:casoDeUsoTemplate}, \ref{fig:casoDeUsoUsuario} e \ref{fig:casoDeUsoDiversos}, respectivamente.
+
+Como pode ser visto no diagrama da \autoref{fig:casoDeUsoInstancia}, o módulo de instância necessitou de quatro interfaces para contextos distintos: Para usuários, para o sistema de provisionamento, para o sistema de envio de eventos das instâncias e para o gateway de conexão.
+
+\begin{figure}[H]
+%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Diagrama de Caso de Uso: Instância}
+\label{fig:casoDeUsoInstancia}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/use-case-instance.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
+
+O diagrama da \autoref{fig:casoDeUsoTemplate} apresenta o módulo de template de instância, que é essencial para a criação de instâncias no sistema, isso porque as instâncias são criadas a partir de templates que definem o sistema operacional e a quantidade de armazenamento disponível. Tanto o \gls{ucom} quanto o \gls{uadm} podem interagir com esse módulo, porém apenas o \gls{uadm} pode gerenciar os templates e criá-los a partir de instâncias existentes, está que é uma funcionalidade importante para a disponibilização de configurações personalizadas para diferentes cenários de aplicação do sistema.
+
+\begin{figure}[H]
+%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Diagrama de Caso de Uso: Template de Instância}
+\label{fig:casoDeUsoTemplate}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/use-case-instance-template.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
+
+No diagrama da \autoref{fig:casoDeUsoUsuario}, é possível notar que o atores que representam o usuário final do sistema não tem acesso aos casos de uso de criação de conta nem de de início de sessão. Isso porque o acesso ao sistema foi modelado para ser gerenciado por um serviço fora do contexto da implementação do sistema. Nesse caso, o sistema recebe os dados dos usuários através de gatilhos e então executa as operações para lidar apenas com dados não sensíveis e puramente operacionais.
+
+\begin{figure}[H]
+%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Diagrama de Caso de Uso: Usuário}
+\label{fig:casoDeUsoUsuario}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/use-case-user.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
+
+No caso do diagrama da \autoref{fig:casoDeUsoDiversos}, são apresentados apenas dois casos de uso auxiliares que servem para manter a consistência do sistema, permitindo que tanto a lista de tipos de instância quanto a lista de imagens de sistema operacional recomendadas sejam sugeridas de forma dinâmica, evitando assim a necessidade de sair do sistema para buscar informações ou até mesmo que o usuário tenha que memorizar informações que não são de seu interesse direto.
+
+\begin{figure}[H]
+%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Diagrama de Caso de Uso: Diversos}
+\label{fig:casoDeUsoDiversos}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/use-case-misc.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
+
 \subsection{Projeto de Arquitetura}
 \label{subsec:projetoDeArquitetura}
 % Organização dos componentes.
@@ -247,18 +290,6 @@ Essa decisão foi tomada como uma medida de aprimoramento das perspectivas utili
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/c4-component-connection-gateway.png}
 \fonte{Autoria Própria (2024)}
 \end{figure}
-
-
-\section{Projeto Detalhado}
-\label{sec:projetoDetalhado}
-
-TODO
-
-% \subsection{Projeto de Componentes}
-% \label{subsec:projetoDeComponentes}
-% % 
-
-% diagrama de componentes, diagrama de sequencia, diagrama de classes
 
 
 \section{Ferramentas e Tecnologias}
@@ -469,6 +500,24 @@ O SST foi escolhido como um facilitador tanto para o fluxo de desenvolvimento lo
 O \gls{guacamole} foi escolhido como intermediador da conexão entre o cliente web e as instâncias de máquinas virtuais, porque trata-se de uma ferramenta de código aberto bem estabelecida que fornece os componentes necessários para a conexão remota a partir de um navegador de internet. Além disso, ele é compatível com os protocolos de conexão remota utilizados no trabalho. No contexto do desenvolvimento do sistema, o \gls{guacamole} foi utilizado de forma customizada. Apenas \textit{daemon} que implementa a conexão remota, o componente web que renderiza a interface de conexão e o protocolo de comunicação em si foram utilizados.
 
 Essa customização foi necessária para que o sistema pudesse controlar todos os aspectos de interface e conexão, caso contrário, seria necessário utilizar a aplicação web já existente do \gls{guacamole}. Se esse fosse o caso, a customização do sistema dependeria de um conjunto de regras de negócio implementadas diretamente no \gls{guacamole}, o que dificultaria a manutenção e a evolução do sistema.
+
+\section{Modelo de Dados}
+\label{sec:modeloDeDados}
+
+Aqui foi realizado o projeto do modelo de dados do sistema, que é a representação das entidades e relacionamentos centrais do sistema. O modelo de dados foi construído a partir dos requisitos funcionais do sistema, casos de uso e desdobramentos da arquitetura do sistema, de forma a garantir que todas as informações necessárias para o funcionamento do sistema estejam presentes. 
+
+No contexto de sistemas de software altamente dependentes da infraestrutura de nuvem, o modelo de dados precisa levar em consideração as características de funcionamento e dados disponibilizados pelos serviços de nuvem, como a \gls{aws}. Esse é o motivo pelo qual essa seção é apresentada após a discussão sobre a arquitetura do sistema e decisão das tecnologias utilizadas.
+
+O modelo de dados foi elaborado a partir da especificação das entidades funcionais do sistema. A \autoref{fig:diagramaDeClasses} apresenta o diagrama de classes, onde cada classe é uma entidade funcional do sistema, exceto pelas interfaces representadas que apenas indicam modelos de dados mais complexos.
+
+\begin{figure}[H]
+    %\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Diagrama de Classes do Sistema}
+\label{fig:diagramaDeClasses}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/class-diagram.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
+
 
 \section{Implementa\c{c}\~ao}
 \label{sec:implementacao}
