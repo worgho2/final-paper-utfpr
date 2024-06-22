@@ -291,7 +291,6 @@ Essa decisão foi tomada como uma medida de aprimoramento das perspectivas utili
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-
 \section{Ferramentas e Tecnologias}
 \label{sec:ferramentasETecnologias}
 
@@ -518,14 +517,81 @@ O modelo de dados foi elaborado a partir da especificação das entidades funcio
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-
 \section{Implementa\c{c}\~ao}
 \label{sec:implementacao}
 
-TODO
+Essa seção apresenta os aspectos pertinentes ao processo de desenvolvimento do sistema, passando pela organização do repositório de código, dos serviços e componentes, dos componentes de infraestrutura e dos testes automatizados.
 
-\section{Testes Automatizados}
-\label{sec:testesAutomatizados}
+% A implementação desse trabalho foi organizada em pacotes gerenciados através de uma estrutura de \textit{monorepo}, onde todos os serviços e componentes do sistema são versionados através de um único repositório de código fonte. Nessa estrutura os serviços com mesma base tecnológica compartilham dependencias de mesmo interesse, mas com a possibilidade de utilização de dependências específicas para cada serviço.
+
+\subsection{Estrutura do repositório de código}
+\label{subsec:estruturaDoRepositorioDeCodigo}
+
+O repositório de código foi organizado através de uma estrutura de \textit{monorepo}, onde o código fonte de todos os serviços e componentes de infraestrutura como código são versionados dentro de um único repositório de código fonte. 
+
+A utilização dessa abordagem com o uso do framework SST facilitou o desenvolvimento integrado de todas as pertes do sistema desde o início, diminuindo as chances de problema no processo de integração entre partes separadas. Além disso, foi possível desenvolver conjuntos bem definidos de funcionalidades em pacotes envolvendo interfaces de usuário, regras de negócio e componentes de infraestrutura.
+
+A estrutura de alto nível do repositório de código foi organizada da seguinte forma:
+
+\dirtree{%
+.1 /.
+.2 \textbf{\_\_tests\_\_} \ldots{} \begin{minipage}[t]{\textwidth}
+Configurações do ciclo de vida dos testes
+\end{minipage}.
+.2 \textbf{.github}.
+.3 \textbf{workflows}.
+.4 \textbf{ci.yml} \ldots{} \begin{minipage}[t]{0.7\textwidth}
+Implementação do fluxo de integração contínua
+\end{minipage}.
+.2 \textbf{packages} \ldots{} \begin{minipage}[t]{\textwidth}
+Implementação dos serviços do sistema
+\end{minipage}.
+.3 \textbf{api} \ldots{} \begin{minipage}[t]{\textwidth}
+Aplicação de API
+\end{minipage}.
+.3 \textbf{app-sync-api} \ldots{} \begin{minipage}[t]{\textwidth}
+Serviço de Mensagens em Tempo Real
+\end{minipage}.
+.3 \textbf{client} \ldots{} \begin{minipage}[t]{\textwidth}
+Cliente Web 
+\end{minipage}.
+.3 \textbf{connection-gateway} \ldots{} \begin{minipage}[t]{\textwidth}
+Gateway de Conexão
+\end{minipage}.
+.3 \textbf{docs} \ldots{} \begin{minipage}[t]{\textwidth}
+Documentação
+\end{minipage}.
+.2 \textbf{stacks} \ldots{} \begin{minipage}[t]{\textwidth}
+Definição de infraestrutura como código
+\end{minipage}.
+.3 \textbf{config} \ldots{} \begin{minipage}[t]{\textwidth}
+Configurações de implantação
+\end{minipage}.
+.3 \textbf{products} \ldots{} \begin{minipage}[t]{0.65\textwidth}
+Base de stacks para cada sistema operacional
+\end{minipage}.
+.3 \textbf{scripts} \ldots{} \begin{minipage}[t]{0.7\textwidth}
+Scripts de preparação para cada sistema operacional
+\end{minipage}.
+.2 \textbf{.env.example} \ldots{} \begin{minipage}[t]{\textwidth}
+Exemplo das variáveis de ambiente
+\end{minipage}.
+.2 \textbf{package.json} \ldots{} \begin{minipage}[t]{0.7\textwidth}
+Gerenciamento das dependências compartilhadas e de infraestrutura
+\end{minipage}.
+.2 \textbf{sst.config.ts} \ldots{} \begin{minipage}[t]{0.6\textwidth}
+Configuração do framework SST e injeção das stacks de infraestrutura
+\end{minipage}.
+}
+
+\hfill\break
+
+A cada \textit{commit} no repositório, um fluxo de integração contínua foi acionado executando uma sequência de operações que auxiliaram na validação do código entregue. O fluxo de integração contínua foi implementado utilizando o \textit{GitHub Actions}, que é uma ferramenta de automação de \textit{workflows} disponibilizada pelo GitHub. O \autoref{cap:apendiceb} apresenta o código do fluxo de integração contínua.
+
+
+
+\subsection{Testes Automatizados}
+\label{subsec:testesAutomatizados}
 
 Testes exaustivos não garantem a ausência de falhas, mas podem reduzir a probabilidade de falhas críticas. \citep{pressman2016}
 

@@ -1616,6 +1616,7 @@
 % Comandos customizados
 \newcommand{\shellcmd}[1]{\\\indent\indent\texttt{\footnotesize\# #1}\\}
 \usepackage{float}
+\usepackage{dirtree}
  
 
 %\renewcommand{\ABNTEXsectionfont}{\usefont{T1}{cmr}{m}{n}}
