@@ -520,12 +520,10 @@ O modelo de dados foi elaborado a partir da especificação das entidades funcio
 \section{Implementa\c{c}\~ao}
 \label{sec:implementacao}
 
-Essa seção apresenta os aspectos pertinentes ao processo de desenvolvimento do sistema, passando pela organização do repositório de código, dos serviços e componentes, dos componentes de infraestrutura e dos testes automatizados.
+Essa seção apresenta os aspectos pertinentes ao processo de desenvolvimento do sistema, passando pela organização do repositório de código, dos serviços e componentes, dos componentes de infraestrutura e dos testes automatizados. É importante ressaltar que as implementações seguem as ferramentas e tecnologias apresentadas na \autoref{sec:ferramentasETecnologias}.
 
-% A implementação desse trabalho foi organizada em pacotes gerenciados através de uma estrutura de \textit{monorepo}, onde todos os serviços e componentes do sistema são versionados através de um único repositório de código fonte. Nessa estrutura os serviços com mesma base tecnológica compartilham dependencias de mesmo interesse, mas com a possibilidade de utilização de dependências específicas para cada serviço.
-
-\subsection{Estrutura do repositório de código}
-\label{subsec:estruturaDoRepositorioDeCodigo}
+\subsection{Repositório de código}
+\label{subsec:repositorioDeCodigo}
 
 O repositório de código foi organizado através de uma estrutura de \textit{monorepo}, onde o código fonte de todos os serviços e componentes de infraestrutura como código são versionados dentro de um único repositório de código fonte. 
 
@@ -589,6 +587,142 @@ Configuração do framework SST e injeção das stacks de infraestrutura
 A cada \textit{commit} no repositório, um fluxo de integração contínua foi acionado executando uma sequência de operações que auxiliaram na validação do código entregue. O fluxo de integração contínua foi implementado utilizando o \textit{GitHub Actions}, que é uma ferramenta de automação de \textit{workflows} disponibilizada pelo GitHub. O \autoref{cap:apendiceb} apresenta o código do fluxo de integração contínua.
 
 
+\subsection{Banco de Dados}
+\label{subsec:bancoDeDados}
+
+O banco de dados utilizado no sistema foi o \textit{MongoDB Atlas}, que é um serviço de banco de dados não relacional orientado a documentos, especificado também na \autoref{tab:ferramentasETecnologiasUtilizadas}.
+
+O modelo dos dados foi implementado utilizando a biblioteca \textit{mongodb}, que é um \textit{Object Data Modeling} (ODM) para o MongoDB e Node.js. A biblioteca \textit{mongodb} fornece uma interface de alto nível para a interação com o banco de dados, permitindo realizar operações tipadas.
+
+Esse tipo de banco de dados não necessita de um configuração prévia do esquema dos dados, e por isso não foi necessário a implementação de migrações de banco de dados. Por outro lado a consistência dos dados deve ser garantida através de boas práticas de programação e validações, bem como mencionado nos princípios de modelagem no início da \autoref{sec:modelagemDoSistema}.
+
+Não foram adicionados índices adicionais ao banco de dados. O índice padrão do \textit{mongodb}, que faz do campo \textit{id} um valor único e incremental, foi suficiente para garantir a performance das operações de leitura e escrita.
+
+\subsection{Serviço de Mensagens em Tempo Real}
+\label{subsec:servicoDeMensagensEmTempoReal}
+
+Este serviço foi implementado utilizando o \textit{AWS AppSync}, que é um serviço de comunicação em tempo real da \gls{aws} que permite a criação de APIs GraphQL com suporte para padrões de comunicação em tempo real executando sobre o protocolo \textit{WebSocket}.
+
+A implementação do serviço foi realizada em três frentes. A primeira foi a definição do esquema \textit{GraphQL} com as operação de \textit{Subscription} que são utilizadas pelos clientes para se inscreverem em canais de comunicação específicos, além dos \textit{resolvers} que são funções escritas na linguagem \textit{VTL} e que foram utilizadas para o processo de autorização das requisições. A segunda etapa foi a implementação das interfaces utilizada pelo servidor para enviar as mensagens para os clientes e pelos clientes para se inscreverem nos canais de comunicação. A terceira e última etapa consistiu na implementação dos recursos de infraestrutura necessários para o funcionamento do serviço, como a definição de permissões, conexão do esquema e dos \textit{resolvers}.
+
+Para garantir o isolamento dos canais de comunicação e evitar que usuários mal intencionados possam acessar informações de outros usuários, os usuários foram habilitados de realizar a inscrição apenas no canal com o seu próprio identificador. Esse identificador é gerado no momento da criação da conta do usuário e é utilizado para garantir a unicidade do canal de comunicação.
+
+A implementação da interface feita no cliente web foi intermediada pela da biblioteca \textit{AWS Amplify}, que é uma biblioteca de integração com os serviços da \gls{aws} para aplicações web e móveis.
+
+\subsection{Barramento de Eventos}
+\label{subsec:barramentoDeEventos}
+
+O barramento de eventos foi implementado utilizando o \textit{AWS Event Bridge}, que é um serviço de gerenciamento de eventos da \gls{aws} que permite a comunicação entre os serviços de forma assíncrona e escalável. A implementação é baseada na criação de regras de eventos que são acionadas quando um evento específico é publicado no barramento. Ele foi escolhido para ser o principal meio de comunicação entre os serviços de backend, já que ele oferece integração com diversos serviços da \gls{aws} e também funcionalidade de agendamento de eventos, que foi utilizada no sistema de desligamento automático de instâncias ociosas.
+
+A implementação do barramento de eventos foi realizada em duas frentes. A primeira foi a definição das regras de eventos que são acionadas quando um evento específico é publicado no barramento. A segunda etapa foi a implementação dos recursos de infraestrutura necessários para o funcionamento do serviço, juntamente com a conexão entre os serviços de backend e o barramento de eventos.
+
+Para publicar eventos no barramento, os serviços de \textit{backend} utilizaram o prório \textit{SDK} da \gls{aws}.
+
+\subsection{Gateway de Conexão}
+\label{subsec:gatewayDeConexao}
+
+Esse serviço foi modelado para intermediar a conexão entre o cliente web e as instâncias de máquinas virtuais, e sua implementação foi baseada na estrutura de um servidor \textit{websocket}, onde as conexão são persistidas e mantidas abertas para permitir a comunicação.
+
+A implementação do código foi baseada no diagrama da \autoref{fig:diagramaC4ComponentesDoGateway}, onde o serviço foi dividido em cinco classes de responsabilidades específicas.
+
+A primeira classe, \textit{Server} ficou responsável por gerenciar o ciclo de vida do servidor \textit{websocket}, aceitando novas conexões e mantendo as conexões ativas. A segunda classe, \textit{ClientConnection} ficou responsável por implementar as operações pertinentes a troca de dados entre o cliente que iniciou a conexão e a classe \textit{guacdClient} que é a terceira classe, responsável especificamente por interagir com o binário \textit{guacd} do \gls{guacamole}, que é nativamente implementado na linguagem C. A quarta classe, \textit{Crypt} ficou responsável por implementar as operações de descriptografia do token de conexão, que é gerado pela aplicação de API e encaminhado através do cliente web. A quinta e última classe é o \textit{EventPublisher}, que é uilizado pela classe \textit{Server} para publicar eventos de conexão e desconexão no barramento de eventos. Eventos estes que são consumidos por funções \textit{Lambda} dentro do domínio da aplicação de API que agendam o desligamento automático de instâncias ociosas.
+
+O algoritmo de criptografia utilizado tanto pela classe \textit{Crypt} para descriptografar o token de conexão, quanto pela aplicação de API para criptografar o token de conexão, foi o algoritmo de criptografia simétrica \textit{AES-256}. Esse algoritmo foi utilizado em \textit{Cipher Block Chaining (CBC)}, que é um modo de funcionamento que evita que padrões repetidos no texto claro sejam visíveis no texto cifrado.
+
+Como o \textit{guacd}, binário do \gls{guacamole}, precisa ser executado no mesmo ambiente que as classes do serviços, foi necessário a criação de um ambiente completo para a execução do serviço, através de um \textit{container} \textit{Docker}. O conteiner utilizou a imagem oficial fornecida pelo \gls{guacamole} somente com o binário, como também a imagem oficial do \textit{Node.js} para a execução do código do serviço, dessa forma foi possível garantir que o serviço se comportaria da mesma maneira em qualquer ambiente. Quando o \textit{container} é iniciado, a ferramenta \textit{supervisord} gerencia a execução dos processos do \textit{guacd} e do serviço, permitindo o controle e monitoramento dos processos através de um único ponto de entrada.
+
+\subsection{Aplicação de API}
+\label{subsec:aplicacaoDeAPI}
+
+Esse serviço é o ponto central de comunicação entre o cliente web e os demais serviços de backend. 
+Ele foi implementado utilizando \textit{typescript} e \textit{Node.js} e padrões de arquitetura de código e de projeto para que fosse possível expandir o sistema de maneira incremental, sem que a complexidade do código aumentasse de forma descontrolada.
+
+Para isso, o padrão de arquitetura de código \textit{Arquitetura Hexagonal}, conhecida também como \textit{Ports and Adapters}, foi utilizado. Esse padrão de arquitetura de código é baseado na separação das responsabilidades do código em camadas, onde a camada de aplicação é o núcleo do sistema e as camadas de infraestrutura e de interface são adaptadores que permitem a comunicação com o núcleo. Além disso, essa arquitetura permitiu que o conceito de inversão de dependência fosse aplicado, criando uma separação clara entre as regras de negócio e a implementação dos serviços.
+
+A estrutura do serviço foi organizada da seguinte forma:
+
+\dirtree{%
+.1 /packages/api.
+.2 application \ldots{} \begin{minipage}[t]{0.65\textwidth}
+Camada que contém as regras de negócio do sistema, implementadas em classes de casos de uso
+que orquestram as entidades do domínio do sistema e os \textit{ports} de comunicação
+\end{minipage}.
+.3 use-cases.
+.4 instance.
+.5 \_\_tests\_\_.
+.5 launch-instance.ts.
+.4 instance-template.
+.4 misc.
+.4 user.
+.3 auth.ts \ldots{} \begin{minipage}[t]{0.7\textwidth}
+Exemplo de \gls{adapter} de autenticação que define as operações de autenticação do sistema, sem implementar a lógica de autenticação
+\end{minipage}.
+.2 domain \ldots{} \begin{minipage}[t]{0.75\textwidth} % 0.75\textwidth
+Camada de domínio da aplicação, que contém a implementação das classes modeladas e dos protocolos de dados utilizados em todas as outras camadas do sistema
+\end{minipage}.
+.3 dtos.
+.3 entities.
+.4 instance-template.ts.
+.4 instance.ts.
+.4 user.ts.
+.2 infrastructure \ldots{} \begin{minipage}[t]{0.65\textwidth}
+Camada de infraestrutura, que implementa as interfaces definidas na camada de aplicação de modo a realizar a comunicação com os serviços externos
+\end{minipage}.
+.3 auth.
+.4 cognito-auth.ts \ldots{} \begin{minipage}[t]{0.5\textwidth}
+Exemplo de implementação do \textit{port} de autenticação utilizando o serviço de autenticação da \gls{aws}
+\end{minipage}.
+.4 in-memory-auth.ts \ldots{} \begin{minipage}[t]{0.5\textwidth}
+Exemplo de implementação do \textit{port} de autenticação utilizando lógica isolada em memória, com o objetivo de ser utilizado em testes unitários
+\end{minipage}.
+.2 interfaces \ldots{} \begin{minipage}[t]{0.7\textwidth}
+Camada de interfaces, que utiliza todas as outras camadas para implementar os pontos de acesso do sistema
+\end{minipage}.
+.3 api \ldots{} \begin{minipage}[t]{0.8\textwidth}
+Implementação de todos os endpoits da API, compatíveis para serem executados em funções \textit{Lambda}
+\end{minipage}.
+.3 events \ldots{} \begin{minipage}[t]{0.7\textwidth}
+Implementação dos pontos de entrada que consomem os eventos do barramento de eventos
+\end{minipage}.
+.3 jobs \ldots{} \begin{minipage}[t]{0.8\textwidth}
+Implementação de pontos de entrada que realizam operações assíncronas, como as rotinas de atualização de alguns recursos no momento de implantação do código
+\end{minipage}.
+}
+
+\subsection{Cliente Web}
+\label{subsec:clienteWeb}
+
+O cliente web foi implementado utilizando \textit{typescript} e \textit{React} como a base tecnológica principal. Para a construção da interface a biblioteca de componentes \textit{Chakra UI} foi utilizada, pois ela oferece uma série de componentes customizáveis que implementam boas práticas de acessibilidade e permitem um controle sobre a apresentação dos componentes em diferentes formatos de tela.
+
+As páginas e contexto do cliente web foram estruturados em componentes reutilizáveis, que são utilizados em diferentes partes do sistema. Bem como a camada que lida com a troca de dados com a aplicação de API, que foi implementada utilizando a biblioteca \textit{ReactQuery}, que é uma biblioteca de gerenciamento de estado que fornece uma abstração sobre a chamadas dos \textit{endpoints} da API, permitindo o cache local com tempo de expiração pré-definido e também o consumo dos recursos da API de forma equilibrada, evitando requisições redundantes ou excessivas.
+
+
+\subsection{Documentação}
+\label{subsec:documentacao}
+
+A documentação foi desenvolvida utilizando o \textit{Docusaurus}, que é um gerador de documentação em formato de site estático. Com ele foi possível escrever a documentação em formato de \textit{Markdown} com suporte a componentes de \textit{React}, a mesma tecnologia utilizada no cliente web, para então gerar um site estático com a documentação do sistema.
+
+Ao utilizar essa ferramenta, o processo de documentação ficou focado na produção dos conteúdos de ajuda ao usuário e também na documentação técnica do sistema, sem a preocupação da estrutura do sistema de documentação, já que é uma parte acoplada ao sistema que não precisa de novas funcionalidades, precisa apenas de complementos textuais.
+
+Para que a documentação das rotas de api pudessem ser listadas de forma automática, foi utilizado o \textit{Stoplight Elements}, que é uma biblioteca que permite a renderização de documentação de API em formato de componente \textit{React} a partir de um arquivo de especificação \textit{OpenAPI} também gerado automaticamente dentro do processo de sintetização da stack da Aplicação de API, onde as rotas são definidas.
+
+A \autoref{fig:docsintroduction} apresenta a página inicial da documentação do sistema e a \autoref{fig:docsapi} apresenta um exemplo de rota documentada.
+
+\begin{figure}[H]
+%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Página inicial da documentação do sistema}
+\label{fig:docsintroduction}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/docs-introduction.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
+
+\begin{figure}[H]
+%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\caption{Documentação da rota de API: Listar Instâncias}
+\label{fig:docsapi}
+\includegraphics[width=\textwidth]{capitulos/2-metodologia/files/docs-api.png}
+\fonte{Autoria Própria (2024)}
+\end{figure}
 
 \subsection{Testes Automatizados}
 \label{subsec:testesAutomatizados}
