@@ -183,5 +183,91 @@ Ao selecionar um usuário na listagem, agora na página de detalhes do usuário,
 \section{Estimativa de custos}
 \label{sec:estimativaDeCustos}
 
-colocar o resultado da estimativa de custos utilizando cenários de uso distintos
+Como parte do projeto, foi realizada uma estimativa de custos para a utilização do sistema em diferentes cenários de uso. A estimativa foi feita com base nos preços de mercado da \gls{aws} através da calculadora de preços disponível em seu site oficial. 
 
+A primeira estimativa leva em consideração um cenário de uso onde 100 instâncias são utilizadas por 1 hora e 30 minutos por dia, durante 30 dias, com picos de utilização de 5 dias por semana. As instâncias são do tipo \texttt{t3.micro} com 2 vCPU e 1GB de memória RAM.
+
+O custo total estimado para esse cenário é de U\$ 289.82/mês, ou R\$ 1.573,72/mês com a cotação do dólar a R\$ 5,43, como apresentado na \autoref{tab:costEstimation1}.
+
+
+\begin{longtable}{@{\extracolsep{\fill}}l l}%% Ambiente longtable
+\caption{Primeira estimativa de custos\label{tab:costEstimation1}} \\%% Legenda e rótulo
+\toprule
+\textbf{Serviço} & \textbf{Custo} \\
+\midrule
+\endfirsthead%% Encerra cabeçalho da primeira página
+\caption[]{Primeira estimativa de custos} \\%% Legenda
+\multicolumn{2}{r}{\textbf{(continuação)}} \\
+\toprule
+\textbf{Serviço} & \textbf{Custo} \\
+% \midrule
+\endhead%% Encerra cabeçalho das demais páginas
+% \midrule
+\multicolumn{2}{r}{\textbf{(continua)}} \\
+\endfoot%% Encerra rodapé das demais páginas
+% \bottomrule
+\\[-0.5\linha]
+\caption*{\nomefonte: Autoria própria (2024)} \\
+\endlastfoot%% Encerra rodapé da última página
+
+Amazon Cognito & R\$ 0.75 \\ \hline
+S3 Standard & R\$ 0.12 \\ \hline
+Data Transfer & R\$ 4.50 \\ \hline
+AppSync API Request & R\$ 0.01 \\ \hline
+Appsync Data Transfer & R\$ 0.90 \\ \hline
+Amazon API Gateway & R\$ 1.00 \\ \hline
+AWS Service Catalog & R\$ 0.35 \\ \hline
+Standard topics & R\$ 0.00 \\ \hline
+AWS Lambda & R\$ 5.83 \\ \hline
+Application Load Balancer & R\$ 36.87 \\ \hline
+Amazon Elastic Container Registry & R\$ 0.20 \\ \hline
+Amazon EventBridge & R\$ 1.00 \\ \hline
+AWS Fargate & R\$ 26.00 \\ \hline
+Amazon EC2 & R\$ 212.29 \\ \hline
+
+\end{longtable}
+
+O segundo cenário de uso leva em consideração a utilização apenas dos serviços essenciais para manter o sistema funcionando. Essa estimativa visa entender o custo da infraestrutura em períodos de recesso, onde o sistema deve ficar sem acessos por aproximadamente 1 mês.
+
+O custo total estimado para esse cenário é de U\$ 35.13/mês, ou R\$ 185,32/mês com a cotação do dólar a R\$ 5,43, como apresentado na \autoref{tab:costEstimation2}.
+
+\begin{longtable}{@{\extracolsep{\fill}}l l}%% Ambiente longtable
+\caption{Segunda estimativa de custos\label{tab:costEstimation2}} \\%% Legenda e rótulo
+\toprule
+\textbf{Serviço} & \textbf{Custo} \\
+\midrule
+\endfirsthead%% Encerra cabeçalho da primeira página
+\caption[]{Segunda estimativa de custos} \\%% Legenda
+\multicolumn{2}{r}{\textbf{(continuação)}} \\
+\toprule
+\textbf{Serviço} & \textbf{Custo} \\
+% \midrule
+\endhead%% Encerra cabeçalho das demais páginas
+% \midrule
+\multicolumn{2}{r}{\textbf{(continua)}} \\
+\endfoot%% Encerra rodapé das demais páginas
+% \bottomrule
+\\[-0.5\linha]
+\caption*{\nomefonte: Autoria própria (2024)} \\
+\endlastfoot%% Encerra rodapé da última página
+
+Amazon Cognito & R\$ 0.00 \\ \hline
+S3 Standard & R\$ 0.12 \\ \hline
+Data Transfer & R\$ 4.50 \\ \hline
+AppSync API Request & R\$ 0.00 \\ \hline
+Appsync Data Transfer & R\$ 0.00 \\ \hline
+Amazon API Gateway & R\$ 0.00 \\ \hline
+AWS Service Catalog & R\$ 0.00 \\ \hline
+Standard topics & R\$ 0.00 \\ \hline
+AWS Lambda & R\$ 0.00 \\ \hline
+Application Load Balancer & R\$ 16.43 \\ \hline
+Amazon Elastic Container Registry & R\$ 0.20 \\ \hline
+Amazon EventBridge & R\$ 0.00 \\ \hline
+AWS Fargate & R\$ 13.88 \\ \hline
+Amazon EC2 & R\$ 0.00 \\ \hline
+
+\end{longtable}
+
+A comparação de custos em dois cenários distintos de uso do sistema, onde um cenário representa um uso com picos diários e o outro um uso mínimo, permite que a instituição de ensino tenha uma visão mais clara dos custos envolvidos na utilização do sistema e possa planejar a utilização do sistema de acordo com suas necessidades e orçamento disponível.
+
+Um ponto observado durante a estimativa de custos é que os serviços de infraestrutura que representam a maior parte dos custos quando o sistema está em sua capacidade mínima de utilização são os serviços que servem de base para o funcionamento do Gateway de Conexão. Por outro lado, quando o sistema está em sua capacidade máxima de utilização, os serviços de infraestrutura representam uma parcela menor dos custos totais, com os serviços de instâncias \gls{ec2} representando a maior parte dos custos.
