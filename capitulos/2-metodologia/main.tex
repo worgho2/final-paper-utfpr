@@ -586,7 +586,6 @@ Configuração do framework SST e injeção das stacks de infraestrutura
 
 A cada \textit{commit} no repositório, um fluxo de integração contínua foi acionado executando uma sequência de operações que auxiliaram na validação do código entregue. O fluxo de integração contínua foi implementado utilizando o \textit{GitHub Actions}, que é uma ferramenta de automação de \textit{workflows} disponibilizada pelo GitHub. O \autoref{cap:apendiceb} apresenta o código do fluxo de integração contínua.
 
-
 \subsection{Banco de Dados}
 \label{subsec:bancoDeDados}
 
@@ -692,10 +691,13 @@ Implementação de pontos de entrada que realizam operações assíncronas, como
 \subsection{Cliente Web}
 \label{subsec:clienteWeb}
 
-O cliente web foi implementado utilizando \textit{typescript} e \textit{React} como a base tecnológica principal. Para a construção da interface a biblioteca de componentes \textit{Chakra UI} foi utilizada, pois ela oferece uma série de componentes customizáveis que implementam boas práticas de acessibilidade e permitem um controle sobre a apresentação dos componentes em diferentes formatos de tela.
+O cliente \textit{web} foi implementado utilizando \textit{typescript} e \textit{React} como a base tecnológica principal. Para a construção da interface a biblioteca de componentes \textit{Chakra UI} foi utilizada, pois ela oferece uma série de componentes customizáveis que implementam boas práticas de acessibilidade e permitem um controle sobre a apresentação dos componentes em diferentes formatos de tela.
 
-As páginas e contexto do cliente web foram estruturados em componentes reutilizáveis, que são utilizados em diferentes partes do sistema. Bem como a camada que lida com a troca de dados com a aplicação de API, que foi implementada utilizando a biblioteca \textit{ReactQuery}, que é uma biblioteca de gerenciamento de estado que fornece uma abstração sobre a chamadas dos \textit{endpoints} da API, permitindo o cache local com tempo de expiração pré-definido e também o consumo dos recursos da API de forma equilibrada, evitando requisições redundantes ou excessivas.
+As páginas e contexto do cliente \textit{web} foram estruturados em componentes reutilizáveis, que são utilizados em diferentes partes do sistema. Bem como a camada que lida com a troca de dados com a aplicação de API, que foi implementada utilizando a biblioteca \textit{ReactQuery}, que é uma biblioteca de gerenciamento de estado que fornece uma abstração sobre a chamadas dos \textit{endpoints} da API, permitindo o cache local com tempo de expiração pré-definido e também o consumo dos recursos da API de forma equilibrada, evitando requisições redundantes ou excessivas.
 
+O densenvolvimento levou em consideração todos os casos de uso, requisitos de sistema e perspectivas de modelagem para proporcionar uma experiência de usuário simplificada e intuitiva. Embora alguns aspectos técnicos sejam difíceis de serem apresentados através de abstrações simplificadas, como é o caso dos tipos de hardware de instância e pontos relacionados ao sistema operacional das instâncias, foi possível delegar a responsabilidade do mínimo de conhecimento técnico aos usuários com cargo de \gls{uadm} no sistema.
+
+A interface desenvolvida e os fluxos que o usuário pode realizar dentro da Aplicação \textit{Web} serão apresentados no \autoref{cap:resultados}.
 
 \subsection{Documentação}
 \label{subsec:documentacao}
