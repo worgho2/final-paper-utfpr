@@ -2,7 +2,19 @@
 %%
 \chapter{Conclus\~ao}\label{cap:conclusao}
 
-TODO
+% OK
+
+A disponibilidade de recursos computacionais dentro de instituições de ensino superior é muita vezes limitado devido a processos burocráticos e financeiros, o que pode dificultar a disponibilidade de recursos para atividades de ensino e pesquisa. Esse cenário pode ser agravado em situações de emergência, como a pandemia de COVID-19, que forçou a migração de atividades presenciais para o ambiente virtual, sem tempo hábil para adaptações e investimento em infraestrutura para ensino. Em momentos como esse, alunos de baixa renda podem ser prejudicados, pois dependem de seus dispositivos pessoais para cumprir as demandas acadêmicas, o que pode ser um limitante para o acesso a softwares específicos e recursos computacionais mais robustos. Levando isso em consideração, o presente trabalho propôs o desenvolvimento de um sistema de gerenciamento de instâncias de máquinas virtuais, com o objetivo de facilitar o acesso a recursos computacionais de forma remota através de um navegador web.
+
+Utilizando tecnologias como o Node.js, MongoDB e o \gls{guacamole} foi possível modelar um sistema robusto e escalável, que permite a criação e gerenciamento de instâncias de máquinas virtuais de forma simples e intuitiva. O sistema desenvolvido permite a criação de instâncias de máquinas virtuais com diferentes configurações de recursos, como quantidade de memória, processamento e armazenamento, além de possibilitar a instalação de diferentes sistemas operacionais. A comunicação entre o sistema e as instâncias gerenciadas é feita através de um \textit{Gateway} de conexão, que permite o acesso remoto às instâncias através de um navegador web, sem a necessidade de instalação de softwares adicionais. Essa abordagem permite que equipamentos com baixo poder de processamento possam acessar recursos computacionais mais robustos, sendo pagos apenas pelo tempo de uso.
+
+Este trabalho contribui para a comunidade acadêmica e profissional, pois apresenta uma solução para o problema de acesso a recursos computacionais de forma remota, que pode ser utilizada por instituições de ensino superior e empresas que necessitam de recursos computacionais de forma temporária.
+
+O sistema desenvolvido foi construído de forma completa, com perspectivas de escalabilidade e manutenibilidade, o que permite que novas funcionalidades sejam adicionadas de forma simples e rápida. O sistema foi testado em um ambiente de produção, com a criação de instâncias de máquinas virtuais e acesso remoto através de um navegador web, comprovando a viabilidade técnica da solução proposta.
+
+Nota-se, portanto, que o trabalho desenvolvido atingiu os objetivos propostos na \autoref{sec:objetivos} com sucesso, através da apresentação de um artefato pronto para utilização, que pode ser facilmente adaptado para diferentes cenários e necessidades. O sistema desenvolvido é uma solução inovadora e de grande relevância para a comunidade acadêmica e profissional. Logo, acredita-se que o trabalho desenvolvido contribui para a disseminação do conhecimento e redução das barreiras tecnológicas e financeiras para o acesso de recursos computacionais robustos. Entretanto, alguns pontos podem ser aprimorados através de novas funcionalidades e integrações com outros sistemas, como apresentado na \autoref{sec:perspectivasFuturas}.
+
+
 % Inicia com um resumo do trabalho, retomando o(s) objetivo(s), o referencial teórico e o uso das ferramentas e das tecnologias utilizadas no trabalho.
 
 % A conclusão contém a opinião do autor em relação às vantagens, desvantagens, facilidades e limitações das tecnologias e/ou do método utilizados, as dificuldades encontradas e como foram superadas.
@@ -28,4 +40,6 @@ A partir do trabalho desenvolvido, é possível identificar pontos que podem ser
     \item Implantação de um serviço de compartilhamento de arquivos em rede entre as instâncias do sistema, com acesso isolado para cada usuário.
 
     \item Implementação de um mecanismo para possibilitar o redimensionamento dos recursos de \textit{hardware} das instâncias gerenciadas pelo sistema, como quantidade de armazenamento, memória e processamento.
+
+    \item Integração com sistemas de ensino à distância, como o \textit{Moodle}.
 \end{itemize}
