@@ -8,8 +8,8 @@ Este capítulo aborda as metodologias de modelagem e desenvolvimento utilizadas 
 \section{Escopo do sistema}
 \label{sec:escopoDoSistema}
 
-O sistema \textit{Virtual Lab} deve possibilidar a criação e gerenciamento de instâncias de máquinas virtuais para uso em laboratórios remotos de ensino e pesquisa.
-O acesso deve ser feito por meio de um navegador de internet, permitindo a utilização de qualquer dispositivo com um navagador de internet com acesso à rede.
+O sistema \textit{Virtual Lab} deve possibilitar a criação e gerenciamento de instâncias de máquinas virtuais para uso em laboratórios remotos de ensino e pesquisa.
+O acesso deve ser feito por meio de um navegador de internet, permitindo a utilização de qualquer dispositivo com um navegador de internet com acesso à rede.
 
 O sistema deve acomodar dois tipos de usuários: usuários comuns e administradores.
 Os usuários comuns devem ter permissão de criar instâncias de máquinas virtuais com base em templates pré-definidos, gerenciar suas próprias instâncias, bem como o conteúdo instalado nas mesmas.
@@ -20,7 +20,7 @@ O sistema deve permitir o acesso aos usuários através de autenticação por me
 Inicialmente, um usuário administrador deve criar os templates de instância indicando o sistema operacional e a quantidade de armazenamento disponível.
 Os usuários comuns devem então criar instâncias com base nesses templates, escolhendo entre os tipos de hardware permitidos.
 
-Ao ser criada, a instância deve passar por um processo de configuração inicial para garantir que o sistema operacional esteja pronto para uso, e então ser disponibilizada para o usuário, que poderá acessá-la atráves da página de conexões do sistema. As instâncias devem ser encerradas automaticamente após um período de inatividade.
+Ao ser criada, a instância deve passar por um processo de configuração inicial para garantir que o sistema operacional esteja pronto para uso, e então ser disponibilizada para o usuário, que poderá acessá-la atrvés da página de conexões do sistema. As instâncias devem ser encerradas automaticamente após um período de inatividade.
 
 \section{Modelagem}
 \label{sec:modelagemDoSistema}
@@ -129,7 +129,7 @@ RF27 & O sistema permitir o uso de filtros pré-definidos e busca textual para t
 
 RF28 & O sistema deve ser capaz de desligar automaticamente instâncias ociosas \\ \hline
 
-RF29 & O sistema deve forcener uma lista de imagens de sistema operacional recomendadas para a criação de templates de instância \\ \hline
+RF29 & O sistema deve fornecer uma lista de imagens de sistema operacional recomendadas para a criação de templates de instância \\ \hline
 
 RF30 & O usuário deve ser capaz de acessar a documentação do sistema \\ \hline
 
@@ -178,7 +178,7 @@ RNF09 & A documentação do sistema deve ser clara e objetiva, contendo explica�
 
 Os casos de uso do sistema foram modelados a partir dos requisitos funcionais identificados. De forma a dividir as responsabilidades do sistema em módulos, os casos de uso foram agrupados em quatro módulos principais: instância, template de instância, usuário e diversos, representados nas Figuras \ref{fig:casoDeUsoInstancia}, \ref{fig:casoDeUsoTemplate}, \ref{fig:casoDeUsoUsuario} e \ref{fig:casoDeUsoDiversos}, respectivamente.
 
-Como pode ser visto no diagrama da \autoref{fig:casoDeUsoInstancia}, o módulo de instância necessitou de quatro interfaces para contextos distintos: Para usuários, para o sistema de provisionamento, para o sistema de envio de eventos das instâncias e para o gateway de conexão.
+Como pode ser visto no diagrama da \autoref{fig:casoDeUsoInstancia}, o módulo de instância necessitou de quatro interfaces para contextos distintos: Para usuários, para o sistema de provisionamento, para o sistema de envio de eventos das instâncias e para o \textit{gateway} de conexão.
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
@@ -247,12 +247,12 @@ Com uma ideia bem definida de como o sistema interage com o ambiente externo, o 
 \end{figure}
 
 A partir do diagrama de \textit{containers} do sistema, foi possível a estruturação interna de cada \textit{container} em componentes, que são as partes fundamentais para a implementação do sistema.
-Nessa etapa, foram criados dois diagramas de componentes, um para a aplicação de API e outro para o gateway de conexão, que são as partes modeladas e implementadas por completo, enquanto os demais possuem apenas a definição de alto nível.
+Nessa etapa, foram criados dois diagramas de componentes, um para a aplicação de API e outro para o \textit{gateway} de conexão, que são as partes modeladas e implementadas por completo, enquanto os demais possuem apenas a definição de alto nível.
 
 A \autoref{fig:diagramaC4ComponentesDaAPI} apresenta o diagrama de componentes da aplicação de API, que é responsável por orquestrar todas as operações do sistema que estão dispostas em quatro módulos de funcionalidades:
 
 \begin{itemize}
-    \item \textbf{Usuário}: Módulo responsável por gerenciar as informações e permisões dos usuários do sistema.
+    \item \textbf{Usuário}: Módulo responsável por gerenciar as informações e permissões dos usuários do sistema.
 
     \item \textbf{Instância}: Módulo responsável por gerenciar as instâncias do sistema e as operações que podem ser realizadas sobre elas.
 
@@ -277,7 +277,7 @@ onde os padrões de arquitetura de código utilizados são apresentados.
 
 O gateway de conexão é o componente responsável por intermediar a conexão entre o cliente web e as instâncias de máquinas virtuais. O diagrama de componentes do gateway de conexão é apresentado na \autoref{fig:diagramaC4ComponentesDoGateway}.
 
-No gateway de conexão, além do gerenciamento das conexões com as instâncias de máquinas virtuais, o processo de identificação de conexões ativas e ociosas é realizado. Isso é de suma importância para o fluxo do sistema, já que seria difícil identificar a osciosidade através de alertas sensíveis às métricas de consumo dos recursos das instâncias.
+No gateway de conexão, além do gerenciamento das conexões com as instâncias de máquinas virtuais, o processo de identificação de conexões ativas e ociosas é realizado. Isso é de suma importância para o fluxo do sistema, já que seria difícil identificar a ociosidade através de alertas sensíveis às métricas de consumo dos recursos das instâncias.
 
 Esse elo do sistema foi projetado para ser escalável horizontalmente, isto é, caso a demanda de conexões aumente, é possível adicionar mais instâncias do gateway de conexão para atender a demanda, sem a necessidade de alterar a arquitetura do sistema. Esse processo de escalabilidade é transparente para o usuário e também não afeta a disponibilidade do sistema.
 
@@ -324,7 +324,7 @@ ECMAScript \citep{ecmascriptdocs} & ES2020 & Especificação formal da linguagem
 
 \hline
 
-Typescript \citep{typescriptdocs} & {$\leq$}5.4.0 & Extensão do Javascript que adiciona suporte para tipagem, utilizada na implementação de todos os serviços de backend e do cliente web do sistema \\
+Typescript \citep{typescriptdocs} & {$\leq$}5.4.0 & Extensão do javascript que adiciona suporte para tipagem, utilizada na implementação de todos os serviços de backend e do cliente web do sistema \\
 
 \hline
 
@@ -416,7 +416,7 @@ AWS Lambda PowerTools \citep{awslambdapowertools} & \textsuperscript{$\wedge$}2.
 
 \hline
 
-AWS AppSync \citep{awsappsync} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a comunicação em tempo real entre os serviçoes de backend e o cliente web \\
+AWS AppSync \citep{awsappsync} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a comunicação em tempo real entre os serviços de backend e o cliente web \\
 
 \hline
 
@@ -424,7 +424,7 @@ AWS Systems Manager \citep{awssystemsmanagerdocs} & sdk \textsuperscript{$\wedge
 
 \hline
 
-AWS Event Bridge \citep{awseventbridgedocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de eventos utilizado como barramento de comunicação entre os serviços de backend. Oferece também a funcionalidade de agendamento de eventos, utilizado no sistema de desligamento automático de instâncias osciosas. \\
+AWS Event Bridge \citep{awseventbridgedocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de eventos utilizado como barramento de comunicação entre os serviços de backend. Oferece também a funcionalidade de agendamento de eventos, utilizado no sistema de desligamento automático de instâncias ociosas. \\
 
 \hline
 
@@ -456,7 +456,7 @@ AWS Identity and Access Management \citep{awsiamdocs} & sdk \textsuperscript{$\w
 
 \hline
 
-AWS S3 \citep{awss3docs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de armazenamento de objetos utilizado para servir o cliente web e armazenar todos os arquivos imutaveis do sistema \\
+AWS S3 \citep{awss3docs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de armazenamento de objetos utilizado para servir o cliente web e armazenar todos os arquivos imutáveis do sistema \\
 
 \hline
 
@@ -468,11 +468,11 @@ AWS Certificate Manager \citep{awscertificatemanagerdocs} & sdk \textsuperscript
 
 \hline
 
-AWS Elastic Load Balancing \citep{awselasticloadbalancing} & sdk \textsuperscript{$\wedge$}3.592.0 & Balanceador de carga gerenciado utilizado para gerenciar as conexões entre o cliente web e o cluster de containers rodando o Gateway de conexão. \\
+AWS Elastic Load Balancing \citep{awselasticloadbalancing} & sdk \textsuperscript{$\wedge$}3.592.0 & Balanceador de carga gerenciado utilizado para gerenciar as conexões entre o cliente web e o ]textit{cluster} de \textit{containers} rodando o \textit{Gateway} de conexão. \\
 
 \hline
 
-AWS Elastic Container Service \citep{awsecsdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a implantação do gateway de conexão, no formato de cluster de containeres com escalabilidade previsível \\
+AWS Elastic Container Service \citep{awsecsdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a implantação do gateway de conexão, no formato de cluster de \textit{containers} com escalabilidade previsível \\
 
 \hline
 
@@ -480,7 +480,7 @@ AWS Elastic Container Registry \citep{awsecrdocs} & sdk \textsuperscript{$\wedge
 
 \hline
 
-AWS Simple Notification Service \citep{awssnsdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de publisher Subscriber utilizado para a transacionar as mensagens emitidas na criação de instâncias \\
+AWS Simple Notification Service \citep{awssnsdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de Publisher-Subscriber utilizado para a transacionar as mensagens emitidas na criação de instâncias \\
 
 \hline
 
@@ -494,7 +494,7 @@ O ecossistema de tecnologias utilizado foi escolhido a partir de alguns critéri
 
 Visto que a \gls{utfpr} já possui integração com a \gls{aws}, a escolha da provedor de nuvem pública foi trivial, já que a infraestrutura de serviços da \gls{aws} é também utilizada em projetos a nível empresarial e acadêmico a nível global, oferecendo um portfólio extenso de serviços que atendem as necessidades do sistema.
 
-O SST foi escolhido como um facilitador tanto para o fluxo de desenvolvimento local quanto para a definição de todos os componentes de arquiteura como código. A ferramenta disponibiliza componentes de alto nível que já implementam as melhores práticas de segurança e controle de custos. Além disso, o SST estabelece uma conexão entre os serviços da \gls{aws}, como as funções Lambda, e o código escrito localmente, fazendo com que seja possível testar e depurar o código no seu ambiente próprio de implantação.
+O SST foi escolhido como um facilitador tanto para o fluxo de desenvolvimento local quanto para a definição de todos os componentes de arquitetura como código. A ferramenta disponibiliza componentes de alto nível que já implementam as melhores práticas de segurança e controle de custos. Além disso, o SST estabelece uma conexão entre os serviços da \gls{aws}, como as funções Lambda, e o código escrito localmente, fazendo com que seja possível testar e depurar o código no seu ambiente próprio de implantação.
 
 O \gls{guacamole} foi escolhido como intermediador da conexão entre o cliente web e as instâncias de máquinas virtuais, porque trata-se de uma ferramenta de código aberto bem estabelecida que fornece os componentes necessários para a conexão remota a partir de um navegador de internet. Além disso, ele é compatível com os protocolos de conexão remota utilizados no trabalho. No contexto do desenvolvimento do sistema, o \gls{guacamole} foi utilizado de forma customizada. Apenas \textit{daemon} que implementa a conexão remota, o componente web que renderiza a interface de conexão e o protocolo de comunicação em si foram utilizados.
 
@@ -624,11 +624,11 @@ Esse serviço foi modelado para intermediar a conexão entre o cliente web e as 
 
 A implementação do código foi baseada no diagrama da \autoref{fig:diagramaC4ComponentesDoGateway}, onde o serviço foi dividido em cinco classes de responsabilidades específicas.
 
-A primeira classe, \textit{Server} ficou responsável por gerenciar o ciclo de vida do servidor \textit{websocket}, aceitando novas conexões e mantendo as conexões ativas. A segunda classe, \textit{ClientConnection} ficou responsável por implementar as operações pertinentes a troca de dados entre o cliente que iniciou a conexão e a classe \textit{guacdClient} que é a terceira classe, responsável especificamente por interagir com o binário \textit{guacd} do \gls{guacamole}, que é nativamente implementado na linguagem C. A quarta classe, \textit{Crypt} ficou responsável por implementar as operações de descriptografia do token de conexão, que é gerado pela aplicação de API e encaminhado através do cliente web. A quinta e última classe é o \textit{EventPublisher}, que é uilizado pela classe \textit{Server} para publicar eventos de conexão e desconexão no barramento de eventos. Eventos estes que são consumidos por funções \textit{Lambda} dentro do domínio da aplicação de API que agendam o desligamento automático de instâncias ociosas.
+A primeira classe, \textit{Server} ficou responsável por gerenciar o ciclo de vida do servidor \textit{websocket}, aceitando novas conexões e mantendo as conexões ativas. A segunda classe, \textit{ClientConnection} ficou responsável por implementar as operações pertinentes a troca de dados entre o cliente que iniciou a conexão e a classe \textit{guacdClient} que é a terceira classe, responsável especificamente por interagir com o binário \textit{guacd} do \gls{guacamole}, que é nativamente implementado na linguagem C. A quarta classe, \textit{Crypt} ficou responsável por implementar as operações de descriptografia do token de conexão, que é gerado pela aplicação de API e encaminhado através do cliente web. A quinta e última classe é o \textit{EventPublisher}, que é utilizado pela classe \textit{Server} para publicar eventos de conexão e desconexão no barramento de eventos. Eventos estes que são consumidos por funções \textit{Lambda} dentro do domínio da aplicação de API que agendam o desligamento automático de instâncias ociosas.
 
 O algoritmo de criptografia utilizado tanto pela classe \textit{Crypt} para descriptografar o token de conexão, quanto pela aplicação de API para criptografar o token de conexão, foi o algoritmo de criptografia simétrica \textit{AES-256}. Esse algoritmo foi utilizado em \textit{Cipher Block Chaining (CBC)}, que é um modo de funcionamento que evita que padrões repetidos no texto claro sejam visíveis no texto cifrado.
 
-Como o \textit{guacd}, binário do \gls{guacamole}, precisa ser executado no mesmo ambiente que as classes do serviços, foi necessário a criação de um ambiente completo para a execução do serviço, através de um \textit{container} \textit{Docker}. O conteiner utilizou a imagem oficial fornecida pelo \gls{guacamole} somente com o binário, como também a imagem oficial do \textit{Node.js} para a execução do código do serviço, dessa forma foi possível garantir que o serviço se comportaria da mesma maneira em qualquer ambiente. Quando o \textit{container} é iniciado, a ferramenta \textit{supervisord} gerencia a execução dos processos do \textit{guacd} e do serviço, permitindo o controle e monitoramento dos processos através de um único ponto de entrada.
+Como o \textit{guacd}, binário do \gls{guacamole}, precisa ser executado no mesmo ambiente que as classes do serviços, foi necessário a criação de um ambiente completo para a execução do serviço, através de um \textit{container} \textit{Docker}. O container utilizou a imagem oficial fornecida pelo \gls{guacamole} somente com o binário, como também a imagem oficial do \textit{Node.js} para a execução do código do serviço, dessa forma foi possível garantir que o serviço se comportaria da mesma maneira em qualquer ambiente. Quando o \textit{container} é iniciado, a ferramenta \textit{supervisord} gerencia a execução dos processos do \textit{guacd} e do serviço, permitindo o controle e monitoramento dos processos através de um único ponto de entrada.
 
 \subsection{Aplicação de API}
 \label{subsec:aplicacaoDeAPI}
@@ -804,9 +804,9 @@ Quando o usuário tem acesso à instância e a mesma ainda não está pronta par
 
 Quando o usuário tem acesso à instância e a mesma não está ligada & Deve retornar um erro de violação do caso de uso \\ \hline
 
-Quando o usuário tem acesso à instâcia e o protocolo interno de conexão é \gls{rdp} & Deve retornar as informações de conexão com a instância \\ \hline
+Quando o usuário tem acesso à instância e o protocolo interno de conexão é \gls{rdp} & Deve retornar as informações de conexão com a instância \\ \hline
 
-Quando o usuário tem acesso à instâcia e o protocolo interno de conexão é \gls{vnc} & Deve retornar as informações de conexão com a instância \\
+Quando o usuário tem acesso à instância e o protocolo interno de conexão é \gls{vnc} & Deve retornar as informações de conexão com a instância \\
 
 \bottomrule
 \end{tabularx}
@@ -941,7 +941,7 @@ Como resultado do processo de modelagem aplicado no decorrer deste capítulo, ob
 
 A implantação do \textit{Virtual Lab} depende do acesso a uma conta da \gls{aws} com permissões administrativas para criar e gerenciar todos os serviços descritos na \autoref{sec:ferramentasETecnologias}. 
 
-Além disso, é necessário ter o utilitário de linha de comando \textit{aws-cli} instalado e configurado com as credenciais de acesso configuradas, visto que o processo é automatizado. \citep{awsclidocs}. A documentação mais detalhada sobre o processo de configuração do \textit{aws-cli} pode ser encontrada no site oficial da \gls{aws}, bem como na documentação do repositorio do projeto.
+Além disso, é necessário ter o utilitário de linha de comando \textit{aws-cli} instalado e configurado com as credenciais de acesso configuradas, visto que o processo é automatizado. \citep{awsclidocs}. A documentação mais detalhada sobre o processo de configuração do \textit{aws-cli} pode ser encontrada no site oficial da \gls{aws}, bem como na documentação do repositório do projeto.
 
 A seguir são descritas as etapas necessárias para a implantação a partir do código fonte do sistema, utilizando um computador com as seguintes configurações:
 
@@ -964,7 +964,7 @@ Contando também com os seguintes softwares instalados:
 \subsection{Configuração das dependências}
 \label{subsec:configuracaoDasDependencias}
 
-Com o código fonte do sistema em mãos, o primeiro passo é instalarm todas as dependências do projeto. Para isso, basta executar o seguinte comando em um terminal na raiz do projeto:
+Com o código fonte do sistema em mãos, o primeiro passo é instalar todas as dependências do projeto. Para isso, basta executar o seguinte comando em um terminal na raiz do projeto:
 
 \shellcmd{npm install}
 
