@@ -171,7 +171,7 @@ RNF07 & O sistema deve sinalizar ao usuário enquanto realiza operações assín
 
 RNF08 & O sistema deve tratar uma conexão como ativa com uma instância se a mesma estiver sendo feita a partir do sistema. Caso contrário, a instância será considerada ociosa \\ \hline
 
-RNF09 & A documentação do sistema deve ser clara e objetiva, contendo explicações tanto sobre o funcionamento do sistema quanto sobre a utilização do sistema, além de apresentar todos os \textit{endpoints} da API \\ \hline
+RNF09 & A documentação do sistema deve ser clara e objetiva, contendo explicações tanto sobre o funcionamento do sistema quanto sobre a utilização do sistema, além de apresentar todos os \textit{endpoints} da \gls{api} \\ \hline
 
 \end{longtable}
 
@@ -180,8 +180,7 @@ Os casos de uso do sistema foram modelados a partir dos requisitos funcionais id
 
 Como pode ser visto no diagrama da \autoref{fig:casoDeUsoInstancia}, o módulo de instância necessitou de quatro interfaces para contextos distintos: Para usuários, para o sistema de provisionamento, para o sistema de envio de eventos das instâncias e para o \textit{gateway} de conexão.
 
-\begin{figure}[H]
-%\captionsetup{width=0.55\textwidth}%% Largura da legenda
+\begin{figure}[H] %\captionsetup{width=0.55\textwidth}%% Largura da legenda
 \caption{Diagrama de Caso de Uso: Instância}
 \label{fig:casoDeUsoInstancia}
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/use-case-instance.png}
@@ -252,7 +251,7 @@ Nessa etapa, foram criados dois diagramas de componentes, um para a aplicação 
 A \autoref{fig:diagramaC4ComponentesDaAPI} apresenta o diagrama de componentes da aplicação de API, que é responsável por orquestrar todas as operações do sistema que estão dispostas em quatro módulos de funcionalidades:
 
 \begin{itemize}
-    \item \textbf{Usuário}: Módulo responsável por gerenciar as informações e permissões dos usuários do sistema.
+    \item \textbf{Usuário}: Módulo responsável por gerenciar as informações e permisssões dos usuários do sistema.
 
     \item \textbf{Instância}: Módulo responsável por gerenciar as instâncias do sistema e as operações que podem ser realizadas sobre elas.
 
@@ -468,15 +467,15 @@ AWS Certificate Manager \citep{awscertificatemanagerdocs} & sdk \textsuperscript
 
 \hline
 
-AWS Elastic Load Balancing \citep{awselasticloadbalancing} & sdk \textsuperscript{$\wedge$}3.592.0 & Balanceador de carga gerenciado utilizado para gerenciar as conexões entre o cliente web e o ]textit{cluster} de \textit{containers} rodando o \textit{Gateway} de conexão. \\
+AWS Elastic Load Balancing \citep{awselasticloadbalancing} & sdk \textsuperscript{$\wedge$}3.592.0 & Balanceador de carga gerenciado utilizado para gerenciar as conexões entre o cliente web e o \textit{cluster} de \textit{containers} rodando o \textit{Gateway} de conexão. \\
 
 \hline
 
-AWS Elastic Container Service \citep{awsecsdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a implantação do gateway de conexão, no formato de cluster de \textit{containers} com escalabilidade previsível \\
+AWS Elastic Container Service \citep{awsecsdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a implantação do \textit{gateway} de conexão, no formato de cluster de \textit{containers} com escalabilidade previsível \\
 
 \hline
 
-AWS Elastic Container Registry \citep{awsecrdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as imagens de container do gateway de conexão \\
+AWS Elastic Container Registry \citep{awsecrdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as imagens de \textit{container} do \textit{gateway} de conexão \\
 
 \hline
 
@@ -527,7 +526,7 @@ Essa seção apresenta os aspectos pertinentes ao processo de desenvolvimento do
 
 O repositório de código foi organizado através de uma estrutura de \textit{monorepo}, onde o código fonte de todos os serviços e componentes de infraestrutura como código são versionados dentro de um único repositório de código fonte. 
 
-A utilização dessa abordagem com o uso do framework SST facilitou o desenvolvimento integrado de todas as pertes do sistema desde o início, diminuindo as chances de problema no processo de integração entre partes separadas. Além disso, foi possível desenvolver conjuntos bem definidos de funcionalidades em pacotes envolvendo interfaces de usuário, regras de negócio e componentes de infraestrutura.
+A utilização dessa abordagem com o uso do framework SST facilitou o desenvolvimento integrado de todas as partes do sistema desde o início, diminuindo as chances de problema no processo de integração entre partes separadas. Além disso, foi possível desenvolver conjuntos bem definidos de funcionalidades em pacotes envolvendo interfaces de usuário, regras de negócio e componentes de infraestrutura.
 
 A estrutura de alto nível do repositório de código foi organizada da seguinte forma:
 
@@ -695,7 +694,7 @@ O cliente \textit{web} foi implementado utilizando \textit{typescript} e \textit
 
 As páginas e contexto do cliente \textit{web} foram estruturados em componentes reutilizáveis, que são utilizados em diferentes partes do sistema. Bem como a camada que lida com a troca de dados com a aplicação de API, que foi implementada utilizando a biblioteca \textit{ReactQuery}, que é uma biblioteca de gerenciamento de estado que fornece uma abstração sobre a chamadas dos \textit{endpoints} da API, permitindo o cache local com tempo de expiração pré-definido e também o consumo dos recursos da API de forma equilibrada, evitando requisições redundantes ou excessivas.
 
-O densenvolvimento levou em consideração todos os casos de uso, requisitos de sistema e perspectivas de modelagem para proporcionar uma experiência de usuário simplificada e intuitiva. Embora alguns aspectos técnicos sejam difíceis de serem apresentados através de abstrações simplificadas, como é o caso dos tipos de hardware de instância e pontos relacionados ao sistema operacional das instâncias, foi possível delegar a responsabilidade do mínimo de conhecimento técnico aos usuários com cargo de \gls{uadm} no sistema.
+O desenvolvimento levou em consideração todos os casos de uso, requisitos de sistema e perspectivas de modelagem para proporcionar uma experiência de usuário simplificada e intuitiva. Embora alguns aspectos técnicos sejam difíceis de serem apresentados através de abstrações simplificadas, como é o caso dos tipos de hardware de instância e pontos relacionados ao sistema operacional das instâncias, foi possível delegar a responsabilidade do mínimo de conhecimento técnico aos usuários com cargo de \gls{uadm} no sistema.
 
 A interface desenvolvida e os fluxos que o usuário pode realizar dentro da Aplicação \textit{Web} serão apresentados no \autoref{cap:resultados}.
 
@@ -706,7 +705,7 @@ A documentação foi desenvolvida utilizando o \textit{Docusaurus}, que é um ge
 
 Ao utilizar essa ferramenta, o processo de documentação ficou focado na produção dos conteúdos de ajuda ao usuário e também na documentação técnica do sistema, sem a preocupação da estrutura do sistema de documentação, já que é uma parte acoplada ao sistema que não precisa de novas funcionalidades, precisa apenas de complementos textuais.
 
-Para que a documentação das rotas de api pudessem ser listadas de forma automática, foi utilizado o \textit{Stoplight Elements}, que é uma biblioteca que permite a renderização de documentação de API em formato de componente \textit{React} a partir de um arquivo de especificação \textit{OpenAPI} também gerado automaticamente dentro do processo de sintetização da stack da Aplicação de API, onde as rotas são definidas.
+Para que a documentação das rotas de \textit{api} pudessem ser listadas de forma automática, foi utilizado o \textit{Stoplight Elements}, que é uma biblioteca que permite a renderização de documentação de API em formato de componente \textit{React} a partir de um arquivo de especificação \textit{OpenAPI} também gerado automaticamente dentro do processo de sintetização da stack da Aplicação de API, onde as rotas são definidas.
 
 A \autoref{fig:docsintroduction} apresenta a página inicial da documentação do sistema e a \autoref{fig:docsapi} apresenta um exemplo de rota documentada.
 
