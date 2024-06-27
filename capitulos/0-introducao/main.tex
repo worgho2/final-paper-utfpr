@@ -16,13 +16,13 @@ grandes aplicações de operação crítica, e por outro lado, um desenvolvedor 
 trabalhos em uma instância remota, desativá-la após concluir e pagar apenas pelo tempo de uso do
 recurso. \citep{taurioncloud}
 
-\gls{vdi} é o termo usado para referenciar um ambiente de infraestrutura que hospeda \glspl{desktop} virtuais e provê para usuários finais a medida que são requisitados. Tanto ambientes \gls{onPremise} quanto em nuvem utilizam a mesma base conceitual de virtualização para tal arquitetura, a grande diferença está na forma em que os recursos são precificados. Em servidores locais, o recurso deve ser adquirido previamente, gerenciado e protegido, já em ambientes de nuvem, onde o modelo de responsabilidade compartilhada exime o usuário de responsabilidades de segurança e gerenciamento físicos dos recursos, o preço é pago pela utilização dos recursos. \citep{cloudcomputingcambridge}
+Infraestrutura de Desktops Virtuais, do inglês \textit{Virtual Desktop Infrastructure} é o termo usado para referenciar um ambiente de infraestrutura que hospeda \glspl{desktop} virtuais e provê para usuários finais a medida que são requisitados. Tanto ambientes \gls{onPremise}, onde os servidores estão localizados na infraestrutura local, quanto em nuvem utilizam a mesma base conceitual de virtualização para tal arquitetura, a grande diferença está na forma em que os recursos são precificados. Em servidores locais, o recurso deve ser adquirido previamente, gerenciado e protegido, já em ambientes de nuvem, onde o modelo de responsabilidade compartilhada exime o usuário de responsabilidades de segurança e gerenciamento físicos dos recursos, o preço é pago pela utilização dos recursos. \citep{cloudcomputingcambridge}
 
 Embora tenham sido feitos progressos na utilização de \gls{vdi} em nuvem e no estudo da influência dos fatores de qualidade de serviço em sistemas de ensino baseados em \gls{vdi} \citep{qoselearning}, poucos estudos foram realizados a fim de apresentar uma infraestrutura completa de aplicação que sustente \glspl{desktop} virtuais em nuvem pública para utilização em ensino e pesquisa no contexto de instituições públicas de ensino superior.
 
-O objetivo deste trabalho é o desenvolvimento de um sistema de \gls{vdi} em nuvem pública que permita o acesso a \glspl{desktop} virtuais a partir de qualquer dispositivo com um navegador de internet instalado. Promovendo o acesso a recursos computacionais adequadamente robustos para a execução de atividades acadêmicas e de pesquisa, a partir de qualquer lugar, dentro ou fora da universidade. Além de viabilizar o consumo dos mesmos recursos computacionais como serviço, reduzindo custos com aquisição e manutenção de equipamentos e garantindo a disponibilidade de recursos computacionais para alunos e pesquisadores.
+O objetivo deste trabalho é o desenvolvimento de um sistema de \gls{vdi} em nuvem pública que permita o acesso a \glspl{desktop} virtuais a partir de qualquer dispositivo com um navegador de internet instalado, promovendo o acesso a recursos computacionais adequadamente robustos para a execução de atividades acadêmicas e de pesquisa, a partir de qualquer lugar, dentro ou fora da universidade. Além disso, viabilizar o consumo dos mesmos recursos computacionais como serviço, reduzindo custos com aquisição e manutenção de equipamentos e garantindo a disponibilidade de recursos computacionais para alunos e pesquisadores.
 
-O acesso ao sistema baseado em cargos, permitirá que diferentes combinações de sistemas operacionais, softwares e especificações de hardware sejam disponibilizados para públicos com necessidades específicas, como alunos de diferentes cursos e pesquisadores de diferentes áreas de atuação.
+O acesso ao sistema baseado em papéis, permitirá que diferentes combinações de sistemas operacionais, \textit{softwares} e especificações de \textit{hardware} sejam disponibilizados para públicos com necessidades específicas, como alunos de diferentes cursos e pesquisadores de diferentes áreas de atuação.
 
 Através de uma interface \textit{web} principal, os professores poderão criar configurações de \glspl{desktop} virtuais contendo todos os requisitos necessários para a execução de atividades acadêmicas e de pesquisa e disponibilizá-los para os alunos. Estes, por sua vez, poderão utilizar as configurações disponibilizadas para criar suas instâncias e escolher entre diferentes tipos de \textit{hardware} previamente habilitados pelos professores.
 
@@ -60,7 +60,7 @@ instalado.
 \begin{itemize}
     \item Modelar a infraestrutura do sistema de \gls{vdi}, utilizando serviços de computação em nuvem pública, garantindo escalabilidade, alta disponibilidade e segurança dos dados.
 
-    \item Modelar o sistema utilizando práticas de desenvolvimento de software que garantam a extensibilidade do sistema validada através da cobertura de testes unitários dos casos de uso.
+    \item Modelar o sistema utilizando práticas de desenvolvimento de \textit{software} que garantam a extensibilidade do sistema validada através da cobertura de testes unitários dos casos de uso.
 
     \item Implementar a \gls{iac} para todos os componentes do sistema, permitindo a implantação completa em novos ambientes de forma automatizada.
 
@@ -75,25 +75,16 @@ instalado.
 \label{sec:justificativa}
 % OK
 
-Em 2021, o censo de educação superior mostrou que cerca de 3,9 milhões de estudantes ingressaram em
-instituições de ensino superior e que 77,7\% destes concluíram o ensino médio na rede pública de
-ensino. \citep{inep2021}
-Para aqueles que não possuem computadores de uso próprio, ainda é um desafio lidar com demandas
-acadêmicas que exigem o acesso a esse tipo de equipamento dentro e fora da universidade.
+Promover o acesso a recursos computacionais de forma remota, a partir de qualquer dispositivo com acesso à internet e que tenha um navegador \textit{web}, de forma que os alunos e pesquisadores possam acessar recursos computacionais de qualquer lugar, através de dispositivos com capacidade computacional limitada.
 
-No contexto da \gls{utfpr}, os alunos têm a possibilidade de utilizar os equipamentos em aulas de
-laboratório ou na biblioteca. Porém a pandemia de COVID-19 evidenciou que essas alternativas ainda
-não são suficientes para promover o acesso igualitário entre os estudantes. Este cenário é ainda mais
-restrito para pesquisadores que necessitam de recursos computacionais mais robustos para executar
-suas atividades.
+\section{Motivação}
 
-Portanto, a principal motivação para a realização deste trabalho é a possibilidade de promover o
-acesso a recursos computacionais de forma remota, a partir de qualquer dispositivo com acesso à
-internet e que tenha um navegador web, de forma que os alunos e pesquisadores possam acessar
-recursos computacionais de qualquer lugar, através de dispositivos com capacidade computacional
-limitada.
+Em 2021, o censo de educação superior mostrou que cerca de 3,9 milhões de estudantes ingressaram em instituições de ensino superior e que 77,7\% destes concluíram o ensino médio na rede pública de ensino. \citep{inep2021}
+Para aqueles que não possuem computadores de uso próprio, ainda é um desafio lidar com demandas acadêmicas que exigem o acesso a esse tipo de equipamento dentro e fora da universidade.
 
-Não menos importante, o trabalho também visa possibilidade de redução de custos com aquisição de equipamentos para universidades públicas, como também elucida uma abordagem de consumo de recursos computacionais como serviço, onde os  recursos robustos são utilizados pelo tempo necessário, sem a necessidade de aquisição, manutenção e tratativas relacionadas à depreciação de equipamentos.
+No contexto da \gls{utfpr}, os alunos têm a possibilidade de utilizar os equipamentos em aulas de laboratório ou na biblioteca. Porém a pandemia de COVID-19 evidenciou que essas alternativas ainda não são suficientes para promover o acesso igualitário entre os estudantes. Este cenário é ainda mais restrito para pesquisadores que necessitam de recursos computacionais mais robustos para executar suas atividades.
+
+Não menos importante, o trabalho também visa possibilidade de redução de custos com aquisição de equipamentos para universidades públicas, como também elucida uma abordagem de consumo de recursos computacionais como serviço, onde os recursos robustos são utilizados pelo tempo necessário, sem a necessidade de aquisição, manutenção e tratativas relacionadas à depreciação de equipamentos.
 
 \section{Estrutura do trabalho}
 \label{sec:estruturaTrabalho}

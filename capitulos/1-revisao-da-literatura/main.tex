@@ -3,12 +3,12 @@
 %% O autor deve registrar seu conhecimento sobre a literatura básica do assunto, discutindo e comentando a informação já publicada.
 %% A revisão deve ser apresentada, preferencialmente, em ordem cronológica e por blocos de assunto, procurando mostrar a evolução do tema.
 %% Título e rótulo de capítulo (rótulos não devem conter caracteres especiais, acentuados ou cedilha)
-\chapter{revis\~ao Da Literatura}
+\chapter{revis\~ao da literatura}
 \label{cap:revisaoDaLiteratura}
 
 Esse capítulo apresenta os principais conceitos envolvidos na construção desse trabalho, a fim de contextualizar as bases teóricas utilizadas como referência para o desenvolvimento. O capítulo está organizado em duas seções, na primeira com aspectos do referencial teórico e na segunda com a apresentação de trabalhos relacionados.
 
-\section{Computa\c{c}\~ao em Nuvem}
+\section{Computa\c{c}\~ao em nuvem}
 \label{sec:computacaoEmNuvem}
 
 A computação em nuvem é um termo que se refere ao modelo de de entrega de recursos computacionais, baseado em uma grande rede de servidores físicos ou virtuais. Recursos como capacidade computacional ou capacidade de armazenamento são virtualizados em \textit{data centers} e consumidos sob demanda remotamente. Segundo \citet{taurioncloud}, as principais características são:
@@ -25,7 +25,7 @@ A computação em nuvem é um termo que se refere ao modelo de de entrega de rec
 
 Os serviços de computação em nuvem podem ser classificados de acordo com o modelo de entrega de recursos, bem como o nível de responsabilidade que o usuário tem sobre a infraestrutura que suporta os serviços. Entre os modelos de entrega de recursos, os mais comuns são: \textit{Software as a Service} (SaaS), \textit{Platform as a Service} (PaaS) e \textit{Infrastructure as a Service} (IaaS). \citep{cloudcomputingcambridge}
 
-A \autoref{fig:serviceDeliveryModels} apresenta um diagrama que ilustra a hierarquia de responsabilidades entre os modelos de entrega de recursos. O diagrama mostra que o \textit{SaaS} é o modelo que demanda menos responsabilidade do cliente, mas também entrega mais valor e abstração. O \textit{IaaS} é o modelo que demanda mais responsabilidade do cliente, mas também entrega mais controle sobre a infraestrutura. A \autoref{fig:deliveryModelResponsabilities} apresenta um diagrama que ilustra as responsabilidades de cada modelo de entrega de recursos. \citep{cloudcomputingcambridge}
+A \autoref{fig:serviceDeliveryModels} apresenta um diagrama que ilustra a hierarquia de responsabilidades entre os modelos de entrega de recursos. O diagrama mostra que o \textit{SaaS} é o modelo que demanda menos responsabilidade do cliente, mas também entrega mais valor e abstração. O \textit{IaaS} é o modelo que demanda mais responsabilidade do cliente, mas também entrega mais controle sobre a infraestrutura \citep{cloudcomputingcambridge}.
 
 \begin{figure}[H]
 \captionsetup{width=.7\textwidth}%% Largura da legenda
@@ -43,11 +43,11 @@ A \autoref{fig:serviceDeliveryModels} apresenta um diagrama que ilustra a hierar
 \fonte{Adaptado de \citet{cloudcomputingcambridge}}
 \end{figure}
 
-No modelo de entrega \textit{SaaS} o cliente acessa diretamente uma aplicação e o provedor é inteiramente responsável pelo gerenciamento e configuração da infraestrutura que o suporta. No \textit{PaaS} o cliente é capaz de executar e gerenciar aplicações sem a necessidade de se preocupar com a infraestrutura que suporta as aplicações e no \textit{IaaS} o cliente tem controle total sobre a todos os aspectos que compõem a representação virtualizada da infraestrutura. \citep{cloudcomputingcambridge}
+A \autoref{fig:deliveryModelResponsabilities} apresenta um diagrama que ilustra as responsabilidades de cada modelo de entrega de recursos. É possível observar que no modelo de entrega \textit{SaaS} o cliente acessa diretamente uma aplicação e o provedor é inteiramente responsável pelo gerenciamento e configuração da infraestrutura que o suporta. No \textit{PaaS} o cliente é capaz de executar e gerenciar aplicações sem a necessidade de se preocupar com a infraestrutura que suporta as aplicações e no \textit{IaaS} o cliente tem controle total sobre: Dados, Aplicações, Runtimes, Middleware e Sistema Operacional. \citep{cloudcomputingcambridge}
 
 Um exemplo de serviço gerenciável é o \textit{Elastic Beanstalk}, que é categorizado como \textit{Paas}. Com ele é possível executar aplicações sem a necessidade direta de configurar a maior parte dos serviços de infraestrutura disponíveis. O desenvolvedor precisa se preocupar somente com o código da aplicação.
 
-Esse tipo de serviço é útil para soluções comuns como \textit{APIs} que necessitam na maioria dos casos dos mesmos componentes de infraestrutura como: Um servidor de aplicação, configuração de rede, balanceador de carga, banco de dados e um local para armazenamento de objetos.
+Esse tipo de serviço é útil para soluções comuns como \glspl{api} que necessitam na maioria dos casos dos mesmos componentes de infraestrutura como: Um servidor de aplicação, configuração de rede, balanceador de carga, banco de dados e um local para armazenamento de objetos.
 
 A \textit{AWS} opera seus recursos a partir de um modelo de responsabilidade compartilhada que visa reduzir a responsabilidade operacional dos clientes sobre recursos. \citep{awssharedresponsibilitymodel} E seguindo o modelo, a sua responsabilidade é garantir a segurança \textbf{DA} nuvem. Isso significa que a provedora deve proteger todos os aspectos de infraestrutura que executa os serviços disponibilizados.
 
@@ -68,7 +68,7 @@ Qualquer tipo de recurso computacional pode ser virtualizado, como processadores
 \fonte{Adaptado de \citet{cloudcomputingcambridge}}
 \end{figure}
 
-% Infraestrutura virtual de \textit{desktops} é uma técnica que permite o acesso a \textit{desktops} virtualizados através de uma conexão de rede. O conceito engloba os aspectos de hardware, software e infraestrutura necessários para o acesso remoto. \citep{techopediavdi}
+% Infraestrutura virtual de \textit{desktops} é uma técnica que permite o acesso a \textit{desktops} virtualizados através de uma conexão de rede. O conceito engloba os aspectos de \textit{hardware}, software e infraestrutura necessários para o acesso remoto. \citep{techopediavdi}
 
 % Em um ambiente de \textit{VDI}, todas as configurações de sistema operacional e preferências ficam armazenadas no \textit{host}. Para o usuário, a experiência de acesso é similar ao uso de um computador local.
 
@@ -83,10 +83,10 @@ Qualquer tipo de recurso computacional pode ser virtualizado, como processadores
 
 
 % Arquitetura hexagonal
-\section{Arquitetura Hexagonal}
+\section{Arquitetura hexagonal}
 \label{sec:arquiteturaHexagonal}
 
-Arquitetura hexagonal é um padrão de arquitetura de software proposto por Alistair Cockburn em 2005, que ajuda a solucionar problemas de testabilidade e acoplamento de componentes em sistemas de software. Quando um software é projetado, muitas vezes é difícil projetar componentes genéricos o suficiente para que não dependam de um determinado \textit{framework} ou tecnologia. Isso é problemático porque a manutenção do software se torna mais difícil e a escolha de novas tecnologias pode ser limitada, além de tornar o processo de testes complexo e custoso. Para resolver esses problemas, a arquitetura hexagonal propõe uma abordagem onde o núcleo da aplicação é responsável por orquestrar todas as operações de entrada e saída de dados através de adaptadores. \citep{cockburn2017}.
+Arquitetura hexagonal é um padrão de arquitetura de \textit{software} proposto por Alistair Cockburn em 2005, que ajuda a solucionar problemas de testabilidade e acoplamento de componentes em sistemas de \textit{software}. Quando um \textit{software} é projetado, muitas vezes é difícil projetar componentes genéricos o suficiente para que não dependam de um determinado \textit{framework} ou tecnologia. Isso é problemático porque a manutenção do \textit{software} se torna mais difícil e a escolha de novas tecnologias pode ser limitada, além de tornar o processo de testes complexo e custoso. Para resolver esses problemas, a arquitetura hexagonal propõe uma abordagem onde o núcleo da aplicação é responsável por orquestrar todas as operações de entrada e saída de dados através de adaptadores. \citep{cockburn2017}.
 
 Como pode ser visto na \autoref{fig:hexagonalArchitecture}, o padrão é representado por um hexágono com a aplicação no centro. As arestas do hexágono delimitam as fronteiras dos casos de uso da aplicação e também representam os \textit{Ports}, que são as interfaces as interfaces de comunicação entre a camada de aplicação e a camada de interfaces \citep{cockburn2017}.
 
@@ -115,7 +115,7 @@ No desenvolvimento prático utilizando \textit{Ports and Adapters}, padrões com
 
 
 
-\section{Trabalhos Relacionados}
+\section{Trabalhos relacionados}
 \label{sec:trabalhosRelacionados}
 
 O trabalho desenvolvido por \citet{qoselearning} realiza uma análise quantitativa do impacto de

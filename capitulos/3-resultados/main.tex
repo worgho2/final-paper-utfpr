@@ -18,7 +18,7 @@ Ao acessar o cliente \textit{web} através de um navegador pela primeira vez o u
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Página de Autenticação}
+\caption{Página de autenticação}
 \label{fig:signInPage}
 \includegraphics[width=\textwidth]{capitulos/3-resultados/files/sign-in.png}
 \fonte{Autoria Própria (2024)}
@@ -26,20 +26,20 @@ Ao acessar o cliente \textit{web} através de um navegador pela primeira vez o u
 
 No caso onde o usuário não possui uma conta cadastrada e nem credencias de acesso para utilizar o login integrado com a \gls{utfpr}, ele deve seguir para a página de cadastro de uma nova conta, como apresentado na \autoref{fig:signUpPage}. Nessa página o usuário deve preencher os campos obrigatórios e acionar o botão \texttt{Criar Conta}  para que a conta seja criada.
 
-Mesmo podendo se autenticar com uma conta criada manualmente, ao usuário será atribuído o cargo de \gls{upen}, que não o permite interagir com os recursos do sistema.
+Mesmo podendo se autenticar com uma conta criada manualmente, ao usuário será atribuído o papel de \gls{upen}, que não o permite interagir com os recursos do sistema.
 
 Caso essa página não seja adequada para o ambiente de produção, ela pode ser desativada através das configuração de implantação do sistema. Isso vale também para o botão de integração com o provedor de identidade externo. Porém se as duas funcionalidades forem desabilitadas o sistema só permitirá a criação de usuários através da interface do serviço \textit{AWS Cognito} no painel de administração da \gls{aws}.
 
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Página de Cadastro}
+\caption{Página de cadastro}
 \label{fig:signUpPage}
 \includegraphics[width=\textwidth]{capitulos/3-resultados/files/sign-up.png}
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-Caso o usuário receba acesso completo ao sistema, a página inicial do cliente web será a listagem das instâncias tanto para \glspl{ucom} e \glspl{uadm}, como apresentado na \autoref{fig:instancesPage}.
+Caso o usuário receba acesso completo ao sistema, a página inicial do cliente \textit{web} será a listagem das instâncias tanto para \glspl{ucom} e \glspl{uadm}, como apresentado na \autoref{fig:instancesPage}.
 
 Nessa página o usuário pode visualizar todas as instâncias que ele possui acesso, bem como realizar as operações de gerenciamento das mesmas.
 
@@ -65,7 +65,7 @@ Todos os detalhes de uma instância podem ser visualizados através do botão \t
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-Para usuários com o cargo de \gls{uadm} há ainda a opção de de criar um template de instância a partir de uma instância existente, através do botão \texttt{Criar Template}. Ao acionar esse botão, o usuário deve preencher os campos obrigatórios na página de criação de template, como apresentado na \autoref{fig:createTemplateFromInstance}, e então acionar o botão \texttt{Criar Template} para confirmar a criação. Nesse momento, o sistema faz uma cópia da instância selecionada e a transforma em um template através de um processo que pode levar alguns minutos, dependendo da quantidade de dados a serem copiados e da quantidade de armazenamento selecionada para o template.
+Para usuários com o papel de \gls{uadm} há ainda a opção de de criar um template de instância a partir de uma instância existente, através do botão \texttt{Criar Template}. Ao acionar esse botão, o usuário deve preencher os campos obrigatórios na página de criação de template, como apresentado na \autoref{fig:createTemplateFromInstance}, e então acionar o botão \texttt{Criar Template} para confirmar a criação. Nesse momento, o sistema faz uma cópia da instância selecionada e a transforma em um template através de um processo que pode levar alguns minutos, dependendo da quantidade de dados a serem copiados e da quantidade de armazenamento selecionada para o template.
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
@@ -85,7 +85,7 @@ Se o usuário optar por criar uma nova instância através do botão \texttt{Nov
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-Na página de especificação dos parâmetros para a criação de uma nova instância, o usuário tem a opção de atribuir um nome e uma descrição para a instância, bem como escolher o tipo de hardware da instância e se o recurso de hibernação será habilitado. A lista de tipos de hardware disponíveis é dinâmica e é carregada a partir da aplicação de API, onde são mostrados todas opções previamente atribuídas pelo administrador do sistema. Para iniciar o processo de criação o usuário pode acionar o botão \texttt{Criar Instância} que entra em modo de carregamento e em seguia redireciona o usuário para a listagem de instâncias, apresentada pela \autoref{fig:instancesPage}.
+Na página de especificação dos parâmetros para a criação de uma nova instância, o usuário tem a opção de atribuir um nome e uma descrição para a instância, bem como escolher o tipo de \textit{hardware} da instância e se o recurso de hibernação será habilitado. A lista de tipos de \textit{hardware} disponíveis é dinâmica e é carregada a partir da aplicação de \gls{api}, onde são mostrados todas opções previamente atribuídas pelo administrador do sistema. Para iniciar o processo de criação o usuário pode acionar o botão \texttt{Criar Instância} que entra em modo de carregamento e em seguia redireciona o usuário para a listagem de instâncias, apresentada pela \autoref{fig:instancesPage}.
 
 
 \begin{figure}[H]
@@ -138,7 +138,7 @@ Na página de perfil do usuário o usuário pode visualizar suas informações p
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-Usuários com o cargo de \gls{uadm} possuem a página de gerenciamento de templates, onde podem visualizar todos os templates de instancias disponíveis, bem como deletar templates existentes e criar novos templates a partir de imagens oficiais de sistemas operacionais. Essa página é acessível através do menu lateral, como apresentado na \autoref{fig:templatesPage}.
+Usuários com o papel de \gls{uadm} possuem a página de gerenciamento de templates, onde podem visualizar todos os templates de instancias disponíveis, bem como deletar templates existentes e criar novos templates a partir de imagens oficiais de sistemas operacionais. Essa página é acessível através do menu lateral, como apresentado na \autoref{fig:templatesPage}.
 
 A listagem de templates é semelhante a listagem de instâncias, onde o usuário pode adaptar os filtros e utilizar a busca textual para encontrar templates específicos. Além disso, o usuário pode editar templates existentes, alterando o nome e a descrição, bem como excluir templates que não são mais necessários.
 
@@ -150,7 +150,7 @@ A listagem de templates é semelhante a listagem de instâncias, onde o usuário
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-Ainda nessa página, quando o usuário aciona tanto o botão \texttt{Novo Template} quanto o botão \texttt{Copiar} de um template existente, o modal de criação de template é apresentado, como pode ser visto na \autoref{fig:createTemplate}. Nesse modal o usuário deve preencher os campos obrigatórios e escolher uma imagem de sistema operacional customizada ou recomendada pelo componente de escolha de imagem e em seguida acionar o botão \texttt{Criar Template} para confirmar a criação, que estará disponível disponível para todos os usuários com o cargo de \gls{ucom} ou \gls{uadm}. Diferente da criação de template a partir de uma instância existente, a criação de template a partir de uma imagem existente é instantâneo.
+Ainda nessa página, quando o usuário aciona tanto o botão \texttt{Novo Template} quanto o botão \texttt{Copiar} de um template existente, o modal de criação de template é apresentado, como pode ser visto na \autoref{fig:createTemplate}. Nesse modal o usuário deve preencher os campos obrigatórios e escolher uma imagem de sistema operacional customizada ou recomendada pelo componente de escolha de imagem e em seguida acionar o botão \texttt{Criar Template} para confirmar a criação, que estará disponível disponível para todos os usuários com o papel de \gls{ucom} ou \gls{uadm}. Diferente da criação de template a partir de uma instância existente, a criação de template a partir de uma imagem existente é instantâneo.
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
@@ -160,7 +160,7 @@ Ainda nessa página, quando o usuário aciona tanto o botão \texttt{Novo Templa
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-Usuários com cargo de \gls{uadm} possuem ainda a página de gerenciamento de usuários, onde podem visualizar todos os usuários cadastrados no sistema, bom como aprovar usuários pendentes e atualizar as cotas de uso dos usuários. Essa página é acessível através do menu lateral, como apresentado na \autoref{fig:usersPage}. A listagem de usuários é semelhante a listagem de instâncias e templates, onde o usuário pode adaptar os filtros e utilizar a busca textual para encontrar usuários específicos, com a diferença que a apresentação dos usuários é feita através de uma tabela, onde cada linha representa um usuário e cada coluna uma informação do usuário.
+Usuários com papel de \gls{uadm} possuem ainda a página de gerenciamento de usuários, onde podem visualizar todos os usuários cadastrados no sistema, bom como aprovar usuários pendentes e atualizar as cotas de uso dos usuários. Essa página é acessível através do menu lateral, como apresentado na \autoref{fig:usersPage}. A listagem de usuários é semelhante a listagem de instâncias e templates, onde o usuário pode adaptar os filtros e utilizar a busca textual para encontrar usuários específicos, com a diferença que a apresentação dos usuários é feita através de uma tabela, onde cada linha representa um usuário e cada coluna uma informação do usuário.
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
@@ -170,7 +170,7 @@ Usuários com cargo de \gls{uadm} possuem ainda a página de gerenciamento de us
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-Ao selecionar um usuário na listagem, agora na página de detalhes do usuário, é possível visualizar todas as informações do usuário, bem como atualizar o cargo do usuário e as cotas de uso do sistema. Essa página é apresentada na \autoref{fig:userDetails}.
+Ao selecionar um usuário na listagem, agora na página de detalhes do usuário, é possível visualizar todas as informações do usuário, bem como atualizar o papel do usuário e as cotas de uso do sistema. Essa página é apresentada na \autoref{fig:userDetails}.
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
@@ -270,4 +270,4 @@ Amazon EC2 & R\$ 0.00 \\ \hline
 
 A comparação de custos em dois cenários distintos de uso do sistema, onde um cenário representa um uso com picos diários e o outro um uso mínimo, permite que a instituição de ensino tenha uma visão mais clara dos custos envolvidos na utilização do sistema e possa planejar a utilização do sistema de acordo com suas necessidades e orçamento disponível.
 
-Um ponto observado durante a estimativa de custos é que os serviços de infraestrutura que representam a maior parte dos custos quando o sistema está em sua capacidade mínima de utilização são os serviços que servem de base para o funcionamento do Gateway de Conexão. Por outro lado, quando o sistema está em sua capacidade máxima de utilização, os serviços de infraestrutura representam uma parcela menor dos custos totais, com os serviços de instâncias \gls{ec2} representando a maior parte dos custos.
+Um ponto observado durante a estimativa de custos é que os serviços de infraestrutura que representam a maior parte dos custos quando o sistema está em sua capacidade mínima de utilização são os serviços que servem de base para o funcionamento do \textit{gateway} de conexão. Por outro lado, quando o sistema está em sua capacidade máxima de utilização, os serviços de infraestrutura representam uma parcela menor dos custos totais, com os serviços de instâncias \gls{ec2} representando a maior parte dos custos.

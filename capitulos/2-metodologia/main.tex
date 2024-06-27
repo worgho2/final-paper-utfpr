@@ -8,46 +8,48 @@ Este capítulo aborda as metodologias de modelagem e desenvolvimento utilizadas 
 \section{Escopo do sistema}
 \label{sec:escopoDoSistema}
 
-O sistema \textit{Virtual Lab} deve possibilitar a criação e gerenciamento de instâncias de máquinas virtuais para uso em laboratórios remotos de ensino e pesquisa.
-O acesso deve ser feito por meio de um navegador de internet, permitindo a utilização de qualquer dispositivo com um navegador de internet com acesso à rede.
+O sistema \textit{Virtual Lab} possibilita a criação e gerenciamento de instâncias de máquinas virtuais para uso em laboratórios remotos de ensino e pesquisa.
+O acesso é feito por meio de um navegador de internet, permitindo a utilização de qualquer dispositivo com um navegador de internet com acesso à rede.
 
-O sistema deve acomodar dois tipos de usuários: usuários comuns e administradores.
-Os usuários comuns devem ter permissão de criar instâncias de máquinas virtuais com base em templates pré-definidos, gerenciar suas próprias instâncias, bem como o conteúdo instalado nas mesmas.
-Os administradores devem ter as mesmas permissões dos usuários comuns, além de gerenciar os templates de instância, controlar o acesso dos usuários comuns ao sistema e aos recursos de hardware.
+O sistema acomoda dois tipos de usuários: usuários comuns e administradores.
+Os usuários comuns têm permissão de criar instâncias de máquinas virtuais com base em templates pré-definidos, gerenciar suas próprias instâncias, bem como o conteúdo instalado nas mesmas.
+Os administradores têm as mesmas permissões dos usuários comuns, além de gerenciar os templates de instância, controlar o acesso dos usuários comuns ao sistema e aos recursos de \textit{hardware}.
 
-O sistema deve permitir o acesso aos usuários através de autenticação por meio de usuário e senha, bem como através de um provedor de identidade externo, caso o ambiente de uso do sistema já possua um provedor de identidade.
+O sistema permite o acesso aos usuários através de autenticação por meio de usuário e senha, bem como através de um provedor de identidade externo, caso o ambiente de uso do sistema já possua um provedor de identidade.
 
-Inicialmente, um usuário administrador deve criar os templates de instância indicando o sistema operacional e a quantidade de armazenamento disponível.
-Os usuários comuns devem então criar instâncias com base nesses templates, escolhendo entre os tipos de hardware permitidos.
+Inicialmente, um usuário administrador cria os templates de instância indicando o sistema operacional e a quantidade de armazenamento disponível.
+Os usuários comuns então criam instâncias com base nesses templates, escolhendo entre os tipos de \textit{hardware} permitidos.
 
-Ao ser criada, a instância deve passar por um processo de configuração inicial para garantir que o sistema operacional esteja pronto para uso, e então ser disponibilizada para o usuário, que poderá acessá-la atrvés da página de conexões do sistema. As instâncias devem ser encerradas automaticamente após um período de inatividade.
+Ao ser criada, a instância passa por um processo de configuração inicial para garantir que o sistema operacional esteja pronto para uso, e então ser disponibilizada para o usuário, que pode acessá-la através da página de conexões do sistema. As instâncias são encerradas automaticamente após um período de inatividade.
 
 \section{Modelagem}
 \label{sec:modelagemDoSistema}
 
-O processo de modelagem do sistema partiu de alguns princípios elementares para a construção de um sistema de software: 
+O processo de modelagem do sistema partiu de alguns princípios elementares para a construção de um sistema de \textit{software}: 
 
 \begin{itemize}
-    \item \textbf{Objetividade}: Criar apenas modelos que sejam necessários para a compreensão do sistema. Modelos em excesso tornam o processo de desenvolvimento mais complexo e custoso.
+    \item \textbf{Simplicidade}: Criação apenas de modelos que sejam necessários para a compreensão do sistema. Modelos em excesso tornam o processo de desenvolvimento mais complexo e custoso.
 
-    \item \textbf{Facilidade de alteração}: Os modelos devem ser fáceis de serem alterados, de forma que as mudanças no sistema possam ser refletidas rapidamente nos modelos. Esse princípio é de extrema importância tanto para a extensibilidade do sistema quanto para o isolamento dos componentes em cenários de teste.
+    \item \textbf{Extensibilidade}: Os modelos levam em consideração a evolução constante do sistema, evitando restrições que impliquem em grandes refatorações estruturais. 
 
-    \item \textbf{Arquitetura do sistema em primeiro lugar}: Na concepção dos componentes do sistema, é importante considerar a arquitetura do sistema como um todo, de forma que os componentes sejam coesos e acoplados de forma apropriada. Esse princípio também é relevante quando pensamos na utilização de serviços de computação em nuvem, que possuem características próprias de arquitetura, infraestrutura, segurança e modelo de cobrança.
+    % fáceis de serem alterados, de forma que as mudanças no sistema possam ser refletidas rapidamente nos modelos. Esse princípio é de extrema importância tanto para a extensibilidade do sistema quanto para o isolamento dos componentes em cenários de teste.
 
-    \item \textbf{Componentes funcionalmente independentes}: Os componentes do sistema devem ser independentes entre si, isso não significa que eles não possam se comunicar, mas que o nível de encapsulamento deve entregar funcionalidades claras e bem definidas.
+    \item \textbf{Coesão entre os modelos e as tecnologias existentes}: Na concepção dos componentes, é importante considerar a arquitetura do sistema como um todo, de forma que os componentes sejam coesos e acoplados de forma apropriada. Esse princípio também é relevante quando pensamos na utilização de serviços de computação em nuvem, que possuem características próprias de arquitetura, infraestrutura, segurança e modelo de cobrança.
 
-    \item \textbf{Consistência das informações em todos os níveis}: As informações que são transmitidas entre os componentes do sistema devem ser verificadas e validadas em todos os níveis, garantindo que a integridade do sistema seja mantida.
+    % \item \textbf{Componentes funcionalmente independentes}: Os componentes do sistema devem ser independentes entre si, isso não significa que eles não possam se comunicar, mas que o nível de encapsulamento deve entregar funcionalidades claras e bem definidas.
+
+    \item \textbf{Consistência das informações em todos os níveis}: As informações que são transmitidas entre os componentes do sistema são verificadas e validadas em todos os níveis, garantindo que a integridade do sistema seja mantida.
 
 \end{itemize}
 
 O processo de modelagem do sistema foi dividido nas seguintes etapas: levantamento de requisitos, projeto de arquitetura e projeto de componentes \citep{pressman2016}.
 
-\subsection{Levantamento de Requisitos}
+\subsection{Levantamento de requisitos}
 \label{subsec:levantamentoDeRequisitos}
 
 % especificação dos requisitos funcionais e não funcionais, e casos de uso
 
-Inicialmente, os requisitos do sistema foram identificados a partir de discussões recorrentes com o orientador do trabalho, que possui experiência em desenvolvimento de sistemas de software e em ambientes de ensino e pesquisa. Além disso, é um dos responsáveis pelo gerenciamento dos recursos de infraestrutura da \gls{utfpr} servidos em nuvem publica através da \gls{aws}.
+Inicialmente, os requisitos do sistema foram identificados a partir de discussões recorrentes com o orientador do trabalho, que possui experiência em desenvolvimento de sistemas de \textit{software} e em ambientes de ensino e pesquisa. Além disso, é um dos responsáveis pelo gerenciamento dos recursos de infraestrutura da \gls{utfpr} servidos em nuvem publica através da \gls{aws}.
 
 Os requisitos foram divididos em funcionais e não funcionais, e como uma forma de orientar o desenvolvimento, foram criados casos de uso para representar as interações entre os usuários e o sistema.
 
@@ -181,7 +183,7 @@ Os casos de uso do sistema foram modelados a partir dos requisitos funcionais id
 Como pode ser visto no diagrama da \autoref{fig:casoDeUsoInstancia}, o módulo de instância necessitou de quatro interfaces para contextos distintos: Para usuários, para o sistema de provisionamento, para o sistema de envio de eventos das instâncias e para o \textit{gateway} de conexão.
 
 \begin{figure}[H] %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Diagrama de Caso de Uso: Instância}
+\caption{Diagrama de caso de uso: Instância}
 \label{fig:casoDeUsoInstancia}
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/use-case-instance.png}
 \fonte{Autoria Própria (2024)}
@@ -191,7 +193,7 @@ O diagrama da \autoref{fig:casoDeUsoTemplate} apresenta o módulo de template de
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Diagrama de Caso de Uso: Template de Instância}
+\caption{Diagrama de caso de uso: Template de instância}
 \label{fig:casoDeUsoTemplate}
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/use-case-instance-template.png}
 \fonte{Autoria Própria (2024)}
@@ -201,7 +203,7 @@ No diagrama da \autoref{fig:casoDeUsoUsuario}, é possível notar que o atores q
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Diagrama de Caso de Uso: Usuário}
+\caption{Diagrama de caso de uso: Usuário}
 \label{fig:casoDeUsoUsuario}
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/use-case-user.png}
 \fonte{Autoria Própria (2024)}
@@ -211,13 +213,13 @@ No caso do diagrama da \autoref{fig:casoDeUsoDiversos}, são apresentados apenas
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Diagrama de Caso de Uso: Diversos}
+\caption{Diagrama de caso de uso: Diversos}
 \label{fig:casoDeUsoDiversos}
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/use-case-misc.png}
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-\subsection{Projeto de Arquitetura}
+\subsection{Projeto de arquitetura}
 \label{subsec:projetoDeArquitetura}
 % Organização dos componentes.
 
@@ -229,7 +231,7 @@ A figura \autoref{fig:diagramaC4ContextoDoSistema} apresenta o diagrama de conte
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Diagrama C4: Contexto do Sistema}
+\caption{Diagrama C4: Contexto do sistema}
 \label{fig:diagramaC4ContextoDoSistema}
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/c4-system-context.png}
 \fonte{Autoria Própria (2024)}
@@ -239,19 +241,19 @@ Com uma ideia bem definida de como o sistema interage com o ambiente externo, o 
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Diagrama C4: \textit{containers} do Sistema}
+\caption{Diagrama C4: \textit{Containers} do sistema}
 \label{fig:diagramaC4ConteineresDoSistema}
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/c4-container.png}
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
 A partir do diagrama de \textit{containers} do sistema, foi possível a estruturação interna de cada \textit{container} em componentes, que são as partes fundamentais para a implementação do sistema.
-Nessa etapa, foram criados dois diagramas de componentes, um para a aplicação de API e outro para o \textit{gateway} de conexão, que são as partes modeladas e implementadas por completo, enquanto os demais possuem apenas a definição de alto nível.
+Nessa etapa, foram criados dois diagramas de componentes, um para a aplicação de \gls{api} e outro para o \textit{gateway} de conexão, que são as partes modeladas e implementadas por completo, enquanto os demais possuem apenas a definição de alto nível.
 
-A \autoref{fig:diagramaC4ComponentesDaAPI} apresenta o diagrama de componentes da aplicação de API, que é responsável por orquestrar todas as operações do sistema que estão dispostas em quatro módulos de funcionalidades:
+A \autoref{fig:diagramaC4ComponentesDaAPI} apresenta o diagrama de componentes da aplicação de \gls{api}, que é responsável por orquestrar todas as operações do sistema que estão dispostas em quatro módulos de funcionalidades:
 
 \begin{itemize}
-    \item \textbf{Usuário}: Módulo responsável por gerenciar as informações e permisssões dos usuários do sistema.
+    \item \textbf{Usuário}: Módulo responsável por gerenciar as informações e permissões dos usuários do sistema.
 
     \item \textbf{Instância}: Módulo responsável por gerenciar as instâncias do sistema e as operações que podem ser realizadas sobre elas.
 
@@ -268,29 +270,29 @@ onde os padrões de arquitetura de código utilizados são apresentados.
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Diagrama C4: Componentes da Aplicação de API}
+\caption{Diagrama C4: Componentes da aplicação de \gls{api}}
 \label{fig:diagramaC4ComponentesDaAPI}
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/c4-component-api.png}
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-O gateway de conexão é o componente responsável por intermediar a conexão entre o cliente web e as instâncias de máquinas virtuais. O diagrama de componentes do gateway de conexão é apresentado na \autoref{fig:diagramaC4ComponentesDoGateway}.
+O \textit{gateway} de conexão é o componente responsável por intermediar a conexão entre o cliente \textit{web} e as instâncias de máquinas virtuais. O diagrama de componentes do \textit{gateway} de conexão é apresentado na \autoref{fig:diagramaC4ComponentesDoGateway}.
 
-No gateway de conexão, além do gerenciamento das conexões com as instâncias de máquinas virtuais, o processo de identificação de conexões ativas e ociosas é realizado. Isso é de suma importância para o fluxo do sistema, já que seria difícil identificar a ociosidade através de alertas sensíveis às métricas de consumo dos recursos das instâncias.
+No \textit{gateway} de conexão, além do gerenciamento das conexões com as instâncias de máquinas virtuais, o processo de identificação de conexões ativas e ociosas é realizado. Isso é de suma importância para o fluxo do sistema, já que seria difícil identificar a ociosidade através de alertas sensíveis às métricas de consumo dos recursos das instâncias.
 
-Esse elo do sistema foi projetado para ser escalável horizontalmente, isto é, caso a demanda de conexões aumente, é possível adicionar mais instâncias do gateway de conexão para atender a demanda, sem a necessidade de alterar a arquitetura do sistema. Esse processo de escalabilidade é transparente para o usuário e também não afeta a disponibilidade do sistema.
+Esse elo do sistema foi projetado para ser escalável horizontalmente, isto é, caso a demanda de conexões aumente, é possível adicionar mais instâncias do \textit{gateway} de conexão para atender a demanda, sem a necessidade de alterar a arquitetura do sistema. Esse processo de escalabilidade é transparente para o usuário e também não afeta a disponibilidade do sistema.
 
 Essa decisão foi tomada como uma medida de aprimoramento das perspectivas utilizadas no trabalho de \citet{edufirestick}, que é discutido na \autoref{sec:trabalhosRelacionados}. A escalabilidade horizontal é uma característica importante para sistemas que possuem uma demanda variável, como é o caso de sistemas de ensino e pesquisa, que podem ter picos de uso em determinados períodos do ano. Dessa forma o sistema pode "crescer" para atender a demanda e "encolher" quando a demanda diminuir para economizar custos.
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Diagrama C4: Componentes do Gateway de Conexão}
+\caption{Diagrama C4: Componentes do \textit{gateway} de conexão}
 \label{fig:diagramaC4ComponentesDoGateway}
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/c4-component-connection-gateway.png}
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-\section{Ferramentas e Tecnologias}
+\section{Ferramentas e tecnologias}
 \label{sec:ferramentasETecnologias}
 
 A \autoref{tab:ferramentasETecnologiasUtilizadas} apresenta uma lista de ferramentas, tecnologias e serviços utilizados na implementação do sistema. As versões utilizadas estão escritas de acordo com o padrão de versionamento semântico. \citep{semverdocs}
@@ -315,7 +317,7 @@ A \autoref{tab:ferramentasETecnologiasUtilizadas} apresenta uma lista de ferrame
 \\[-0.5\linha]
 \caption*{\nomefonte: Autoria própria (2024)} \\
 \endlastfoot%% Encerra rodapé da última página
-Node.js \citep{nodejsdocs} & \textsuperscript{$\wedge$}18.19.0 & Ambiente de execução de javascript utilizado em todos os serviços de backend \\
+Node.js \citep{nodejsdocs} & \textsuperscript{$\wedge$}18.19.0 & Ambiente de execução de javascript utilizado em todos os serviços de \textit{backend} \\
 
 \hline
 
@@ -323,7 +325,7 @@ ECMAScript \citep{ecmascriptdocs} & ES2020 & Especificação formal da linguagem
 
 \hline
 
-Typescript \citep{typescriptdocs} & {$\leq$}5.4.0 & Extensão do javascript que adiciona suporte para tipagem, utilizada na implementação de todos os serviços de backend e do cliente web do sistema \\
+Typescript \citep{typescriptdocs} & {$\leq$}5.4.0 & Extensão do javascript que adiciona suporte para tipagem, utilizada na implementação de todos os serviços de \textit{backend} e do cliente \textit{web} do sistema \\
 
 \hline
 
@@ -347,7 +349,7 @@ Markdown \citep{markdowndocs} & \gls{n/a} & Linguagem de marcação de texto uti
 
 \hline
 
-OpenAPI \citep{openapidocs} & 3.0.0 & Especificação para documentação de API. \\
+OpenAPI \citep{openapidocs} & 3.0.0 & Especificação para documentação de \gls{api}. \\
 
 \hline
 
@@ -359,7 +361,7 @@ Prettier \citep{prettierdocs} & \textsuperscript{$\wedge$}3.3.1 & Utilitário ut
 
 \hline
 
-Jest \citep{jestdocs} & \textsuperscript{$\wedge$}29.7.0 & Framework de teste para javascript \\
+Jest \citep{jestdocs} & \textsuperscript{$\wedge$}29.7.0 & \textit{Framework} de teste para javascript \\
 
 \hline
 
@@ -367,11 +369,11 @@ Eslint \citep{eslintdocs} & \textsuperscript{$\wedge$}8.56.0 & Utilitário de an
 
 \hline
 
-AWS CDK \citep{awscdkdocs} & 2.142.1 & Framework utilizado para definição dos componentes de infraestrutura como código \\
+AWS CDK \citep{awscdkdocs} & 2.142.1 & \textit{Framework} utilizado para definição dos componentes de infraestrutura como código \\
 
 \hline
 
-SST \citep{sstdocs} & 2.43.0 & Framework para construção de aplicações full-stack na AWS utilizando infraestrutura como código \\
+SST \citep{sstdocs} & 2.43.0 & \textit{Framework} para construção de aplicações \textit{full-stack} na \gls{aws} utilizando infraestrutura como código \\
 
 \hline
 
@@ -379,35 +381,35 @@ Docusaurus \citep{docusaurusdocs} & \textsuperscript{$\wedge$}3.4.0 & Gerador de
 
 \hline
 
-React \citep{reactdocs} & \textsuperscript{$\wedge$}18.0.0 & Biblioteca utilizada no desenvolvimento do cliente web do sistema \\
+React \citep{reactdocs} & \textsuperscript{$\wedge$}18.0.0 & Biblioteca utilizada no desenvolvimento do cliente \textit{web} do sistema \\
 
 \hline
 
-Stoplight Elements \citep{stoplightdocs} & \textsuperscript{$\wedge$}8.3.1 & Biblioteca utilizada para renderização da documentação da API. \\
+Stoplight Elements \citep{stoplightdocs} & \textsuperscript{$\wedge$}8.3.1 & Biblioteca utilizada para renderização da documentação da \gls{api}. \\
 
 \hline
 
-Docker \citep{dockerdocs} & 24.0.5 & Ferramenta utilizada para a criação do ambiente isolado do gateway de conexão \\
+Docker \citep{dockerdocs} & 24.0.5 & Ferramenta utilizada para a criação do ambiente isolado do \textit{gateway} de conexão \\
 
 \hline
 
-Chakra UI \citep{chakrauidocs} & \textsuperscript{$\wedge$}2.8.2 & Biblioteca de componentes de interface utilizada no cliente web. \\
+Chakra UI \citep{chakrauidocs} & \textsuperscript{$\wedge$}2.8.2 & Biblioteca de componentes de interface utilizada no cliente \textit{web}. \\
 
 \hline
 
-Apache Guacamole \citep{apacheguacamoledocs} & 1.5.3 & Utilizado para intermediar a conexão entre o cliente web e gateway de conexão. \\
+Apache Guacamole \citep{apacheguacamoledocs} & 1.5.3 & Utilizado para intermediar a conexão entre o cliente \textit{web} e \textit{gateway} de conexão. \\
 
 \hline
 
-Vite \citep{vitedocs} & \textsuperscript{$\wedge$}5.0.12 & Ferramenta responsável por gerenciar a implementação e o empacotamento do cliente web \\
+Vite \citep{vitedocs} & \textsuperscript{$\wedge$}5.0.12 & Ferramenta responsável por gerenciar a implementação e o empacotamento do cliente \textit{web} \\
 
 \hline
 
-MongoDB Atlas \citep{mongodbatlasdocs} & sdk \textsuperscript{$\wedge$}6.0.3 & Serviço de banco de dados não relacional utilizado para armazenar todos os dados do sistema. \\
+MongoDB Atlas \citep{mongodbatlasdocs} & \gls{sdk} \textsuperscript{$\wedge$}6.0.3 & Serviço de banco de dados não relacional utilizado para armazenar todos os dados do sistema. \\
 
 \hline
 
-AWS Amplify \citep{awsamplifydocs} & sdk \textsuperscript{$\wedge$}6.0.16 & Biblioteca com integrações facilitadas, uitilizada no cliente web para autenticação e conexão com AWS AppSync \\
+AWS Amplify \citep{awsamplifydocs} & \gls{sdk} \textsuperscript{$\wedge$}6.0.16 & Biblioteca com integrações facilitadas, uitilizada no cliente \textit{web} para autenticação e conexão com AWS AppSync \\
 
 \hline
 
@@ -415,75 +417,75 @@ AWS Lambda PowerTools \citep{awslambdapowertools} & \textsuperscript{$\wedge$}2.
 
 \hline
 
-AWS AppSync \citep{awsappsync} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a comunicação em tempo real entre os serviços de backend e o cliente web \\
+AWS AppSync \citep{awsappsync} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a comunicação em tempo real entre os serviços de \textit{backend} e o cliente \textit{web} \\
 
 \hline
 
-AWS Systems Manager \citep{awssystemsmanagerdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as configurações do sistema. \\
+AWS Systems Manager \citep{awssystemsmanagerdocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as configurações do sistema. \\
 
 \hline
 
-AWS Event Bridge \citep{awseventbridgedocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de eventos utilizado como barramento de comunicação entre os serviços de backend. Oferece também a funcionalidade de agendamento de eventos, utilizado no sistema de desligamento automático de instâncias ociosas. \\
+AWS Event Bridge \citep{awseventbridgedocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de eventos utilizado como barramento de comunicação entre os serviços de \textit{backend}. Oferece também a funcionalidade de agendamento de eventos, utilizado no sistema de desligamento automático de instâncias ociosas. \\
 
 \hline
 
-AWS CloudFormation \citep{awscloudformationdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar a definição dos componentes de infraestrutura como código \\
+AWS CloudFormation \citep{awscloudformationdocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar a definição dos componentes de infraestrutura como código \\
 
 \hline
 
-AWS Cognito \citep{awscognito} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de usuários e credenciais. Ele foi utilizado para gerenciar dados sensíveis, mantendo somente dados operacionais na integração com o banco de dados. \\
+AWS Cognito \citep{awscognito} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de usuários e credenciais. Ele foi utilizado para gerenciar dados sensíveis, mantendo somente dados operacionais na integração com o banco de dados. \\
 
 \hline
 
-AWS Service Catalog \citep{awsservicecatalogdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de modelos de IaC utilizado para o controle do ciclo de vida da instância e seus recursos dependentes \\
+AWS Service Catalog \citep{awsservicecatalogdocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço de gerenciamento de modelos de \gls{iac} utilizado para o controle do ciclo de vida da instância e seus recursos dependentes \\
 
 \hline
 
-AWS CloudWatch \citep{awscloudwatchdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de monitoramento utilizado para agregar os logs dos sistemas. \\
+AWS CloudWatch \citep{awscloudwatchdocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço de monitoramento utilizado para agregar os logs dos sistemas. \\
 
 \hline
 
-AWS Lambda \citep{awslambdadocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de computação serverless utilizado para executar o serviço de API e tratamento de eventos do sistema \\
+AWS Lambda \citep{awslambdadocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço de computação \textit{serverless} utilizado para executar o serviço de \gls{api} e tratamento de eventos do sistema \\
 
 \hline
 
-AWS Api Gateway \citep{awsapigatewaydocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço gerenciado para criação de APIs serverless. \\
+AWS Api Gateway \citep{awsapigatewaydocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço gerenciado para criação de \glspl{api} \textit{serverless}. \\
 
 \hline
 
-AWS Identity and Access Management \citep{awsiamdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serivço utilizado para delimitação de todas as permissões atreladas aos componentes de infraestrutura do sistema \\
+AWS Identity and Access Management \citep{awsiamdocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serivço utilizado para delimitação de todas as permissões atreladas aos componentes de infraestrutura do sistema \\
 
 \hline
 
-AWS S3 \citep{awss3docs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de armazenamento de objetos utilizado para servir o cliente web e armazenar todos os arquivos imutáveis do sistema \\
+AWS S3 \citep{awss3docs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço de armazenamento de objetos utilizado para servir o cliente \textit{web} e armazenar todos os arquivos imutáveis do sistema \\
 
 \hline
 
-AWS CloudFront \citep{awscloudfrontdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de distribuição de conteúdo utilizado como camada distribuída de cache para os serviços \\
+AWS CloudFront \citep{awscloudfrontdocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço de distribuição de conteúdo utilizado como camada distribuída de cache para os serviços \\
 
 \hline
 
-AWS Certificate Manager \citep{awscertificatemanagerdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviços utilizado para o gerenciamento dos certificados de domínio atrelados ao cliente web e à documentação \\
+AWS Certificate Manager \citep{awscertificatemanagerdocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviços utilizado para o gerenciamento dos certificados de domínio atrelados ao cliente \textit{web} e à documentação \\
 
 \hline
 
-AWS Elastic Load Balancing \citep{awselasticloadbalancing} & sdk \textsuperscript{$\wedge$}3.592.0 & Balanceador de carga gerenciado utilizado para gerenciar as conexões entre o cliente web e o \textit{cluster} de \textit{containers} rodando o \textit{Gateway} de conexão. \\
+AWS Elastic Load Balancing \citep{awselasticloadbalancing} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Balanceador de carga gerenciado utilizado para gerenciar as conexões entre o cliente \textit{web} e o \textit{cluster} de \textit{containers} rodando o \textit{Gateway} de conexão. \\
 
 \hline
 
-AWS Elastic Container Service \citep{awsecsdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a implantação do \textit{gateway} de conexão, no formato de cluster de \textit{containers} com escalabilidade previsível \\
+AWS Elastic Container Service \citep{awsecsdocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para a implantação do \textit{gateway} de conexão, no formato de \textit{cluster} de \textit{containers} com escalabilidade previsível \\
 
 \hline
 
-AWS Elastic Container Registry \citep{awsecrdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as imagens de \textit{container} do \textit{gateway} de conexão \\
+AWS Elastic Container Registry \citep{awsecrdocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço utilizado para armazenar as imagens de \textit{container} do \textit{gateway} de conexão \\
 
 \hline
 
-AWS Simple Notification Service \citep{awssnsdocs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço de Publisher-Subscriber utilizado para a transacionar as mensagens emitidas na criação de instâncias \\
+AWS Simple Notification Service \citep{awssnsdocs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço de Publisher-Subscriber utilizado para a transacionar as mensagens emitidas na criação de instâncias \\
 
 \hline
 
-AWS EC2 \citep{awsec2docs} & sdk \textsuperscript{$\wedge$}3.592.0 & Serviço central utilizado para gerenciar as instâncias, regras de conexão e as imagens de sistema operacional \\
+AWS EC2 \citep{awsec2docs} & \gls{sdk} \textsuperscript{$\wedge$}3.592.0 & Serviço central utilizado para gerenciar as instâncias, regras de conexão e as imagens de sistema operacional \\
 
 \hline
 
@@ -493,24 +495,24 @@ O ecossistema de tecnologias utilizado foi escolhido a partir de alguns critéri
 
 Visto que a \gls{utfpr} já possui integração com a \gls{aws}, a escolha da provedor de nuvem pública foi trivial, já que a infraestrutura de serviços da \gls{aws} é também utilizada em projetos a nível empresarial e acadêmico a nível global, oferecendo um portfólio extenso de serviços que atendem as necessidades do sistema.
 
-O SST foi escolhido como um facilitador tanto para o fluxo de desenvolvimento local quanto para a definição de todos os componentes de arquitetura como código. A ferramenta disponibiliza componentes de alto nível que já implementam as melhores práticas de segurança e controle de custos. Além disso, o SST estabelece uma conexão entre os serviços da \gls{aws}, como as funções Lambda, e o código escrito localmente, fazendo com que seja possível testar e depurar o código no seu ambiente próprio de implantação.
+O SST foi escolhido como um facilitador tanto para o fluxo de desenvolvimento local quanto para a definição de todos os componentes de arquitetura como código. A ferramenta disponibiliza componentes de alto nível que já implementam as melhores práticas de segurança e controle de custos. Além disso, o SST estabelece uma conexão entre os serviços da \gls{aws}, como as funções Lambda e o código escrito localmente, fazendo com que seja possível testar e depurar o código no seu ambiente próprio de implantação.
 
-O \gls{guacamole} foi escolhido como intermediador da conexão entre o cliente web e as instâncias de máquinas virtuais, porque trata-se de uma ferramenta de código aberto bem estabelecida que fornece os componentes necessários para a conexão remota a partir de um navegador de internet. Além disso, ele é compatível com os protocolos de conexão remota utilizados no trabalho. No contexto do desenvolvimento do sistema, o \gls{guacamole} foi utilizado de forma customizada. Apenas \textit{daemon} que implementa a conexão remota, o componente web que renderiza a interface de conexão e o protocolo de comunicação em si foram utilizados.
+O \gls{guacamole} foi escolhido como intermediador da conexão entre o cliente \textit{web} e as instâncias de máquinas virtuais, porque trata-se de uma ferramenta de código aberto bem estabelecida que fornece os componentes necessários para a conexão remota a partir de um navegador de internet. Além disso, ele é compatível com os protocolos de conexão remota utilizados no trabalho. No contexto do desenvolvimento do sistema, o \gls{guacamole} foi utilizado de forma customizada. Apenas o \textit{daemon} que implementa a conexão remota, o componente \textit{web} que renderiza a interface de conexão e o protocolo de comunicação em si foram utilizados.
 
-Essa customização foi necessária para que o sistema pudesse controlar todos os aspectos de interface e conexão, caso contrário, seria necessário utilizar a aplicação web já existente do \gls{guacamole}. Se esse fosse o caso, a customização do sistema dependeria de um conjunto de regras de negócio implementadas diretamente no \gls{guacamole}, o que dificultaria a manutenção e a evolução do sistema.
+Essa customização foi necessária para que o sistema pudesse controlar todos os aspectos de interface e conexão, caso contrário, seria necessário utilizar a aplicação \textit{web} já existente do \gls{guacamole}. Se esse fosse o caso, a customização do sistema dependeria de um conjunto de regras de negócio implementadas diretamente no \gls{guacamole}, o que dificultaria a manutenção e a evolução do sistema.
 
-\section{Modelo de Dados}
+\section{Modelo de dados}
 \label{sec:modeloDeDados}
 
 Aqui foi realizado o projeto do modelo de dados do sistema, que é a representação das entidades e relacionamentos centrais do sistema. O modelo de dados foi construído a partir dos requisitos funcionais do sistema, casos de uso e desdobramentos da arquitetura do sistema, de forma a garantir que todas as informações necessárias para o funcionamento do sistema estejam presentes. 
 
-No contexto de sistemas de software altamente dependentes da infraestrutura de nuvem, o modelo de dados precisa levar em consideração as características de funcionamento e dados disponibilizados pelos serviços de nuvem, como a \gls{aws}. Esse é o motivo pelo qual essa seção é apresentada após a discussão sobre a arquitetura do sistema e decisão das tecnologias utilizadas.
+No contexto de sistemas de \textit{software} altamente dependentes da infraestrutura de nuvem, o modelo de dados precisa levar em consideração as características de funcionamento e dados disponibilizados pelos serviços de nuvem, como a \gls{aws}. Esse é o motivo pelo qual essa seção é apresentada após a discussão sobre a arquitetura do sistema e decisão das tecnologias utilizadas.
 
 O modelo de dados foi elaborado a partir da especificação das entidades funcionais do sistema. A \autoref{fig:diagramaDeClasses} apresenta o diagrama de classes, onde cada classe é uma entidade funcional do sistema, exceto pelas interfaces representadas que apenas indicam modelos de dados mais complexos.
 
 \begin{figure}[H]
     %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Diagrama de Classes do Sistema}
+\caption{Diagrama de classes do sistema}
 \label{fig:diagramaDeClasses}
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/class-diagram.png}
 \fonte{Autoria Própria (2024)}
@@ -526,7 +528,7 @@ Essa seção apresenta os aspectos pertinentes ao processo de desenvolvimento do
 
 O repositório de código foi organizado através de uma estrutura de \textit{monorepo}, onde o código fonte de todos os serviços e componentes de infraestrutura como código são versionados dentro de um único repositório de código fonte. 
 
-A utilização dessa abordagem com o uso do framework SST facilitou o desenvolvimento integrado de todas as partes do sistema desde o início, diminuindo as chances de problema no processo de integração entre partes separadas. Além disso, foi possível desenvolver conjuntos bem definidos de funcionalidades em pacotes envolvendo interfaces de usuário, regras de negócio e componentes de infraestrutura.
+A utilização dessa abordagem com o uso do \textit{framework} SST facilitou o desenvolvimento integrado de todas as partes do sistema desde o início, diminuindo as chances de problema no processo de integração entre partes separadas. Além disso, foi possível desenvolver conjuntos bem definidos de funcionalidades em pacotes envolvendo interfaces de usuário, regras de negócio e componentes de infraestrutura.
 
 A estrutura de alto nível do repositório de código foi organizada da seguinte forma:
 
@@ -544,13 +546,13 @@ Implementação do fluxo de integração contínua
 Implementação dos serviços do sistema
 \end{minipage}.
 .3 \textbf{api} \ldots{} \begin{minipage}[t]{\textwidth}
-Aplicação de API
+Aplicação de \gls{api}
 \end{minipage}.
 .3 \textbf{app-sync-api} \ldots{} \begin{minipage}[t]{\textwidth}
 Serviço de Mensagens em Tempo Real
 \end{minipage}.
 .3 \textbf{client} \ldots{} \begin{minipage}[t]{\textwidth}
-Cliente Web 
+Cliente \textit{web} 
 \end{minipage}.
 .3 \textbf{connection-gateway} \ldots{} \begin{minipage}[t]{\textwidth}
 Gateway de Conexão
@@ -565,7 +567,7 @@ Definição de infraestrutura como código
 Configurações de implantação
 \end{minipage}.
 .3 \textbf{products} \ldots{} \begin{minipage}[t]{0.65\textwidth}
-Base de stacks para cada sistema operacional
+Base de \textit{stacks} para cada sistema operacional
 \end{minipage}.
 .3 \textbf{scripts} \ldots{} \begin{minipage}[t]{0.7\textwidth}
 Scripts de preparação para cada sistema operacional
@@ -577,7 +579,7 @@ Exemplo das variáveis de ambiente
 Gerenciamento das dependências compartilhadas e de infraestrutura
 \end{minipage}.
 .2 \textbf{sst.config.ts} \ldots{} \begin{minipage}[t]{0.6\textwidth}
-Configuração do framework SST e injeção das stacks de infraestrutura
+Configuração do \textit{framework} SST e injeção das \textit{stacks} de infraestrutura
 \end{minipage}.
 }
 
@@ -585,7 +587,7 @@ Configuração do framework SST e injeção das stacks de infraestrutura
 
 A cada \textit{commit} no repositório, um fluxo de integração contínua foi acionado executando uma sequência de operações que auxiliaram na validação do código entregue. O fluxo de integração contínua foi implementado utilizando o \textit{GitHub Actions}, que é uma ferramenta de automação de \textit{workflows} disponibilizada pelo GitHub. O \autoref{cap:apendiceb} apresenta o código do fluxo de integração contínua.
 
-\subsection{Banco de Dados}
+\subsection{Banco de dados}
 \label{subsec:bancoDeDados}
 
 O banco de dados utilizado no sistema foi o \textit{MongoDB Atlas}, que é um serviço de banco de dados não relacional orientado a documentos, especificado também na \autoref{tab:ferramentasETecnologiasUtilizadas}.
@@ -596,48 +598,54 @@ Esse tipo de banco de dados não necessita de um configuração prévia do esque
 
 Não foram adicionados índices adicionais ao banco de dados. O índice padrão do \textit{mongodb}, que faz do campo \textit{id} um valor único e incremental, foi suficiente para garantir a performance das operações de leitura e escrita.
 
-\subsection{Serviço de Mensagens em Tempo Real}
+\subsection{Serviço de mensagens em tempo real}
 \label{subsec:servicoDeMensagensEmTempoReal}
 
-Este serviço foi implementado utilizando o \textit{AWS AppSync}, que é um serviço de comunicação em tempo real da \gls{aws} que permite a criação de APIs GraphQL com suporte para padrões de comunicação em tempo real executando sobre o protocolo \textit{WebSocket}.
+Este serviço foi implementado utilizando o \textit{AWS AppSync}, que é um serviço de comunicação em tempo real da \gls{aws} que permite a criação de \glspl{api} GraphQL com suporte para padrões de comunicação em tempo real executando sobre o protocolo \textit{WebSocket}.
 
 A implementação do serviço foi realizada em três frentes. A primeira foi a definição do esquema \textit{GraphQL} com as operação de \textit{Subscription} que são utilizadas pelos clientes para se inscreverem em canais de comunicação específicos, além dos \textit{resolvers} que são funções escritas na linguagem \textit{VTL} e que foram utilizadas para o processo de autorização das requisições. A segunda etapa foi a implementação das interfaces utilizada pelo servidor para enviar as mensagens para os clientes e pelos clientes para se inscreverem nos canais de comunicação. A terceira e última etapa consistiu na implementação dos recursos de infraestrutura necessários para o funcionamento do serviço, como a definição de permissões, conexão do esquema e dos \textit{resolvers}.
 
 Para garantir o isolamento dos canais de comunicação e evitar que usuários mal intencionados possam acessar informações de outros usuários, os usuários foram habilitados de realizar a inscrição apenas no canal com o seu próprio identificador. Esse identificador é gerado no momento da criação da conta do usuário e é utilizado para garantir a unicidade do canal de comunicação.
 
-A implementação da interface feita no cliente web foi intermediada pela da biblioteca \textit{AWS Amplify}, que é uma biblioteca de integração com os serviços da \gls{aws} para aplicações web e móveis.
+A implementação da interface feita no cliente \textit{web} foi intermediada pela da biblioteca \textit{AWS Amplify}, que é uma biblioteca de integração com os serviços da \gls{aws} para aplicações \textit{web} e móveis.
 
-\subsection{Barramento de Eventos}
+\subsection{Barramento de eventos}
 \label{subsec:barramentoDeEventos}
 
-O barramento de eventos foi implementado utilizando o \textit{AWS Event Bridge}, que é um serviço de gerenciamento de eventos da \gls{aws} que permite a comunicação entre os serviços de forma assíncrona e escalável. A implementação é baseada na criação de regras de eventos que são acionadas quando um evento específico é publicado no barramento. Ele foi escolhido para ser o principal meio de comunicação entre os serviços de backend, já que ele oferece integração com diversos serviços da \gls{aws} e também funcionalidade de agendamento de eventos, que foi utilizada no sistema de desligamento automático de instâncias ociosas.
+O barramento de eventos foi implementado utilizando o \textit{AWS Event Bridge}, que é um serviço de gerenciamento de eventos da \gls{aws} que permite a comunicação entre os serviços de forma assíncrona e escalável. A implementação é baseada na criação de regras de eventos que são acionadas quando um evento específico é publicado no barramento. Ele foi escolhido para ser o principal meio de comunicação entre os serviços de \textit{backend}, já que ele oferece integração com diversos serviços da \gls{aws} e também funcionalidade de agendamento de eventos, que foi utilizada no sistema de desligamento automático de instâncias ociosas.
 
-A implementação do barramento de eventos foi realizada em duas frentes. A primeira foi a definição das regras de eventos que são acionadas quando um evento específico é publicado no barramento. A segunda etapa foi a implementação dos recursos de infraestrutura necessários para o funcionamento do serviço, juntamente com a conexão entre os serviços de backend e o barramento de eventos.
+A implementação do barramento de eventos foi realizada em duas frentes. A primeira foi a definição das regras de eventos que são acionadas quando um evento específico é publicado no barramento. A segunda etapa foi a implementação dos recursos de infraestrutura necessários para o funcionamento do serviço, juntamente com a conexão entre os serviços de \textit{backend} e o barramento de eventos.
 
-Para publicar eventos no barramento, os serviços de \textit{backend} utilizaram o prório \textit{SDK} da \gls{aws}.
+Para publicar eventos no barramento, os serviços de \textit{backend} utilizaram o próprio \gls{sdk} da \gls{aws}.
 
-\subsection{Gateway de Conexão}
+\subsection{Gateway de conexão}
 \label{subsec:gatewayDeConexao}
 
-Esse serviço foi modelado para intermediar a conexão entre o cliente web e as instâncias de máquinas virtuais, e sua implementação foi baseada na estrutura de um servidor \textit{websocket}, onde as conexão são persistidas e mantidas abertas para permitir a comunicação.
+Esse serviço foi modelado para intermediar a conexão entre o cliente \textit{web} e as instâncias de máquinas virtuais, e sua implementação foi baseada na estrutura de um servidor \textit{websocket}, onde as conexão são persistidas e mantidas abertas para permitir a comunicação.
 
 A implementação do código foi baseada no diagrama da \autoref{fig:diagramaC4ComponentesDoGateway}, onde o serviço foi dividido em cinco classes de responsabilidades específicas.
 
-A primeira classe, \textit{Server} ficou responsável por gerenciar o ciclo de vida do servidor \textit{websocket}, aceitando novas conexões e mantendo as conexões ativas. A segunda classe, \textit{ClientConnection} ficou responsável por implementar as operações pertinentes a troca de dados entre o cliente que iniciou a conexão e a classe \textit{guacdClient} que é a terceira classe, responsável especificamente por interagir com o binário \textit{guacd} do \gls{guacamole}, que é nativamente implementado na linguagem C. A quarta classe, \textit{Crypt} ficou responsável por implementar as operações de descriptografia do token de conexão, que é gerado pela aplicação de API e encaminhado através do cliente web. A quinta e última classe é o \textit{EventPublisher}, que é utilizado pela classe \textit{Server} para publicar eventos de conexão e desconexão no barramento de eventos. Eventos estes que são consumidos por funções \textit{Lambda} dentro do domínio da aplicação de API que agendam o desligamento automático de instâncias ociosas.
+A primeira classe, \textit{Server} ficou responsável por gerenciar o ciclo de vida do servidor \textit{websocket}, aceitando novas conexões e mantendo as conexões ativas. A segunda classe, \textit{ClientConnection} ficou responsável por implementar as operações pertinentes a troca de dados entre o cliente que iniciou a conexão e a classe \textit{guacdClient} que é a terceira classe, responsável especificamente por interagir com o binário \textit{guacd} do \gls{guacamole}, que é nativamente implementado na linguagem C. A quarta classe, \textit{Crypt} ficou responsável por implementar as operações de descriptografia do \textit{token} de conexão, que é gerado pela aplicação de \gls{api} e encaminhado através do cliente \textit{web}. A quinta e última classe é o \textit{EventPublisher}, que é utilizado pela classe \textit{Server} para publicar eventos de conexão e desconexão no barramento de eventos. Eventos estes que são consumidos por funções \textit{Lambda} dentro do domínio da aplicação de \gls{api} que agendam o desligamento automático de instâncias ociosas.
 
-O algoritmo de criptografia utilizado tanto pela classe \textit{Crypt} para descriptografar o token de conexão, quanto pela aplicação de API para criptografar o token de conexão, foi o algoritmo de criptografia simétrica \textit{AES-256}. Esse algoritmo foi utilizado em \textit{Cipher Block Chaining (CBC)}, que é um modo de funcionamento que evita que padrões repetidos no texto claro sejam visíveis no texto cifrado.
+O algoritmo de criptografia utilizado tanto pela classe \textit{Crypt} para descriptografar o \textit{token} de conexão, quanto pela aplicação de \gls{api} para criptografar o \textit{token} de conexão, foi o algoritmo de criptografia simétrica \textit{AES-256}. Esse algoritmo foi utilizado em \textit{Cipher Block Chaining (CBC)}, que é um modo de funcionamento que evita que padrões repetidos no texto claro sejam visíveis no texto cifrado.
 
-Como o \textit{guacd}, binário do \gls{guacamole}, precisa ser executado no mesmo ambiente que as classes do serviços, foi necessário a criação de um ambiente completo para a execução do serviço, através de um \textit{container} \textit{Docker}. O container utilizou a imagem oficial fornecida pelo \gls{guacamole} somente com o binário, como também a imagem oficial do \textit{Node.js} para a execução do código do serviço, dessa forma foi possível garantir que o serviço se comportaria da mesma maneira em qualquer ambiente. Quando o \textit{container} é iniciado, a ferramenta \textit{supervisord} gerencia a execução dos processos do \textit{guacd} e do serviço, permitindo o controle e monitoramento dos processos através de um único ponto de entrada.
+Como o \textit{guacd}, binário do \gls{guacamole}, precisa ser executado no mesmo ambiente que as classes do serviços, foi necessário a criação de um ambiente completo para a execução do serviço, através de um \textit{container} \textit{Docker}. O \textit{container} utilizou a imagem oficial fornecida pelo \gls{guacamole} somente com o binário, como também a imagem oficial do \textit{Node.js} para a execução do código do serviço, dessa forma foi possível garantir que o serviço se comportaria da mesma maneira em qualquer ambiente. Quando o \textit{container} é iniciado, a ferramenta \textit{supervisord} gerencia a execução dos processos do \textit{guacd} e do serviço, permitindo o controle e monitoramento dos processos através de um único ponto de entrada.
 
-\subsection{Aplicação de API}
+\subsection{Aplicação de \gls{api}}
 \label{subsec:aplicacaoDeAPI}
 
-Esse serviço é o ponto central de comunicação entre o cliente web e os demais serviços de backend. 
+Esse serviço é o ponto central de comunicação entre o cliente \textit{web} e os demais serviços de \textit{backend}. 
 Ele foi implementado utilizando \textit{typescript} e \textit{Node.js} e padrões de arquitetura de código e de projeto para que fosse possível expandir o sistema de maneira incremental, sem que a complexidade do código aumentasse de forma descontrolada.
 
 Para isso, o padrão de arquitetura de código \textit{Arquitetura Hexagonal}, conhecida também como \textit{Ports and Adapters}, foi utilizado. Esse padrão de arquitetura de código é baseado na separação das responsabilidades do código em camadas, onde a camada de aplicação é o núcleo do sistema e as camadas de infraestrutura e de interface são adaptadores que permitem a comunicação com o núcleo. Além disso, essa arquitetura permitiu que o conceito de inversão de dependência fosse aplicado, criando uma separação clara entre as regras de negócio e a implementação dos serviços.
 
+
 A estrutura do serviço foi organizada da seguinte forma:
+
+\hfill\break
+\hfill\break
+\hfill\break
+\hfill\break
 
 \dirtree{%
 .1 /packages/api.
@@ -677,7 +685,7 @@ Exemplo de implementação do \textit{port} de autenticação utilizando lógica
 Camada de interfaces, que utiliza todas as outras camadas para implementar os pontos de acesso do sistema
 \end{minipage}.
 .3 api \ldots{} \begin{minipage}[t]{0.8\textwidth}
-Implementação de todos os endpoits da API, compatíveis para serem executados em funções \textit{Lambda}
+Implementação de todos os endpoits da \gls{api}, compatíveis para serem executados em funções \textit{Lambda}
 \end{minipage}.
 .3 events \ldots{} \begin{minipage}[t]{0.7\textwidth}
 Implementação dos pontos de entrada que consomem os eventos do barramento de eventos
@@ -687,25 +695,25 @@ Implementação de pontos de entrada que realizam operações assíncronas, como
 \end{minipage}.
 }
 
-\subsection{Cliente Web}
+\subsection{Cliente \textit{web}}
 \label{subsec:clienteWeb}
 
 O cliente \textit{web} foi implementado utilizando \textit{typescript} e \textit{React} como a base tecnológica principal. Para a construção da interface a biblioteca de componentes \textit{Chakra UI} foi utilizada, pois ela oferece uma série de componentes customizáveis que implementam boas práticas de acessibilidade e permitem um controle sobre a apresentação dos componentes em diferentes formatos de tela.
 
-As páginas e contexto do cliente \textit{web} foram estruturados em componentes reutilizáveis, que são utilizados em diferentes partes do sistema. Bem como a camada que lida com a troca de dados com a aplicação de API, que foi implementada utilizando a biblioteca \textit{ReactQuery}, que é uma biblioteca de gerenciamento de estado que fornece uma abstração sobre a chamadas dos \textit{endpoints} da API, permitindo o cache local com tempo de expiração pré-definido e também o consumo dos recursos da API de forma equilibrada, evitando requisições redundantes ou excessivas.
+As páginas e contexto do cliente \textit{web} foram estruturados em componentes reutilizáveis, que são utilizados em diferentes partes do sistema. Bem como a camada que lida com a troca de dados com a aplicação de \gls{api}, que foi implementada utilizando a biblioteca \textit{ReactQuery}, que é uma biblioteca de gerenciamento de estado que fornece uma abstração sobre a chamadas dos \textit{endpoints} da \gls{api}, permitindo o cache local com tempo de expiração pré-definido e também o consumo dos recursos da \gls{api} de forma equilibrada, evitando requisições redundantes ou excessivas.
 
-O desenvolvimento levou em consideração todos os casos de uso, requisitos de sistema e perspectivas de modelagem para proporcionar uma experiência de usuário simplificada e intuitiva. Embora alguns aspectos técnicos sejam difíceis de serem apresentados através de abstrações simplificadas, como é o caso dos tipos de hardware de instância e pontos relacionados ao sistema operacional das instâncias, foi possível delegar a responsabilidade do mínimo de conhecimento técnico aos usuários com cargo de \gls{uadm} no sistema.
+O desenvolvimento levou em consideração todos os casos de uso, requisitos de sistema e perspectivas de modelagem para proporcionar uma experiência de usuário simplificada e intuitiva. Embora alguns aspectos técnicos sejam difíceis de serem apresentados através de abstrações simplificadas, como é o caso dos tipos de \textit{hardware} de instância e pontos relacionados ao sistema operacional das instâncias, foi possível delegar a responsabilidade do mínimo de conhecimento técnico aos usuários com papel de \gls{uadm} no sistema.
 
 A interface desenvolvida e os fluxos que o usuário pode realizar dentro da Aplicação \textit{Web} serão apresentados no \autoref{cap:resultados}.
 
 \subsection{Documentação}
 \label{subsec:documentacao}
 
-A documentação foi desenvolvida utilizando o \textit{Docusaurus}, que é um gerador de documentação em formato de site estático. Com ele foi possível escrever a documentação em formato de \textit{Markdown} com suporte a componentes de \textit{React}, a mesma tecnologia utilizada no cliente web, para então gerar um site estático com a documentação do sistema.
+A documentação foi desenvolvida utilizando o \textit{Docusaurus}, que é um gerador de documentação em formato de site estático. Com ele foi possível escrever a documentação em formato de \textit{Markdown} com suporte a componentes de \textit{React}, a mesma tecnologia utilizada no cliente \textit{web}, para então gerar um site estático com a documentação do sistema.
 
 Ao utilizar essa ferramenta, o processo de documentação ficou focado na produção dos conteúdos de ajuda ao usuário e também na documentação técnica do sistema, sem a preocupação da estrutura do sistema de documentação, já que é uma parte acoplada ao sistema que não precisa de novas funcionalidades, precisa apenas de complementos textuais.
 
-Para que a documentação das rotas de \textit{api} pudessem ser listadas de forma automática, foi utilizado o \textit{Stoplight Elements}, que é uma biblioteca que permite a renderização de documentação de API em formato de componente \textit{React} a partir de um arquivo de especificação \textit{OpenAPI} também gerado automaticamente dentro do processo de sintetização da stack da Aplicação de API, onde as rotas são definidas.
+Para que a documentação das rotas de \textit{api} pudessem ser listadas de forma automática, foi utilizado o \textit{Stoplight Elements}, que é uma biblioteca que permite a renderização de documentação de \gls{api} em formato de componente \textit{React} a partir de um arquivo de especificação \textit{OpenAPI} também gerado automaticamente dentro do processo de sintetização da \textit{stacks} da aplicação de \gls{api}, onde as rotas são definidas.
 
 A \autoref{fig:docsintroduction} apresenta a página inicial da documentação do sistema e a \autoref{fig:docsapi} apresenta um exemplo de rota documentada.
 
@@ -719,20 +727,20 @@ A \autoref{fig:docsintroduction} apresenta a página inicial da documentação d
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
-\caption{Documentação da rota de API: Listar Instâncias}
+\caption{Documentação da rota de \gls{api}: Listar instâncias}
 \label{fig:docsapi}
 \includegraphics[width=\textwidth]{capitulos/2-metodologia/files/docs-api.png}
 \fonte{Autoria Própria (2024)}
 \end{figure}
 
-\subsection{Testes Automatizados}
+\subsection{Testes automatizados}
 \label{subsec:testesAutomatizados}
 
 Testes exaustivos não garantem a ausência de falhas, mas podem reduzir a probabilidade de falhas críticas. \citep{pressman2016}
 
 Os testes do sistema foram realizados de duas formas, a primeira através de testes unitários automatizados e a segunda através da execução manual de um teste \textit{end-to-end} percorrendo os caminhos críticos da aplicação.
 
-Os testes unitários foram implementados através do framework \textit{Jest} a fim validar de forma satisfatória todos os casos de uso dos serviços de backend. Como visto anteriormente, a estrutura do projeto já foi planejada para facilitar a escrita de testes utilizando \glspl{adapter} implementados especificamente para reproduzir o comportamento dos serviços reais da camada de infraestrutura.
+Os testes unitários foram implementados através do \textit{framework} \textit{Jest} a fim validar de forma satisfatória todos os casos de uso dos serviços de \textit{backend}. Como visto anteriormente, a estrutura do projeto já foi planejada para facilitar a escrita de testes utilizando \glspl{adapter} implementados especificamente para reproduzir o comportamento dos serviços reais da camada de infraestrutura.
 
 A seguir os testes unitários dos casos de usos mais importantes implementados serão listados, com suas condições iniciais e resultados esperados. O \autoref{cap:apendicea} apresenta o relatório de cobertura dos testes por arquivo com os resultados obtidos.
 
@@ -754,7 +762,7 @@ Quando a instância indicada existe e pertence a um usuário & Deve desligar a i
 \fonte{Autoria própria (2024)}%% Fonte
 \end{table}
 
-Os casos de teste da \autoref{tab:testeDesligarInstanciaOciosa} são importantes para garantir que quando o agendamento para desligamento é acionado, a instância de fato será desligada, evitando assim que recursos sejam desperdiçados e que o usuário consiga acessar a instância de outro local diferente do cliente web do sistema.
+Os casos de teste da \autoref{tab:testeDesligarInstanciaOciosa} são importantes para garantir que quando o agendamento para desligamento é acionado, a instância de fato será desligada, evitando assim que recursos sejam desperdiçados e que o usuário consiga acessar a instância de outro local diferente do cliente \textit{web} do sistema.
 
 
 \begin{table}[h]
@@ -770,7 +778,7 @@ Quando o usuário não tem permissão para deletar a instância & Deve retornar 
 
 Quando a instância indicada não existe & Não retornar um erro de instância não encontrada \\ \hline
 
-Quando o cargo do usuário não é administrador e a instância pertence a outro usuário & Deve retornar um erro de permissão \\ \hline
+Quando o papel do usuário não é administrador e a instância pertence a outro usuário & Deve retornar um erro de permissão \\ \hline
 
 Quando o usuário tem permissão para deletar a instância & Deve deletar a instância e todos os recursos associados \\
 
@@ -830,15 +838,15 @@ Quando o usuário não é encontrado no sistema & Deve retornar um erro de usuá
 
 Quando o template de instância indicado não existe & Deve retornar um erro de template não encontrado \\ \hline
 
-Quando o tipo de hardware indicado não existe & Deve retornar um erro de tipo de hardware não encontrado \\ \hline
+Quando o tipo de \textit{hardware} indicado não existe & Deve retornar um erro de tipo de \textit{hardware} não encontrado \\ \hline
 
 Quando a imagem de sistema operacional indicada não existe & Deve retornar um erro de imagem não encontrada \\ \hline
 
-Quando o cargo do usuário não é administrador e o dono indicado é diferente do usuário & Deve retornar um erro de permissão \\ \hline
+Quando o papel do usuário não é administrador e o dono indicado é diferente do usuário & Deve retornar um erro de permissão \\ \hline
 
 Quando o usuário não é administrador e o limite de instâncias do usuário foi atingido & Deve retornar um erro de violação do caso de uso \\ \hline
 
-Quando o usuário não é administrador e o tipo de hardware indicado não é permitido para o usuário & Deve retornar um erro de violação do caso de uso \\ \hline
+Quando o usuário não é administrador e o tipo de \textit{hardware} indicado não é permitido para o usuário & Deve retornar um erro de violação do caso de uso \\ \hline
 
 Quando o usuário não é administrador e a opção de hibernação não é permitida para o usuário & Deve retornar um erro de violação do caso de uso \\ \hline
 
@@ -849,7 +857,7 @@ Quando o usuário tem permissão para criar a instância & Deve criar a instânc
 \fonte{Autoria própria (2024)}%% Fonte
 \end{table}
 
-Os testes da \autoref{tab:testeCriarInstancia} são importantes para garantir que a criação de instâncias seja feita de forma segura e controlada, evitando que usuários mal intencionados possam criar instâncias sem permissão ou que usuários comuns possam criar instâncias com configurações que não são permitidas para o seu cargo.
+Os testes da \autoref{tab:testeCriarInstancia} são importantes para garantir que a criação de instâncias seja feita de forma segura e controlada, evitando que usuários mal intencionados possam criar instâncias sem permissão ou que usuários comuns possam criar instâncias com configurações que não são permitidas para o seu papel de usuário.
 
 \begin{table}[h]
 \caption{Testes unitários do caso de uso: Notificar mudança de estado de instância}
@@ -873,7 +881,7 @@ Quando a instância recebe qualquer outro estado & Deve notificar o usuário don
 \fonte{Autoria própria (2024)}%% Fonte
 \end{table}
 
-Os testes da \autoref{tab:testeNotificarMudancaEstadoInstancia} são importantes para garantir que o sistema notifique os usuários sobre as mudanças de estado das instâncias, permitindo a atualização da interface do cliente web em tempo real evitando que o usuário tenha que recarregar a página para visualizar as mudanças.
+Os testes da \autoref{tab:testeNotificarMudancaEstadoInstancia} são importantes para garantir que o sistema notifique os usuários sobre as mudanças de estado das instâncias, permitindo a atualização da interface do cliente \textit{web} em tempo real evitando que o usuário tenha que recarregar a página para visualizar as mudanças.
 
 \begin{table}[h]
 \caption{Testes unitários do caso de uso: Criar template de instância a partir de instância}
@@ -914,21 +922,21 @@ Quando já existe um usuário no banco de dados com o \textit{username} recebido
 
 Quando não existir um registro no banco de dados com o \textit{username} recebido na entrada & Deve criar o usuário e retornar as informações do usuário \\
 
-Quando o tipo de hardware de instância padrão indicado não existe & Deve retornar um erro interno \\
+Quando o tipo de \textit{hardware} de instância padrão indicado não existe & Deve retornar um erro interno \\
 
 \bottomrule
 \end{tabularx}
 \fonte{Autoria própria (2024)}%% Fonte
 \end{table}
 
-Os testes da \autoref{tab:testecadastrarusuario} validam se a sincronia entre o \textit{AWS Congito} e o banco de dados do sistema prevê casos de borda para que não haja duplicidade de usuários no sistema e os mesmo possam ser criados de forma controlada, tanto através do cliente web, quanto através do \textit{console} ou \textit{cli} da AWS.
+Os testes da \autoref{tab:testecadastrarusuario} validam se a sincronia entre o \textit{AWS Congito} e o banco de dados do sistema prevê casos de borda para que não haja duplicidade de usuários no sistema e os mesmo possam ser criados de forma controlada, tanto através do cliente \textit{web}, quanto através do \textit{console} ou \textit{cli} da \gls{aws}.
 
 \section{Implanta\c{c}\~ao do sistema}
 \label{sec:implantacaoDoSistema}
 
 Essa seção descreve o processo de implantação do sistema em um ambiente de produção. Isso significa que após a execução das etapas a seguir, o sistema estará disponível para ser acessado pelos usuários finais.
 
-Como resultado do processo de modelagem aplicado no decorrer deste capítulo, obtendo-se a arquitetura do sistema, a implementação dos serviços de backend e do cliente web, então foi possível estabelecer o diagrama de infraestrutura de nuvem do sistema, que relaciona todos os serviços e recursos da \gls{aws} especificados na \autoref{tab:ferramentasETecnologiasUtilizadas} e como eles são conectados para a execução do \textit{Virtual Lab} em um ambiente de produção. Esse diagrama é apresentado na \autoref{fig:diagramaDeinfraestruturaAws}.
+Como resultado do processo de modelagem aplicado no decorrer deste capítulo, obtendo-se a arquitetura do sistema, a implementação dos serviços de \textit{backend} e do cliente \textit{web}, então foi possível estabelecer o diagrama de infraestrutura de nuvem do sistema, que relaciona todos os serviços e recursos da \gls{aws} especificados na \autoref{tab:ferramentasETecnologiasUtilizadas} e como eles são conectados para a execução do \textit{Virtual Lab} em um ambiente de produção. Esse diagrama é apresentado na \autoref{fig:diagramaDeinfraestruturaAws}.
 
 \begin{figure}[H]
 %\captionsetup{width=0.55\textwidth}%% Largura da legenda
@@ -951,7 +959,7 @@ A seguir são descritas as etapas necessárias para a implantação a partir do 
     \item Espaço em disco: 472,8 GiB
 \end{itemize}
 
-Contando também com os seguintes softwares instalados:
+Contando também com os seguintes \textit{softwares} instalados:
 
 \begin{itemize}
     \item \textit{Node.js} versão 18.19.0
@@ -997,7 +1005,7 @@ Todas variáveis do arquivo são opcionais, por se tratarem de variáveis de amb
         \item \textit{USER\_POOL\_IDENTITY\_PROVIDER\_ISSUER\_URL}: A URL do provedor de identidade externo.
     \end{itemize}
 
-    \item \textit{USER\_POOL\_SELF\_SIGN\_UP}: Define se os usuários podem se cadastrar no sistema por conta própria. Quando definido como \textit{true}, o auto-cadastro será permitido e o cliente web apresentará uma tela de cadastro. Caso contrário, o auto-cadastro será desativado e o cliente web esconderá a tela de cadastro. O valor padrão é \textit{false}. Vale lembrar que usuários auto-cadastrados recebem uma permissão de usuário pendente e precisam ser aprovados por um administrador antes de poderem acessar o sistema.
+    \item \textit{USER\_POOL\_SELF\_SIGN\_UP}: Define se os usuários podem se cadastrar no sistema por conta própria. Quando definido como \textit{true}, o auto-cadastro será permitido e o cliente \textit{web} apresentará uma tela de cadastro. Caso contrário, o auto-cadastro será desativado e o cliente \textit{web} esconderá a tela de cadastro. O valor padrão é \textit{false}. Vale lembrar que usuários auto-cadastrados recebem uma permissão de usuário pendente e precisam ser aprovados por um administrador antes de poderem acessar o sistema.
 
     \item \textit{NEW\_RELIC\_LAMBDA\_INSTRUMENTATION}: Define se a instrumentação do \textit{New Relic} deve ser ativada para as funções \textit{Lambda}. Quando definido como \textit{true}, a instrumentação será ativada. Caso contrário, a instrumentação será desativada. O valor padrão é \textit{false}. Caso essa variável seja definida como \textit{true}, as seguintes variáveis de ambiente também deverão ser definidas:
 
@@ -1011,13 +1019,13 @@ Todas variáveis do arquivo são opcionais, por se tratarem de variáveis de amb
 
     \end{itemize}
 
-    \item \textit{CLIENT\_CUSTOM\_DOMAIN}: Define se o cliente web deve ser servido em um domínio personalizado. Quando definido como \textit{true}, o cliente web será servido em um domínio personalizado. Caso contrário, o cliente web será servido em um domínio padrão. O valor padrão é \textit{false}. Caso essa variável seja definida como \textit{true}, as seguintes variáveis de ambiente também deverão ser definidas:
+    \item \textit{CLIENT\_CUSTOM\_DOMAIN}: Define se o cliente \textit{web} deve ser servido em um domínio personalizado. Quando definido como \textit{true}, o cliente \textit{web} será servido em um domínio personalizado. Caso contrário, o cliente \textit{web} será servido em um domínio padrão. O valor padrão é \textit{false}. Caso essa variável seja definida como \textit{true}, as seguintes variáveis de ambiente também deverão ser definidas:
 
     \begin{itemize}
 
         \item \textit{CLIENT\_CUSTOM\_DOMAIN\_NAME}: O nome do domínio personalizado. Exemplo: \textit{virtual-lab.example.com}.
 
-        \item \textit{CLIENT\_CUSTOM\_DOMAIN\_CERTIFICATE\_ARN}: O ARN do certificado do domínio personalizado criado manualmente no \textit{AWS Certificate Manager} \citep{awscertificatemanagerdocs}. Essa é o unico recurso que deve ser criado manualmente.
+        \item \textit{CLIENT\_CUSTOM\_DOMAIN\_CERTIFICATE\_ARN}: O ARN do certificado do domínio personalizado criado manualmente no \textit{AWS Certificate Manager} \citep{awscertificatemanagerdocs}. Essa é o único recurso que deve ser criado manualmente.
 
     \end{itemize}
 
@@ -1027,7 +1035,7 @@ Todas variáveis do arquivo são opcionais, por se tratarem de variáveis de amb
 
         \item \textit{DOCS\_CUSTOM\_DOMAIN\_NAME}: O nome do domínio personalizado. Exemplo: \textit{docs.virtual-lab.example.com}.
 
-        \item \textit{DOCS\_CUSTOM\_DOMAIN\_CERTIFICATE\_ARN}: O ARN do certificado do domínio personalizado criado manualmente no \textit{AWS Certificate Manager} \citep{awscertificatemanagerdocs}. Caso o certificado utilizado no cliente web também suporte o domínio da documentação, essa variável pode receber o mesmo valor da variável \textit{CLIENT\_CUSTOM\_DOMAIN\_CERTIFICATE\_ARN}.
+        \item \textit{DOCS\_CUSTOM\_DOMAIN\_CERTIFICATE\_ARN}: O ARN do certificado do domínio personalizado criado manualmente no \textit{AWS Certificate Manager} \citep{awscertificatemanagerdocs}. Caso o certificado utilizado no cliente \textit{web} também suporte o domínio da documentação, essa variável pode receber o mesmo valor da variável \textit{CLIENT\_CUSTOM\_DOMAIN\_CERTIFICATE\_ARN}.
 
     \end{itemize}
 
@@ -1047,8 +1055,8 @@ Nesse ponto, todos os pré-requisitos foram atendidos e o sistema está pronto p
 
 \shellcmd{npm run deploy -- --stage <stage>}
 
-Esse comando irá provisionar todos os componentes de infraestrutura necessários na \gls{aws}, bem como implantar os serviços de backend, o cliente web e o site da documentação. O processo pode levar alguns minutos na primeira execução, já que tudo será criado do zero.
+Esse comando irá provisionar todos os componentes de infraestrutura necessários na \gls{aws}, bem como implantar os serviços de \textit{backend}, o cliente \textit{web} e o site da documentação. O processo pode levar alguns minutos na primeira execução, já que tudo será criado do zero.
 
-Com o processo concluído, uma mensagem de conclusão será exibida no terminal, contendo as URLs de acesso ao cliente web e ao site de documentação. O sistema estará disponível para ser acessado pelos usuários finais.
+Com o processo concluído, uma mensagem de conclusão será exibida no terminal, contendo as URLs de acesso ao cliente \textit{web} e ao site de documentação. O sistema estará disponível para ser acessado pelos usuários finais.
 
 Caso uma mudança tenha sido feita no código fonte do sistema e seja necessário atualizar a implantação, basta executar o comando de implantação novamente. Apenas os componentes afetados pela mudança serão atualizados, o que torna o processo mais rápido.
